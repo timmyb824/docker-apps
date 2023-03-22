@@ -1,0 +1,5 @@
+.env
+
+dashy/item-icons/
+dashy/config.yaml
+zabbix/zabbix-server/env_vars/

@@ -1,0 +1,152 @@
+groups:
+- name: HostAlerts
+  rules:
+  - alert: HostOutOfMemory
+    expr: node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 10
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: Host out of memory (instance {{ $labels.instance }})
+      description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: HostUnusualNetworkThroughputOut
+    expr: sum by (instance) (rate(node_network_transmit_bytes_total[2m])) / 1024 / 1024 > 100
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: Host unusual network throughput out (instance {{ $labels.instance }})
+      description: "Host network interfaces are probably sending too much data (> 100 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+
+  # Please add ignored mountpoints in node_exporter parameters like
+  # "--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|run)($|/)".
+  # Same rule using "node_filesystem_free_bytes" will fire when disk fills for non-root users.
+  - alert: HostOutOfDiskSpace
+    expr: (node_filesystem_avail_bytes * 100) / node_filesystem_size_bytes < 10 and ON (instance, device, mountpoint) node_filesystem_readonly == 0
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: Host out of disk space (instance {{ $labels.instance }})
+      description: "Disk is almost full (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  # Please add ignored mountpoints in node_exporter parameters like
+  # "--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|run)($|/)".
+  # Same rule using "node_filesystem_free_bytes" will fire when disk fills for non-root users.
+  - alert: HostOutOfDiskSpace
+    expr: (node_filesystem_avail_bytes * 100) / node_filesystem_size_bytes < 10 and ON (instance, device, mountpoint) node_filesystem_readonly == 0
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: Host out of disk space (instance {{ $labels.instance }})
+      description: "Disk is almost full (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: HostHighCpuLoad
+    expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 80
+    for: 0m
+    labels:
+      severity: critical
+    annotations:
+      summary: Host high CPU load (instance {{ $labels.instance }})
+      description: "CPU load is > 80%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: HostOomKillDetected
+    expr: increase(node_vmstat_oom_kill[1m]) > 0
+    for: 0m
+    labels:
+      severity: critical
+    annotations:
+      summary: Host OOM kill detected (instance {{ $labels.instance }})
+      description: "OOM kill detected\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+- name: AllInstances
+  rules:
+  - alert: monitor_service_down
+#    expr: up == 0
+    expr: up{kubernetes_namespace != "jenkins"} == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Monitor service non-operational"
+      description: "Service {{ $labels.instance }} is down."
+
+  - alert: ContainerCpuUsage
+    expr: (sum(rate(container_cpu_usage_seconds_total{name!=""}[3m])) BY (instance, name) * 100) > 90
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: Container CPU usage (instance {{ $labels.instance }})
+      description: "Container CPU usage is above 90%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  # See https://medium.com/faun/how-much-is-too-much-the-linux-oomkiller-and-used-memory-d32186f29c9d
+  - alert: ContainerMemoryUsage
+    expr: (sum(container_memory_working_set_bytes{name!=""}) BY (instance, name) / sum(container_spec_memory_limit_bytes > 0) BY (instance, name) * 100) > 90
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: Container Memory usage (instance {{ $labels.instance }})
+      description: "Container Memory usage is above 90%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  # This rule can be very noisy in dynamic infra with legitimate container start/stop/deployment.
+  - alert: ContainerAbsent
+    expr: absent(container_last_seen)
+    for: 15m
+    labels:
+      severity: critical
+    annotations:
+      summary: Container absent (instance {{ $labels.instance }})
+      description: "A container is absent for 15 min\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+- name: MySQLInstance
+  rules:
+  - alert: MysqlDown
+    expr: mysql_up == 0
+    for: 15m
+    labels:
+      severity: critical
+    annotations:
+      summary: MySQL down (instance {{ $labels.instance }})
+      description: "MySQL instance is down on {{ $labels.instance }}\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: MysqlTooManyConnections(>80%)
+    expr: max_over_time(mysql_global_status_threads_connected[1m]) / mysql_global_variables_max_connections * 100 > 80
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: MySQL too many connections (> 80%) (instance {{ $labels.instance }})
+      description: "More than 80% of MySQL connections are in use on {{ $labels.instance }}\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: MysqlHighThreadsRunning
+    expr: max_over_time(mysql_global_status_threads_running[1m]) / mysql_global_variables_max_connections * 100 > 60
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: MySQL high threads running (instance {{ $labels.instance }})
+      description: "More than 60% of MySQL connections are in running state on {{ $labels.instance }}\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: MysqlSlowQueries
+    expr: increase(mysql_global_status_slow_queries[1m]) > 0
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: MySQL slow queries (instance {{ $labels.instance }})
+      description: "MySQL server mysql has some new slow query.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: MysqlRestarted
+    expr: mysql_global_status_uptime < 60
+    for: 0m
+    labels:
+      severity: info
+    annotations:
+      summary: MySQL restarted (instance {{ $labels.instance }})
+      description: "MySQL has just been restarted, less than one minute ago on {{ $labels.instance }}.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+

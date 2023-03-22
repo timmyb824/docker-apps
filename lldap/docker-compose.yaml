@@ -1,0 +1,19 @@
+---
+version: '3'
+services:
+  lldap:
+    image: nitnelave/lldap:stable
+    container_name: lldap
+    # Change this to the user:group you want.
+    user: "1000:1000"
+    ports:
+      # For LDAP
+      - "3890:3890"
+      # For the web front-end
+      - "17170:17170"
+    volumes:
+      - "./lldap_data:/data"
+    environment:
+      - LLDAP_JWT_SECRET=${LLDAP_JWT_SECRET}
+      - LLDAP_LDAP_USER_PASS=${ZPASSWORD}
+      - LLDAP_LDAP_BASE_DN=dc=example,dc=com

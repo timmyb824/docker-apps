@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:alpine
+    container_name: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      start_period: 15s
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    environment:
+      - POSTGRES_DB=umami
+      - POSTGRES_USER=${PG_DB_USER}
+      - POSTGRES_PASSWORD=${PG_DB_PASSWORD}
+
+  prometheuscommunity:
+      network_mode: host
+      container_name: 'postres_exporter'
+      environment:
+          - 'DATA_SOURCE_NAME=postgresql://${PG_DB_USER}:${PG_DB_PASSWORD}@${PG_DB_HOST}:5432/postgres?sslmode=disable'
+      image: quay.io/prometheuscommunity/postgres-exporter
+        restart: unless-stopped
+
+volumes:
+  pgdata:

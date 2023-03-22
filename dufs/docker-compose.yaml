@@ -1,0 +1,10 @@
+---
+version: '3.3'
+services:
+    run:
+        volumes:
+            - '{current_working_dir}:/data'
+        ports:
+            - '5000:5000'
+        image: sigoden/dufs
+        command: /data -A

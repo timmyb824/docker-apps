@@ -1,0 +1,12 @@
+version: "3"
+services:
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_NOTIFICATIONS=slack
+      - WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL=${SLACK_APP_URL}
+      - WATCHTOWER_NOTIFICATION_SLACK_IDENTIFIER=watchtower
+      - WATCHTOWER_NOTIFICATION_SLACK_CHANNEL=#alerts

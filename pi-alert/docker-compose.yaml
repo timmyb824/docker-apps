@@ -1,0 +1,14 @@
+  pialert:
+    image: jokobsk/pi.alert
+    ports:
+      - "723:20211/tcp"
+    environment:
+      - TZ=America/New_York
+    networks:
+      local:
+        ipv4_address: 192.168.86.33
+    restart: unless-stopped
+    volumes:
+      - pialert_db:/home/pi/pialert/db
+      - ./pialert/pialert.conf:/home/pi/pialert/config/pialert.conf
+      - ./pialert/version.conf:/home/pi/pialert/config/version.conf

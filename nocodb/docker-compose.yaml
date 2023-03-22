@@ -1,0 +1,32 @@
+version: '2.1'
+
+services:
+  # root_db:
+  #   image: postgres
+  #   restart: always
+  #   volumes:
+  #     - nc_db_data:/var/lib/postgresql/data
+  #   environment:
+  #     POSTGRES_PASSWORD: password
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_DB: root_db
+  #   healthcheck:
+  #     test: pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"
+  #     interval: 10s
+  #     timeout: 2s
+  #     retries: 10
+  nocodb:
+    # depends_on:
+    #   root_db:
+    #     condition: service_healthy
+    image: nocodb/nocodb:latest
+    ports:
+      - "720:8080"
+    restart: always
+    volumes:
+      - nc_data:/usr/app/data
+    environment:
+      NC_DB: "pg://root_db:5432?u=${PG_DB_USER}&p=${PG_DB_PASSWORD}&d=${PG_DB_DATABASE}"
+volumes:
+  nc_db_data: {}
+  nc_data: {}

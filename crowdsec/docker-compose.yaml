@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+    crowdsec:
+        volumes:
+            - 'acquis.yaml:/etc/crowdsec/acquis.yaml'
+            - '/var/log/auth.log:/var/log/auth.log'
+            - '/path/mycustom.log:/var/log/mycustom.log'
+        environment:
+            - COLLECTIONS=crowdsecurity/sshd
+        container_name: crowdsec
+        image: crowdsecurity/crowdsec

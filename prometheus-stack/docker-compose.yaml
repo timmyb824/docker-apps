@@ -1,0 +1,110 @@
+---
+version: '3'
+
+networks:
+  grafana:
+
+volumes:
+  prometheus_data:
+    external: true
+  grafana_data:
+   external: true
+  alertmanager_data:
+   external: true
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - "./prometheus:/etc/prometheus"
+      - "prometheus_data:/prometheus"
+    restart: unless-stopped
+    networks:
+      - grafana
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yaml"
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+#    user: "1000"
+    ports:
+      - "3000:3000"
+    volumes:
+      - "grafana_data:/var/lib/grafana"
+    environment:
+      - "GF_INSTALL_PLUGINS=grafana-piechart-panel,grafana-clock-panel,alexanderzobnin-zabbix-app"
+      - "GF_PLUGINS_ENABLE_ALPHA=true"
+    restart: unless-stopped
+    networks:
+      - grafana
+
+  loki:
+    image: grafana/loki:2.4.0
+    container_name: loki
+    volumes:
+      - ./prometheus/loki:/etc/loki
+    ports:
+      - "3100:3100"
+    restart: unless-stopped
+    command: -config.file=/etc/loki/loki-config.yaml
+    networks:
+      - grafana
+
+  promtail:
+    image: grafana/promtail:2.4.0
+    container_name: promtail
+    volumes:
+      - /var/log:/var/log
+      - /home/tbryant/prometheus/promtail:/etc/promtail
+    # ports:
+    #   - "1514:1514" # this is only needed if you are going to send syslogs
+    restart: unless-stopped
+    command: -config.file=/etc/promtail/promtail-config.yaml
+    networks:
+      - grafana
+
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    command:
+      - '--path.rootfs=/host'
+    pid: host
+    restart: unless-stopped
+    networks:
+      - grafana
+    volumes:
+      - '/:/host:ro,rslave'
+
+  alertmanager:
+    depends_on:
+      - prometheus
+    image: prom/alertmanager:v0.23.0
+    container_name: alertmanager
+    restart: unless-stopped
+    ports:
+      - "9093:9093"
+    volumes:
+      - "./prometheus/alertmanager:/etc/alertmanager/"
+      - "alertmanager_data:/data"
+    command: --config.file=/etc/alertmanager/alertmanager.yaml --log.level=debug
+    networks:
+      - grafana
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor
+    container_name: cadvisor
+    # ports:
+    #   - "8080:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /etc/machine-id:/etc/machine-id:ro
+    restart: unless-stopped
+    networks:
+      - grafana

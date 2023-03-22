@@ -1,0 +1,12 @@
+version: '2'
+services:
+  cloudflare-ddns:
+    image: oznu/cloudflare-ddns:latest
+    container_name: cloudflare-ddns
+    restart: always
+    environment:
+      - API_KEY=${CLOUDFLARE_API_KEY}
+      - ZONE=${CLOUDFLARE_ZONE}
+      - PROXIED=true
+      - PUID=1000
+      - PGID=1000

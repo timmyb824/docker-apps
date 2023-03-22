@@ -1,0 +1,14 @@
+---
+version: "2.1"
+services:
+  babybuddy:
+    image: lscr.io/linuxserver/babybuddy:latest
+    container_name: babybuddy
+    environment:
+      - TZ=America/New_York
+      - CSRF_TRUSTED_ORIGINS=http://127.0.0.1:8000,https://babybuddy.domain.com
+    volumes:
+      - ~/babybuddy:/config
+    ports:
+      - 720:8000
+    restart: unless-stopped
