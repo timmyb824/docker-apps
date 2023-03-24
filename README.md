@@ -1,3 +1,3 @@
 # Summary
 
-This repo contains the docker-compose files tools, services, or apps I either have actively deployed in my home lab now or tested out at some point. The docker-compose files are organized by tool.
+This repo contains the docker-compose files for tools and services I've deployed within my home-lab. The docker-compose files are organized by the service they deploy.
