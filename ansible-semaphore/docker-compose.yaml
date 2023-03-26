@@ -1,0 +1,20 @@
+services:
+  semaphore:
+    ports:
+      - 3000:3000
+    image: semaphoreui/semaphore:latest
+    container_name: semaphore
+    environment:
+      SEMAPHORE_DB_DIALECT: postgres
+      SEMAPHORE_DB_USER: ${PG_DB_USER}
+      SEMAPHORE_DB_PASS: ${PG_DB_PASSWORD}
+      SEMAPHORE_DB_HOST: ${PG_DB_HOST}
+      SEMAPHORE_DB_PORT: 5432
+      SEMAPHORE_DB: semaphore
+      SEMAPHORE_ADMIN_PASSWORD: ${ZPASSWORD}
+      SEMAPHORE_ADMIN_NAME: admin
+      SEMAPHORE_ADMIN_EMAIL: admin@localhost
+      SEMAPHORE_ADMIN: admin
+    volumes:
+      - ./config:/etc/semaphore # config.json location
+      - ./playbooks:/tmp/semaphore # playbook location
