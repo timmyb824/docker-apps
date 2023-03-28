@@ -26,7 +26,7 @@ services:
       environment:
           - 'DATA_SOURCE_NAME=postgresql://${PG_DB_USER}:${PG_DB_PASSWORD}@${PG_DB_HOST}:5432/postgres?sslmode=disable'
       image: quay.io/prometheuscommunity/postgres-exporter
-        restart: unless-stopped
+      restart: unless-stopped
 
 volumes:
   pgdata:
