@@ -1,0 +1,10 @@
+version: '3.3'
+services:
+    fluent-bit-plugin-loki:
+        container_name: 'fluent-bit-loki'
+        volumes:
+            - '/var/log:/var/log'
+        environment:
+            - 'LOG_PATH=/var/log/*.log'
+            - 'LOKI_URL=https://loki.local.timmybtech.com/loki/api/v1/push'
+        image: 'grafana/fluent-bit-plugin-loki:latest'
