@@ -7,6 +7,7 @@ services:
     environment:
       - API_KEY=${CLOUDFLARE_API_KEY}
       - ZONE=${CLOUDFLARE_ZONE}
-      - PROXIED=true
+      # - SUBDOMAIN=${CLOUDFLARE_SUBDOMAIN}
+      - PROXIED=false
       - PUID=1000
       - PGID=1000
