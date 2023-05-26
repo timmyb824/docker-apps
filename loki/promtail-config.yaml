@@ -28,13 +28,17 @@ scrape_configs:
       - source_labels: ['__journal__systemd_unit']
         target_label: 'unit'
 
+## must add to docker-compose.yml for this to work:
+    # logging:
+    #   driver: "json-file"
+    #   options:
+    #     tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
   - job_name: docker
-    # entry_parser: raw
     static_configs:
     - targets:
         - localhost
       labels:
-        job: app_logs
+        job: docker_logs
         __path__: /var/lib/docker/containers/*/*.log
 
     pipeline_stages:
