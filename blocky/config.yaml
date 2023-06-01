@@ -1,9 +1,19 @@
 upstream:
   default:
-    - 46.182.19.48
-    - 80.241.218.68
-    - tcp-tls:fdns1.dismail.de:853
-    - https://dns.digitale-gesellschaft.ch/dns-query
+    # OpenDNS
+    - 208.67.222.222
+    - 208.67.220.220
+upstreamTimeout: 2s
+
+customDNS:
+  customTTL: 1h
+  filterUnmappedTypes: true
+  rewrite:
+    home: lan
+    replace-me.com: with-this.com
+  mapping:
+    printer.lan: 192.168.178.3
+
 blocking:
   blackLists:
     ads:
