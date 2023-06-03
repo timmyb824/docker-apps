@@ -15,7 +15,10 @@ services:
       - ./app/letsencrypt:/letsencrypt
       - ./dynamic.yaml:/etc/traefik/dynamic.yaml:ro
     command:
-      - --api.insecure=true
+      - --api.insecure=false
+#      - --api=true
+#      - --api.dashboard=true
+      - --log.level=DEBUG
 #      - --accesslog=true
       - --metrics.prometheus=true
       - --providers.docker
@@ -47,6 +50,9 @@ services:
       traefik.docker.network: traefik_network
       traefik.http.routers.traefik.rule: Host(`${APP_URL}`)
       traefik.http.services.traefik.loadbalancer.server.port: 8080
+      traefik.http.routers.traefik.service: api@internal
+      traefik.http.middlewares.traefik-dashboard-auth.basicauth.users: tbryant:${TRAEFIK_DOCKER_PASSWORD}
+      traefik.http.routers.traefik-dashboard-http-router.middlewares: traefik-dashboard-auth
 
 networks:
   default:
