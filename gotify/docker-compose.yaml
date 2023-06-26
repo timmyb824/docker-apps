@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  gotify:
+    image: gotify/server-arm64
+    container_name: gotify
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    environment:
+      - TZ="America/New_York"
+    volumes:
+      - "./gotify_data:/app/data"
+      - "./config.yml:/etc/gotify/config.yml"

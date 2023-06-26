@@ -5,3 +5,4 @@ dashy/config.yaml
 zabbix/zabbix-server/env_vars/
 AdGaurd.yaml
 dynamic.yaml
+healthchecks.io/healthchecks/
