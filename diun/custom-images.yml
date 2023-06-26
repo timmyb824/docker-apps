@@ -1,0 +1,83 @@
+# k8s images and images running other docker host
+# this way I have one instance of diun running for all docker hosts
+
+## k8s images
+- name: docker.io/appscode/kubed
+- name: docker.io/bitnami/kubeapps-dashboard
+- name: docker.io/gitea/gitea
+- name: docker.io/grafana/grafana
+- name: docker.io/grafana/loki
+- name: docker.io/grafana/promtail
+- name: docker.io/hashicorp/vault-k8s
+- name: docker.io/hashicorp/vault
+- name: docker.io/henrywhitaker3/speedtest-tracker
+- name: docker.io/jenkins/jenkins
+- name: docker.io/library/influxdb
+- name: docker.io/library/traefik
+- name: docker.io/linuxserver/babybuddy
+- name: docker.io/minio/minio
+- name: docker.io/organizr/organizr
+- name: docker.io/portainer/portainer-ce
+- name: docker.io/rancher/local-path-provisioner
+- name: docker.io/rancher/system-upgrade-controller
+- name: docker.io/ysde/docker-grafana-backup-tool
+- name: docker.io/zabbix/zabbix-agent2
+- name: docker.io/dgtlmoon/changedetection.io
+- name: ghcr.io/kubeshop/botkube
+- name: ghcr.io/tailscale/tailscale
+- name: docker.io/tailscale/tailscale
+- name: nfs-subdir-external-provisioner
+- name: docker.io/linuxserver/heimdall
+- name: quay.io/argoproj/argocd
+- name: quay.io/prometheus-operator/prometheus-operator
+- name: quay.io/prometheus/alertmanager
+- name: quay.io/prometheus/node-exporter
+- name: quay.io/prometheus/prometheus
+# - name: portainer/portainer-ce
+# - name: organizr/organizr
+# - name: rancher/local-path-provisioner:v0.0.21
+# - name: rancher/system-upgrade-controller:v0.10.0
+# - name: traefik:2.8.0
+# - name: ysde/docker-grafana-backup-tool:1.2.4
+# - name: zabbix/zabbix-agent2:alpine-6.0.6
+# - name: linuxserver/babybuddy:1.13.2
+# - name: gitea/gitea:1.19.0
+# - name: grafana/promtail
+# - name: hashicorp/vault-k8s:1.1.0
+# - name: hashicorp/vault:1.12.1
+# - name: henrywhitaker3/speedtest-tracker:latest
+# - name: influxdb:2.7.0
+# - name: jenkins/jenkins:2.407
+# - name: appscode/kubed:v0.12.0
+# - name: ghcr.io/dgtlmoon/changedetection.io
+
+
+## docker images
+- name: postgres
+  platform:
+    os: linux
+    arch: arm64
+    variant: v8
+- name: prometheuscommunity/postgres-exporter
+  platform:
+    os: linux
+    arch: arm64
+    variant: v8
+- name: zabbix/zabbix-agent2
+  platform:
+    os: linux
+    arch: arm64
+    variant: v8
+- name: gotify/server-arm64
+  platform:
+    os: linux
+    arch: arm64
+    variant: v8
+- name: a1kmm/alertmanager-to-gotify
+- name: docker.io/alerta/alerta-web
+- name: docker.io/adguard/adguardhome
+- name: docker.io/louislam/uptime-kuma
+- name: linuxserver/adguardhome-sync
+- name: docker.io/louislam/uptime-kuma
+- name: docker.io/grafana/promtail
+- name: docker.io/ebrianne/adguard-exporter
