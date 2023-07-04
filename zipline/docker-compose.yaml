@@ -1,0 +1,50 @@
+version: '3'
+services:
+#  postgres:
+#    image: postgres:15
+#    restart: unless-stopped
+#    environment:
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
+#      - POSTGRES_DATABASE=postgres
+#    volumes:
+#      - pg_data:/var/lib/postgresql/data
+#    healthcheck:
+#      test: ['CMD-SHELL', 'pg_isready -U postgres']
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
+
+  zipline:
+    image: ghcr.io/diced/zipline
+    container_name: zipline
+    ports:
+      - '3000:3000'
+    restart: unless-stopped
+    environment:
+      - CORE_RETURN_HTTPS=false
+      - CORE_SECRET=${ZIPLINE_CORE_SECRET}
+      - CORE_HOST=0.0.0.0
+      - CORE_PORT=3000
+      - CORE_DATABASE_URL=postgres://${PG_DB_USER}:${PG_DB_PASSWORD}@${PG_DB_HOST}/zipline
+      - CORE_LOGGER=true
+    volumes:
+      - './uploads:/zipline/uploads'
+      - './public:/zipline/public'
+    labels:
+      traefik.enable: true
+      traefik.docker.network: traefik_network
+      traefik.http.routers.zipline.rule: Host(`zipline.timmybtech.com`)
+      traefik.http.services.zipline.loadbalancer.server.port: 3000
+
+networks:
+  default:
+    name: traefik_network
+    external: true
+
+
+#    depends_on:
+#      - 'postgres'
+
+#volumes:
+#  pg_data:
