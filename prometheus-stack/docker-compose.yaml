@@ -108,3 +108,16 @@ services:
     restart: unless-stopped
     networks:
       - grafana
+
+  snmp-exporter:
+    image: prom/snmp-exporter
+    container_name: snmp_exporter
+    restart: unless-stopped
+    volumes:
+      - ./snmp_exporter/snmp.yml:/etc/snmp_exporter/snmp.yml
+    ports:
+      - 9116:9116
+    command:
+      - "--config.file=/etc/snmp_exporter/snmp.yml"
+    networks:
+      - grafana
