@@ -30,7 +30,7 @@ services:
 
   pihole-exporter:
     container_name: pihole-exporter
-    image: ekofr/pihole-exporter:v0.3.0
+    image: ekofr/pihole-exporter:v0.4.0
     ports:
     - "9617:9617"
   #  network_mode: 'host'
