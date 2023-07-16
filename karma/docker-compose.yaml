@@ -1,0 +1,20 @@
+version: "3.3"
+services:
+  karma:
+    container_name: karama
+    environment:
+      - "ALERTMANAGER_URI=https://alertmanager.local.timmybtech.com"
+    image: "ghcr.io/prymitive/karma:v0.114"
+#    ports:
+#      - 8082:8080
+    labels:
+      traefik.enable: true
+      traefik.docker.network: traefik_network
+      traefik.http.routers.karma.rule: Host(`karma.timmybtech.com`)
+      traefik.http.services.karma.loadbalancer.server.port: 8080
+    restart: unless-stopped
+
+networks:
+  default:
+    name: traefik_network
+    external: true
