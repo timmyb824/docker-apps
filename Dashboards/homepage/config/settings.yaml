@@ -1,0 +1,4 @@
+---
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: <OPENWEATHER_API_KEY>
