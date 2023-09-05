@@ -12,5 +12,3 @@ receivers:
             channel: '#alerts'
             api_url:  '${SLACK_APP_URL}'
             icon_url: https://avatars3.githubusercontent.com/u/3380462
-
-

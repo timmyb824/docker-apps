@@ -18,6 +18,6 @@ providers:
 notif:
   gotify:
     endpoint: https://gotify.timmybtech.com
-  token: ${DIUN_GOTIFY_TOKEN}
+    token: ${DIUN_GOTIFY_TOKEN}
     priority: 1
     timeout: 10s

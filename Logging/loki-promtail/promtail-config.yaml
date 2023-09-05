@@ -66,4 +66,3 @@ scrape_configs:
       container_id:
   - output:
       source: output
-

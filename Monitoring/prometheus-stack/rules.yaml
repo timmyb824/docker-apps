@@ -149,4 +149,3 @@ groups:
     annotations:
       summary: MySQL restarted (instance {{ $labels.instance }})
       description: "MySQL has just been restarted, less than one minute ago on {{ $labels.instance }}.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
