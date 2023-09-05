@@ -1,8 +1,8 @@
 .env
 
-dashy/item-icons/
-dashy/config.yaml
-zabbix/zabbix-server/env_vars/*
+Dashboards/dashy/item-icons/
+Dashboards/dashy/config.yaml
+Monitoring/zabbix/zabbix-server/env_vars/*
 AdGaurd.yaml
 dynamic.yaml
-healthchecks.io/healthchecks/
+Monitoring/healthchecks.io/healthchecks/
