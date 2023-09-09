@@ -1,7 +1,6 @@
 .env
 
 Dashboards/dashy/item-icons/
-Dashboards/dashy/config.yaml
 Monitoring/zabbix/zabbix-server/env_vars/*
 AdGaurd.yaml
 dynamic.yaml
