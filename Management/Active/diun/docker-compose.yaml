@@ -1,0 +1,17 @@
+version: "3.5"
+
+services:
+  diun:
+    image: crazymax/diun:latest
+    container_name: diun
+    command: serve
+    volumes:
+      - "./data:/data"
+      - "./diun.yml:/diun.yml:ro"
+      - "./custom-images.yml:/custom-images.yml:ro"
+      - "$HOME/.docker/config.json:/root/.docker/config.json:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    environment:
+      - "TZ=America/New_York"
+      - "LOG_LEVEL=info"
+      - "LOG_JSON=false"
