@@ -1,0 +1,31 @@
+version: "2.1"
+services:
+    code-server:
+        image: lscr.io/linuxserver/code-server:latest
+        container_name: code-server
+        environment:
+            # Install packages during installation
+            - DOCKER_MODS=linuxserver/mods:code-server-python3|linuxserver/mods:code-server-nodejs|linuxserver/mods:code-server-terraform|linuxserver/mods:code-server-zsh
+            - PUID=1000
+            - PGID=1000
+            - TZ=America/New_York
+            #optional
+            - PASSWORD=${PASSWORD}
+            #optional
+            - SUDO_PASSWORD=${SUDO_PASSWORD}
+            - PROXY_DOMAIN=code-server.timmybtech.com
+            #- DEFAULT_WORKSPACE=/config/workspace #optional
+        volumes:
+            - ./config:/config
+        ports:
+            - 8443:8443
+        restart: unless-stopped
+        labels:
+            traefik.enable: true
+            traefik.docker.network: traefik_network
+            traefik.http.routers.code-server.rule: Host(`code-server.timmybtech.com`)
+            traefik.http.services.code-server.loadbalancer.server.port: 8443
+networks:
+    default:
+        name: traefik_network
+        external: true
