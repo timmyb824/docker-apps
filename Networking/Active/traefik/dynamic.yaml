@@ -120,7 +120,7 @@ http:
         it-tools:
             loadBalancer:
                 servers:
-                    - url: http://150.136.88.95:5884
+                    - url: http://${HOMELAB-OCI03_IP}:5884
         zabbix:
             loadBalancer:
                 servers:
@@ -164,7 +164,7 @@ http:
         gotify:
             loadBalancer:
                 servers:
-                    - url: http://150.136.88.95:8080
+                    - url: http://${HOMELAB-OCI03_IP}:8080
         homepage:
             loadBalancer:
                 servers:
@@ -172,11 +172,11 @@ http:
         healthchecks:
             loadBalancer:
                 servers:
-                    - url: http://150.136.88.95:8000
+                    - url: http://${HOMELAB-OCI03_IP}:8000
         alerta:
             loadBalancer:
                 servers:
-                    - url: http://150.136.88.95:8082
+                    - url: http://${HOMELAB-OCI03_IP}:8082
         pgweb:
             loadBalancer:
                 servers:
@@ -238,8 +238,8 @@ sops:
             SEtvNVpadDB3M3pVeFhGNUloUGI4RTAK5xhgaTj+u7HKGLHXisTBqR83N4bZaYOd
             ClgxMMUcXtJ0jQhaTFGpxeGEaSHL82DgZ3mdPw6RzrXHujtXSVyhwg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-10-10T03:39:12Z"
-    mac: ENC[AES256_GCM,data:8RNn5j6tIa58dmroZ00/cCJiv4SS1lDd3+mh4kQjIZbbfFasbDdFRWM5QzkVj5ZxJTTrXOVHiD0AOHCJCgjh3g7EZmKbFx/bCxhvcy7n2352XdZ1phbqCMjDy2UZ2OotHwFRkC5sE6cbyEeS7EuRPCUqO9pQXfKrxZEgCjx7TrU=,iv:ibChQ6Nqn2c5ETXFUmrQM+wPEqx+EV2vRZSZEgn0ojU=,tag:dE7NS1/RfgAnKqIKXFNVrA==,type:str]
+    lastmodified: "2023-11-05T04:15:56Z"
+    mac: ENC[AES256_GCM,data:jFPc84I7aQ0DYakeBSYC7P03icWMPi8ZWgddRmGXRnUqRcL54mmrkXzTdsAABZrIuztvQAEEYD29frBokW/b8Y02r4Q5k+OuEy2rDN6LFQrBEQzre2mfPhRyEugAfMHLOSuaHfSI5qRJDdpM+zmI3osdJFNOeTBiwQmw73dih/s=,iv:cZbljrpNf8iqKWixsbepF7DHt0rxq0YUr5LbvdBgVDA=,tag:wqTV5U5BSMo4mM/QTp/Zow==,type:str]
     pgp: []
     encrypted_regex: ^(middlewares)$
-    version: 3.8.0
+    version: 3.8.1
