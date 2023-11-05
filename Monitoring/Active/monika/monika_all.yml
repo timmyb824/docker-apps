@@ -1,0 +1,634 @@
+notifications:
+    - id: slack-notice
+      type: slack
+      data:
+        url: ENC[AES256_GCM,data:TOW9P4tcWnW+BZ9rYNBessVrnbJeG45b6oL48BUd81AxFaJ/FxMbM9n+IEdOjl3MKb5ew2sCc77VZk1GDgNjZ41ZsDGwX8CllU56vKzGtd1K,iv:uo1rjoyWqTWemmDrKBhiIbIqK47yHG6K5dmfrNKxO7E=,tag:KxHEvzHQgLkojumgKLQIVg==,type:str]
+    - id: gotify-notice
+      type: gotify
+      data:
+        url: ENC[AES256_GCM,data:aTj3oDcbCcZkN9jEFNQhdAEaaVAyRCmiF2q3QRw=,iv:PamlsSZxDkR4qFBrjgTuGco1XPoxO0CJiWHb5wmSWN8=,tag:fLgeIqsm+Cm0xYs6UkkRtA==,type:str]
+        token: ENC[AES256_GCM,data:+zUCT5+G08CVvZEohu4l,iv:aNxLEXERvrCqiSOvi5kbmimvnoNq1/KNYAycvguDMh0=,tag:jrDkut413cmPzutJoZHqsg==,type:str]
+    - id: discord
+      type: discord
+      data:
+        url: ENC[AES256_GCM,data:isZWfzAA6bSjHEGvqykgpBSR8OU1QTVVKLi6cLhtFtP1PdnANONswlvG8ozFQlMHlyd3wwB79Yac4E49Qalzjl9cXXc91xNAu+u2HYxmdh49u8ZsYUM1k8SH8bhRA7v0v0mI4TKWvG0HBMmrlJhFMRObdLeejf1PNQ==,iv:4h1I8tHt2ivKLC56qW8xLVmtKRYHaSuRC/od5lJu2kU=,tag:WZbMadNSJfgkSKVdDY8LHg==,type:str]
+probes:
+    - id: 904ecd54-74be-433b-bfd9-8b8cfa405a22
+      name: Adguardhome
+      description: ""
+      interval: 60
+      requests:
+        - url: https://adguard.timmybtech.com
+          body: {}
+          timeout: 10000
+          headers: {}
+          method: GET
+          alerts: []
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status < 200 or response.status > 299
+          message: Target is not healthy. It has not been returning status code 2xx.
+        - assertion: response.time > 2000
+          message: Target is not healthy. The response time has been greater than 2000 ms.
+    - id: e4a98460-331b-494d-93a1-caff189cd788
+      name: Adguardhome Replica
+      description: ""
+      interval: 60
+      requests:
+        - url: https://adguard2.timmybtech.com
+          body: {}
+          timeout: 10000
+          headers: {}
+          method: GET
+          alerts: []
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status < 200 or response.status > 299
+          message: Target is not healthy. It has not been returning status code 2xx.
+        - assertion: response.time > 2000
+          message: Target is not healthy. The response time has been greater than 2000 ms.
+    - id: 9d9e46f3-db15-4d2c-b780-ddad5a129634
+      name: blog.timothybryantjr
+      description: ""
+      interval: 60
+      requests:
+        - url: https://blog.timothybryantjr.com
+          body: {}
+          timeout: 10000
+          headers: {}
+          method: GET
+          alerts: []
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status < 200 or response.status > 299
+          message: Target is not healthy. It has not been returning status code 2xx.
+        - assertion: response.time > 2000
+          message: Target is not healthy. The response time has been greater than 2000 ms.
+    - id: 9500e793-dcc2-41aa-8eb8-00a7b0e32e99
+      name: homepage.timothybryantjr
+      description: ""
+      interval: 60
+      requests:
+        - url: https://timothybryantjr.com
+          body: {}
+          timeout: 10000
+          headers: {}
+          method: GET
+          alerts: []
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status < 200 or response.status > 299
+          message: Target is not healthy. It has not been returning status code 2xx.
+        - assertion: response.time > 2000
+          message: Target is not healthy. The response time has been greater than 2000 ms.
+    - id: d1a7e8a5-e001-4b6c-82dc-513d063512ab
+      name: Gitea
+      description: ""
+      interval: 60
+      requests:
+        - url: https://gitea.local.timmybtech.com/
+          body: {}
+          timeout: 10000
+          headers: {}
+          method: GET
+          alerts: []
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status < 200 or response.status > 299
+          message: Target is not healthy. It has not been returning status code 2xx.
+        - assertion: response.time > 2000
+          message: Target is not healthy. The response time has been greater than 2000 ms.
+    - id: e0c1c6af-8654-4fdb-baeb-633b74b47520
+      name: Grafana
+      description: ""
+      interval: 60
+      requests:
+        - url: https://grafana.local.timmybtech.com
+          body: {}
+          timeout: 10000
+          headers: {}
+          method: GET
+          alerts: []
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status < 200 or response.status > 299
+          message: Target is not healthy. It has not been returning status code 2xx.
+        - assertion: response.time > 2000
+          message: Target is not healthy. The response time has been greater than 2000 ms.
+    - id: aee0eae6-48b6-401b-b866-0bc1291349c0
+      name: LinkAce
+      description: ""
+      interval: 60
+      requests:
+        - url: https://linkace.timmybtech.com
+          body: {}
+          timeout: 10000
+          headers: {}
+          method: GET
+          alerts: []
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status < 200 or response.status > 299
+          message: Target is not healthy. It has not been returning status code 2xx.
+        - assertion: response.time > 2000
+          message: Target is not healthy. The response time has been greater than 2000 ms.
+    - id: 08216630-cdf0-413a-a36b-3dece6fc6fe3
+      name: Prometheus
+      description: ""
+      interval: 60
+      requests:
+        - url: https://prometheus.local.timmybtech.com
+          body: {}
+          timeout: 10000
+          headers: {}
+          method: GET
+          alerts: []
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status < 200 or response.status > 299
+          message: Target is not healthy. It has not been returning status code 2xx.
+        - assertion: response.time > 2000
+          message: Target is not healthy. The response time has been greater than 2000 ms.
+    # - id: 67949393-3324-41fd-9cea-d3e8fb5b7231
+    #   name: Proxmox HTTPS
+    #   description: ''
+    #   interval: 60
+    #   requests:
+    #     - url: https://pve.timmybtech.com
+    #       body: {}
+    #       timeout: 10000
+    #       headers: {}
+    #       method: GET
+    #       alerts: []
+    #   incidentThreshold: 10
+    #   recoveryThreshold: 10
+    #   alerts:
+    #     - assertion: response.status < 200 or response.status > 299
+    #       message: Target is not healthy. It has not been returning status code 2xx.
+    #     - assertion: response.time > 2000
+    #       message: >-
+    #         Target is not healthy. The response time has been greater than 2000
+    #         ms.
+    # - id: dbaf7fe6-fc68-4740-bb51-ad05e26cdf66
+    #   name: Syncthing
+    #   description: ''
+    #   interval: 60
+    #   requests:
+    #     - url: https://syncthing.timmybtech.com
+    #       body: {}
+    #       timeout: 10000
+    #       headers: {}
+    #       method: GET
+    #       alerts: []
+    #   incidentThreshold: 10
+    #   recoveryThreshold: 10
+    #   alerts:
+    #     - assertion: response.status < 200 or response.status > 299
+    #       message: Target is not healthy. It has not been returning status code 2xx.
+    #     - assertion: response.time > 2000
+    #       message: >-
+    #         Target is not healthy. The response time has been greater than 2000
+    #         ms.
+    # - id: 98252532-c42b-426e-8a5b-31b57c2947ad
+    #   name: Traefik - docker
+    #   description: ''
+    #   interval: 60
+    #   requests:
+    #     - url: https://traefik.timmybtech.com/
+    #       body: {}
+    #       timeout: 10000
+    #       headers: {}
+    #       method: GET
+    #       alerts: []
+    #   incidentThreshold: 10
+    #   recoveryThreshold: 10
+    #   alerts:
+    #     - assertion: response.status < 200 or response.status > 299
+    #       message: Target is not healthy. It has not been returning status code 2xx.
+    #     - assertion: response.time > 2000
+    #       message: >-
+    #         Target is not healthy. The response time has been greater than 2000
+    #         ms.
+    # - id: cafb9e6e-37f0-47fa-8005-19dfc2a6a92e
+    #   name: Traefik - k8s
+    #   description: ''
+    #   interval: 60
+    #   requests:
+    #     - url: https://traefik.local.timmybtech.com/
+    #       body: {}
+    #       timeout: 10000
+    #       headers: {}
+    #       method: GET
+    #       alerts: []
+    #   incidentThreshold: 10
+    #   recoveryThreshold: 10
+    #   alerts:
+    #     - assertion: response.status < 200 or response.status > 299
+    #       message: Target is not healthy. It has not been returning status code 2xx.
+    #     - assertion: response.time > 2000
+    #       message: >-
+    #         Target is not healthy. The response time has been greater than 2000
+    #         ms.
+    - id: c99509fb-5e10-48a6-83d5-5863a4b193ea
+      name: Zabbix Server
+      description: ""
+      interval: 60
+      requests:
+        - url: https://zabbix.timmybtech.com/
+          body: {}
+          timeout: 10000
+          headers: {}
+          method: GET
+          alerts: []
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status < 200 or response.status > 299
+          message: Target is not healthy. It has not been returning status code 2xx.
+        - assertion: response.time > 2000
+          message: Target is not healthy. The response time has been greater than 2000 ms.
+    - id: "1"
+      name: bryantnas
+      description: Check if bryantnas is up
+      interval: 60
+      requests:
+        - url: nas.timmybtech.com
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: bryantnas is down
+    - id: "2"
+      name: homelab-oci02
+      description: Check if homelab-oci02 is up
+      interval: 60
+      requests:
+        - url: homelab-oci02.tailebee.ts.net
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: homelab-oci02 is down
+    - id: "3"
+      name: k3s-0-worker
+      description: Check if k3s-0-worker is up
+      interval: 60
+      requests:
+        - url: k3s-0-worker.tailebee.ts.net
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: k3s-0-worker is down
+    - id: "4"
+      name: k3s-0
+      description: Check if k3s-0 is up
+      interval: 60
+      requests:
+        - url: k3s-0.tailebee.ts.net
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: k3s-0 is down
+    - id: "5"
+      name: homeassistant
+      description: Check if homeassistant is up
+      interval: 60
+      requests:
+        - url: hass.timmybtech.com
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: homeassistant is down
+    - id: "6"
+      name: homelab-oci03
+      description: Check if homelab-oci03 is up
+      interval: 60
+      requests:
+        - url: homelab-oci03.local.lan
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: homelab-oci03 is down
+    - id: "7"
+      name: k3s-1-worker
+      description: Check if k3s-1-worker is up
+      interval: 60
+      requests:
+        - url: k3s-1-worker.tailebee.ts.net
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: k3s-1-worker is down
+    - id: "8"
+      name: k3s-1
+      description: Check if k3s-1 is up
+      interval: 60
+      requests:
+        - url: k3s-1.tailebee.ts.net
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: k3s-1 is down
+    - id: "9"
+      name: k3s-2-worker
+      description: Check if k3s-2-worker is up
+      interval: 60
+      requests:
+        - url: k3s-2-worker.tailebee.ts.net
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: k3s-2-worker is down
+    - id: "10"
+      name: k3s-2
+      description: Check if k3s-2 is up
+      interval: 60
+      requests:
+        - url: k3s-2.tailebee.ts.net
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: k3s-2 is down
+    - id: "11"
+      name: pihole2
+      description: Check if pihole2 is up
+      interval: 60
+      requests:
+        - url: pihole2.tailebee.ts.net
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: pihole2 is down
+    - id: "12"
+      name: pve2
+      description: Check if pve2 is up
+      interval: 60
+      requests:
+        - url: pve2.tailebee.ts.net
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: pve2 is down
+    - id: "13"
+      name: pve3
+      description: Check if pve3 is up
+      interval: 60
+      requests:
+        - url: pve3.tailebee.ts.net
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: pve3 is down
+    - id: "14"
+      name: subnet-router
+      description: Check if subnet-router is up
+      interval: 60
+      requests:
+        - url: subnet-router.tailebee.ts.net
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: subnet-router is down
+    - id: "15"
+      name: ct102 (syncthing)
+      description: Check if ct102 (syncthing) is up
+      interval: 60
+      requests:
+        - url: syncthing.tailebee.ts.net
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: ct102 (syncthing) is down
+    - id: "16"
+      name: vm303
+      description: Check if vm303 is up
+      interval: 60
+      requests:
+        - url: vm303.local.lan
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: vm303 is down
+    - id: "17"
+      name: vm304
+      description: Check if vm304 is up
+      interval: 60
+      requests:
+        - url: vm304.local.lan
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: vm304 is down
+    - id: "18"
+      name: vm305
+      description: Check if vm305 is up
+      interval: 60
+      requests:
+        - url: vm305.local.lan
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: vm305 is down
+    - id: "19"
+      name: vm306
+      description: Check if vm306 is up
+      interval: 60
+      requests:
+        - url: vm306.local.lan
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: vm306 is down
+    - id: "20"
+      name: timothy-hp-laptop
+      description: Check if timothy-hp-laptop is up
+      interval: 60
+      requests:
+        - url: timothy-hp-laptop.tailebee.ts.net.
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: timothy-hp-laptop is down
+    - id: "21"
+      name: raspberrypi
+      description: Check if raspberrypi is up
+      interval: 60
+      requests:
+        - url: raspberrypi.tailebee.ts.net
+          ping: true
+          alerts:
+            - assertion: response.status != 200
+              message: Status code is not 200
+            - assertion: response.time > 2000
+              message: Request took more than 2 seconds
+      incidentThreshold: 10
+      recoveryThreshold: 10
+      alerts:
+        - assertion: response.status != 200
+          message: raspberrypi is down
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1hhnjylnwfh0w6sxzlvc905ma8wa5pkspv9k2kj8a0d993m8h734se3jh7u
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVaGtLek1MRzRBdHpPN3pC
+            aGh4aDZRckd1ZWhKVEVRblBLazZXTDVzaUY0ClBpYzJxeVZ2cWVsUVRyZG54Y3Bo
+            a2dmU1pra24wRFQrZ1JIc3J2WHYwTEEKLS0tIDhGb3dFU0V4OURDQlpVaCszS1l5
+            NWNTbi9iVFdFWVRNTHZBZmQ2KzZIQ3cKGsYEp5iXuwFOy17n/QEeVRNtF5o9xsf4
+            3kbbBpyi5xc8yknCKKVgVk3euGtSC7WlS1EHbpLWkA14Ep2vtbb4dg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-10-16T00:55:56Z"
+    mac: ENC[AES256_GCM,data:ANf+tsMLZgL40k3Bop8FC18LVxO/MBq6CBkNFfAP0wyUx6rKQW5v1dJV4Ak7anWILNbr1rjMgPRtmSmVIgBms24G8yO0HN5pyVPk8/y2X3wNv5C39zYcPYcdNOUFX4072j3GkBDTwZZGxwW4Ct/z6C6H2LeAjxBF4gNRTdFkg40=,iv:NVPoSCTvvR732reB4WL0yiXyrwB0H0hQi9PzY1j763I=,tag:ex8DBWcJSF+uo0YdM2lB2g==,type:str]
+    pgp: []
+    encrypted_regex: ^(data)$
+    version: 3.8.0
