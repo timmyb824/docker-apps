@@ -1,0 +1,40 @@
+# ./diun.yml
+watch:
+    workers: 20
+    schedule: 0 */6 * * *
+    firstCheckNotif: true
+    runOnStartup: true
+    healthchecks:
+        baseURL: ENC[AES256_GCM,data:EUCyHy3n98tk2fvjI3QwTXCAdG4HTpopeQBcfCoiHE/cL7mo/y0EHZo=,iv:VeJ24OhKq/m76Gdph56poxNM0rupbkqMkuguPy2ef5k=,tag:IrICAI9rH5c+rH0vov3tQQ==,type:str]
+        uuid: ENC[AES256_GCM,data:WXCKnrNQwqxL4gjIWi8g4jWg9iG2iYDEm5yT6FBx349zTqfT,iv:EHtIryQ/Ffh2wT1Yhf7bE70Qv6kGL8nlw1LSz7HBqzI=,tag:8IZGYEv+OZgJc9KaDcCiIg==,type:str]
+providers:
+    docker:
+        watchByDefault: true
+    file:
+        filename: /custom-images.yml
+notif:
+    gotify:
+        endpoint: ENC[AES256_GCM,data:hX/035q4Jo13Xu19lpZURL1c1UfhCLXJpQZc1Wk=,iv:zhAY1XHy9Tkv1eTZHcwY3Emm/yowqTH8RuiCEFsjJf0=,tag:1hCn6+1UNseLD1MpPvdkvw==,type:str]
+        token: ENC[AES256_GCM,data:CAs+QKbgk1BZLQdaXt2o,iv:OpqJgmyFIiBV9fTRrIjj6015jb2K4FbXAg+g5MNYRs4=,tag:fAV4exa8obaYGXp6UM3PRw==,type:str]
+        priority: ENC[AES256_GCM,data:ew==,iv:yIc2xutHRjt7qWrTNPoVMK3tZuN1NF+I9kRDZlv0lrk=,tag:VOb51xuVQJO0DHZlCh8IZA==,type:int]
+        timeout: ENC[AES256_GCM,data:/RRh,iv:tlKqa2Q/CthswbNPQn5Tjmda/4uJqCUl1HLiTpEt2qg=,tag:LvXFu+Ia3QOxJq0Ifk3dlA==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1hhnjylnwfh0w6sxzlvc905ma8wa5pkspv9k2kj8a0d993m8h734se3jh7u
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxRnNlak1mamhNbllvSmpU
+            c1pXeXpJdmpHSEl1RFlSeUFqMlJvNnB6R0U4CnpaYWFVOFJsQXdMVzVyQ3NjMzNs
+            QytEbFZQR0hqZXB6SzA5ZlNBaWJERFkKLS0tIHBGWGF3UFlMcWtYMG96NnlsWW9V
+            RXhNMUZJYUMxai8yM0ZGZ0pEUndDdVEKE+FPC4nn1linmGTFnfjyQzfl1hfilFw/
+            ZrgVlTrG4BTqtT5XujQUlzOLuUAS4zbAt1a2Qn7Gxj3hl4b7JcKmVg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-10-10T06:23:09Z"
+    mac: ENC[AES256_GCM,data:zf3BkyDr0VjxmDOIVIzWrnejAPKkbiRtYdY1gY2O6rnJQV4Oj0Ozm1I/qeugEFawbZOADU2ocxxaDregHPVKE/jNVbCCAhGBOoU8k2vhHE6Rbu34DeKybfe0M8cBB5uhJMQH61izWw3Tg//0Ql1l4ari184hGYYxCyj1jw9Zeeo=,iv:RIqs9k1CGuDFkPIS35t72ZdqO6bYKeV6UMNZf7rb9II=,tag:yMShChnfND8N9waIzxbbJA==,type:str]
+    pgp: []
+    encrypted_regex: ^(healthchecks|gotify)$
+    version: 3.8.0

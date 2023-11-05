@@ -1,0 +1,13 @@
+[Unit]
+Description=Prometheus Podman Exporter
+After=network.target
+
+[Service]
+ExecStart=/home/tbryant/podman/podman_prom_exporter/prometheus-podman-exporter/bin/prometheus-podman-exporter --collector.enable-all
+Restart=always
+#User=tbryant
+# Configures the time to wait before service is stopped forcefully.
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

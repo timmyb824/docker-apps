@@ -1,0 +1,14 @@
+# From: https://hub.docker.com/r/newrelic/infrastructure/
+version: '3.9'
+services:
+    infrastructure:
+        image: 'newrelic/infrastructure:latest'
+        environment:
+            - NRIA_LICENSE_KEY="my_license_key"
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock'
+            - '/:/host:ro'
+        cap_add:
+            - SYS_PTRACE
+        network_mode: 'host'
+        container_name: newrelic-infra

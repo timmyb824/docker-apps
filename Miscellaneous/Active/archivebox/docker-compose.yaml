@@ -1,0 +1,25 @@
+version: '2.4'
+
+services:
+    archivebox:
+        image: ${DOCKER_IMAGE:-archivebox/archivebox:master}
+        container_name: archivebox
+        command: server --quick-init 0.0.0.0:8000
+        restart: unless-stopped
+        ports:
+            - 8000:8000
+        environment:
+            - ALLOWED_HOSTS=*
+            - MEDIA_MAX_SIZE=750m
+        volumes:
+            - ./data:/data
+        labels:
+          traefik.enable: true
+          traefik.docker.network: traefik_network
+          traefik.http.routers.archivebox.rule: Host(`archivebox.timmybtech.com`)
+          traefik.http.services.archivebox.loadbalancer.server.port: 8000
+
+networks:
+  default:
+    name: traefik_network
+    external: true

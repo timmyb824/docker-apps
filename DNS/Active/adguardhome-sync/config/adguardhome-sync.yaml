@@ -1,0 +1,69 @@
+# cron expression to run in daemon mode. (default; "" = runs only once)
+cron: '*/15 * * * *'
+# runs the synchronisation on startup
+runOnStart: true
+origin:
+    #ENC[AES256_GCM,data:IqX198WNf/+Y9/XKFdEkLKHXEGtP0xQNbHPL,iv:Mu+wHY0dhOajZJQtPM71+bP2YJEeDKPWnYOIvCOC04U=,tag:a0R4kM3xKmJxaeB5vD/yyQ==,type:comment]
+    url: ENC[AES256_GCM,data:bFb/KAT4OQY/9rpWHcCz3nfWWEady/BfLNXqtP6X,iv:SzFJXPgR2bcugg5VZZYjZqN2vrFQUeFMNfZ259SQHTg=,tag:zyPf4vcDzwiBHi+HJgmu9w==,type:str]
+    #ENC[AES256_GCM,data:XJDhrWxIltFOszPGX5K7Fwm/jOHddKDbkWUzeglCy8N508Nwrt5FyfSbJlH+Nm+UNWGpVeQ=,iv:zNTpO9yQsGBYYnsbg6TbqwhQKSvn47OpQS9vrkPqw/s=,tag:INbCH8JAWK9llH2uZdTKTg==,type:comment]
+    #ENC[AES256_GCM,data:V/Le5jVGpYwfhLcAvSdAl2fsDjoieAD9hwI4jG8/OVWWbfrwBwhltySHHz87,iv:ntlp/HSflArlY2DjykRrFqq+RbtmmJNkM4osJcFiGAA=,tag:VsT/M0dl/HR6urkQfqr48w==,type:comment]
+    username: ENC[AES256_GCM,data:GG2Vr9E=,iv:w+w9ts6Cw2io+uTPvrbyAD8hRDa96iAd/KmcH3xdAk0=,tag:TSfCZTMGDvDt8ssb7sRyyQ==,type:str]
+    password: ENC[AES256_GCM,data:pwLRd8cezTR/i483,iv:pmJDCAwk0rpW83/L7ZOn7xMU3QuEOt6Eeyq5EEED52Y=,tag:9IDD8TO9qBf3SjiF95WspA==,type:str]
+# replica instance (optional, if only one)
+replica:
+    #ENC[AES256_GCM,data:IYSxaPIVyPlol+JBFfZYykduaxiecUV01eNQJA==,iv:iaM1UtxALsce5//TlNTuNHAIGln7N/dKhWMBtv1cx4g=,tag:z7RMVCvoSXV1zGjL9VCbYw==,type:comment]
+    url: ENC[AES256_GCM,data:O3mRAi2F5/rN9CGMcbgMvMJUf0+ALQgRCyO379QPgQ==,iv:lyqPin87iTTcW3zBbRpqi2Hn7cPBi3kQ8WDrNXiANMM=,tag:EODGX/0xGDVYeqi0icZm2g==,type:str]
+    username: ENC[AES256_GCM,data:ZGlxmrI=,iv:bi3ay6De+0KrGCicwjJQh5aVEYS0H3vrVPTJIwwsIKM=,tag:0EyCbPx1V2aA0GPr6wQsCw==,type:str]
+    password: ENC[AES256_GCM,data:21qzk6ALsb3v9abW,iv:3iNYEqFmBFyOFo7l0nZAlrSUZBOI6JgtPnwpn7heR34=,tag:9iz2kCwGhCGmuGNMGQ2pUA==,type:str]
+# replicas instances (optional, if more than one)
+# replicas:
+# url of the replica instance
+# - url: http://192.168.1.3
+#   username: username
+#   password: password
+# - url: http://192.168.1.4
+#   username: username
+#   password: password
+# autoSetup: true # if true, AdGuardHome is automatically initialized.
+# Configure the sync API server, disabled if api port is 0
+api:
+    # Port, default 8080
+    port: 8080
+    # if username and password are defined, basic auth is applied to the sync API
+    # username: username
+    # password: password
+# Configure sync features; by default all features are enabled.
+features:
+    generalSettings: true
+    queryLogConfig: true
+    statsConfig: true
+    clientSettings: true
+    services: true
+    filters: true
+    dhcp:
+        serverConfig: false
+        staticLeases: false
+    dns:
+        serverConfig: true
+        accessLists: true
+        rewrites: true
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1hhnjylnwfh0w6sxzlvc905ma8wa5pkspv9k2kj8a0d993m8h734se3jh7u
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVa3I0Ukd2VGtwSmpTSktQ
+            OVV2Vzh1TlF4MC9kRFczMmwxRG8yY01BZVNRCk9PTkovdDZVZzkvQU5tRWlLaGRv
+            RHgvRlRCRWhhTTVrNkhnT2Rsb2NOYVkKLS0tIHE4TVVBV2ZkbUYvYlpUMjRVNjEr
+            UGhMME14V0h6UUttY1RXeW1lRUlvVTAK33qQ6DmAjw/LMz4EzR6b/Fhrwi4DFC8N
+            mFH/kv9JeuO38PMw8hm/Yr3zUjMv5qEjSUX+30ZjKdwKbwUPZetl7g==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-10-03T14:38:58Z"
+    mac: ENC[AES256_GCM,data:Be7q2DnY6/+IZF79w471vX+uUIRwPOSaRnFAKJI8pViy0lntnEyvXxU8mAbe1GmLQ3kq7qrwVGMe/a8xH7Mdc5UeJHj0w6+9i0WvwloVgUEir/ahpuOk9UUvaShK3dYZbXuzVAlQ/NfeYoB/RzmbUIykcPVUYhv7FbRE5ZpYed8=,iv:LzM4TdqtDBVr3U+lWrnlo1Lt66j+YDfMBxzjMUWzx/o=,tag:s1bp1hsPILNKTbJ9fmN+/Q==,type:str]
+    pgp: []
+    encrypted_regex: ^(origin|replica)$
+    version: 3.8.0
