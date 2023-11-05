@@ -1,0 +1,19 @@
+# deployed with podman
+---
+version: "3.8"
+
+services:
+  bitwarden:
+    container_name: bitwarden
+    env_file:
+      - .bitwarden.env
+    image: bitwarden/self-host:beta
+    restart: always
+    ports:
+      - "8082:8080"
+    volumes:
+      - bitwarden_data:/etc/bitwarden
+    labels:
+      io.containers.autoupdate: "registry"
+volumes:
+  bitwarden_data:

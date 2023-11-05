@@ -1,0 +1,19 @@
+# repo: https://github.com/eko/pihole-exporter/blob/master/docker-compose.yml
+---
+version: '3.9'
+services:
+  pihole-exporter:
+      image: 'ekofr/pihole-exporter:latest'
+      container_name: pihole_exporter
+      ports:
+          - '9617:9617'
+      volumes:
+          - '/etc/ssl/certs:/etc/ssl/certs:ro'
+      environment:
+          - PORT=9617
+          - PIHOLE_PASSWORD=mypassword
+          - PIHOLE_API_TOKEN=$API_TOKEN" # can use instead of web password
+          - PIHOLE_HOSTNAME=192.168.1.2
+          - PIHOLE_PROTOCOL=https
+          - INTERVAL=30s
+      restart: always
