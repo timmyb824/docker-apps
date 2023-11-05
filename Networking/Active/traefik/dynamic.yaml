@@ -1,0 +1,245 @@
+http:
+    routers:
+        it-tools:
+            rule: Host(`it-tools.timmybtech.com`)
+            service: it-tools
+            entrypoints:
+                - websecure
+        zabbix:
+            rule: Host(`zabbix.timmybtech.com`)
+            service: zabbix
+            entrypoints:
+                - websecure
+        linkace:
+            rule: Host(`linkace.timmybtech.com`)
+            service: linkace
+            entrypoints:
+                - websecure
+        hass:
+            rule: Host(`hass.timmybtech.com`)
+            service: hass
+            entrypoints:
+                - websecure
+        wyl:
+            rule: Host(`wyl.timmybtech.com`)
+            service: wyl
+            entrypoints:
+                - websecure
+        syncthing:
+            rule: Host(`syncthing.timmybtech.com`)
+            service: syncthing
+            entrypoints:
+                - websecure
+        uptimek:
+            rule: Host(`uptimek.timmybtech.com`)
+            service: uptimek
+            entrypoints:
+                - websecure
+        uptimekuma:
+            rule: Host(`uptimekuma.timmybtech.com`)
+            service: uptimekuma
+            entrypoints:
+                - websecure
+                #    pihole2:
+                #      rule: "Host(`pihole2.timmybtech.com`)"
+                #      service: "pihole2"
+                #      entrypoints:
+                #        - "websecure"
+        adguard:
+            rule: Host(`adguard.timmybtech.com`)
+            service: adguard
+            entrypoints:
+                - websecure
+        adguard2:
+            rule: Host(`adguard2.timmybtech.com`)
+            service: adguard2
+            entrypoints:
+                - websecure
+        gotify:
+            rule: Host(`gotify.timmybtech.com`)
+            service: gotify
+            entrypoints:
+                - websecure
+        homepage:
+            rule: Host(`homepage.timmybtech.com`)
+            service: homepage
+            entrypoints:
+                - websecure
+        healthchecks:
+            rule: Host(`healthchecks.timmybtech.com`)
+            service: healthchecks
+            entrypoints:
+                - websecure
+        alerta:
+            rule: Host(`alerta.timmybtech.com`)
+            service: alerta
+            entrypoints:
+                - websecure
+        pgweb:
+            rule: Host(`pgweb.timmybtech.com`)
+            service: pgweb
+            entrypoints:
+                - websecure
+        pgweb2:
+            rule: Host(`pgweb2.timmybtech.com`)
+            service: pgweb2
+            entrypoints:
+                - websecure
+        vaultwarden:
+            rule: Host(`vaultwarden.timmybtech.com`)
+            service: vaultwarden
+            entrypoints:
+                - websecure
+                #      middlewares:
+                #        - "vaultwarden-auth"
+        vaultwarden-websocket:
+            rule: Host(`vaultwarden.timmybtech.com`) && Path(`/notifications/hub`)
+            service: vaultwarden-websocket
+            entrypoints:
+                - websecure
+        bitwarden:
+            rule: Host(`bitwarden.timmybtech.com`)
+            service: bitwarden
+            entrypoints:
+                - websecure
+                #      middlewares:
+                #        - "bitwarden-auth"
+        nas:
+            rule: Host(`nas.timmybtech.com`)
+            service: nas
+            entrypoints:
+                - websecure
+            tls: {}
+        pve:
+            rule: Host(`pve.timmybtech.com`)
+            service: pve
+            entryPoints:
+                - websecure
+            tls: {}
+    services:
+        it-tools:
+            loadBalancer:
+                servers:
+                    - url: http://${HOMELAB-OCI03_IP}:5884
+        zabbix:
+            loadBalancer:
+                servers:
+                    - url: http://192.168.86.203:8080
+        linkace:
+            loadBalancer:
+                servers:
+                    - url: http://192.168.86.201:718
+        hass:
+            loadBalancer:
+                servers:
+                    - url: http://192.168.86.125:8123
+        wyl:
+            loadBalancer:
+                servers:
+                    - url: http://192.168.86.201:8840
+        syncthing:
+            loadBalancer:
+                servers:
+                    - url: http://192.168.86.136:8384
+        uptimek:
+            loadBalancer:
+                servers:
+                    - url: http://100.124.137.43:3001
+        uptimekuma:
+            loadBalancer:
+                servers:
+                    - url: http://192.168.86.174:3001
+                      #    pihole2:
+                      #      loadBalancer:
+                      #        servers:
+                      #          - url: "http://192.168.86.174"
+        adguard:
+            loadBalancer:
+                servers:
+                    - url: http://192.168.86.174
+        adguard2:
+            loadBalancer:
+                servers:
+                    - url: http://192.168.86.42
+        gotify:
+            loadBalancer:
+                servers:
+                    - url: http://${HOMELAB-OCI03_IP}:8080
+        homepage:
+            loadBalancer:
+                servers:
+                    - url: http://192.168.86.174:3000
+        healthchecks:
+            loadBalancer:
+                servers:
+                    - url: http://${HOMELAB-OCI03_IP}:8000
+        alerta:
+            loadBalancer:
+                servers:
+                    - url: http://${HOMELAB-OCI03_IP}:8082
+        pgweb:
+            loadBalancer:
+                servers:
+                    - url: http://vm303.local.lan:8081
+        pgweb2:
+            loadBalancer:
+                servers:
+                    - url: http://homelab-oci03.local.lan:8083
+        vaultwarden:
+            loadBalancer:
+                servers:
+                    - url: http://192.168.86.174:8081
+        vaultwarden-websocket:
+            loadBalancer:
+                servers:
+                    - url: http://192.168.86.174:3012
+        bitwarden:
+            loadBalancer:
+                servers:
+                    - url: http://192.168.86.174:8082
+        nas:
+            loadBalancer:
+                passHostHeader: true
+                serversTransport: nas
+                servers:
+                    - url: https://192.168.86.44:5001
+        pve:
+            loadBalancer:
+                passHostHeader: true
+                serversTransport: pve
+                servers:
+                    - url: https://192.168.86.199:8006
+    serversTransports:
+        pve:
+            insecureSkipVerify: true
+        nas:
+            insecureSkipVerify: true
+    middlewares:
+        vaultwarden-auth:
+            basicAuth:
+                users:
+                    - ENC[AES256_GCM,data:dm+DGFFnn1/34cahwzv18S2AAVfHtgFQTssFlm2SwbroXuIJvqGr1uSSm+SI,iv:W79Pw8EtzGvg6brF4pkewU0Lj521qGDnPPon1Enk/Dk=,tag:4NE+gRwt9Yjj4SPDVkJw/w==,type:str]
+        bitwarden-auth:
+            basicAuth:
+                users:
+                    - ENC[AES256_GCM,data:sIc0aeL/vijWOvKPvEjPRu80RibOTqRze0Dz2tks0CTgwMlyLo5WPLm/GSvy,iv:9L5owSJfMEHzuaP+RqU08AMgxGGARFDpWjNkGqZ+A6Y=,tag:C0jRHgN2thw2nX/RkFot/g==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1hhnjylnwfh0w6sxzlvc905ma8wa5pkspv9k2kj8a0d993m8h734se3jh7u
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBHa3NreW5GMHVpaVl5djQz
+            aXdpUGZSZVRiNVNEcFpYVFBVK01INTBjVXdzCkt3SUhLd0tnNG4zNmk2Sk9TSjZ6
+            Tk5UdnpwU2E2ODNTdEdjMVNyR1d0UG8KLS0tIGZ5N2JtMXBwcFZXS3JENXZ0MEtw
+            SEtvNVpadDB3M3pVeFhGNUloUGI4RTAK5xhgaTj+u7HKGLHXisTBqR83N4bZaYOd
+            ClgxMMUcXtJ0jQhaTFGpxeGEaSHL82DgZ3mdPw6RzrXHujtXSVyhwg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-11-05T04:15:56Z"
+    mac: ENC[AES256_GCM,data:jFPc84I7aQ0DYakeBSYC7P03icWMPi8ZWgddRmGXRnUqRcL54mmrkXzTdsAABZrIuztvQAEEYD29frBokW/b8Y02r4Q5k+OuEy2rDN6LFQrBEQzre2mfPhRyEugAfMHLOSuaHfSI5qRJDdpM+zmI3osdJFNOeTBiwQmw73dih/s=,iv:cZbljrpNf8iqKWixsbepF7DHt0rxq0YUr5LbvdBgVDA=,tag:wqTV5U5BSMo4mM/QTp/Zow==,type:str]
+    pgp: []
+    encrypted_regex: ^(middlewares)$
+    version: 3.8.1
