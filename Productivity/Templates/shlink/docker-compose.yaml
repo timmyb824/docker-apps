@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+    shlink:
+        image: 'shlinkio/shlink:stable'
+        environment:
+            - DB_HOST=something.rds.amazonaws.com
+            - DB_PASSWORD=123abc
+            - DB_USER=root
+            - DB_DRIVER=mysql
+            - GEOLITE_LICENSE_KEY=kjh23ljkbndskj1234345
+            - IS_HTTPS_ENABLED=true
+            - DEFAULT_DOMAIN=s.test
+        ports:
+            - '8080:8080'
+        container_name: my_shlink

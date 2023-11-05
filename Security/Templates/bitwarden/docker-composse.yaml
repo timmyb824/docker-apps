@@ -1,0 +1,17 @@
+# Instructions: https://bitwarden.com/help/install-on-premise-linux/
+---
+version: "3.8"
+
+services:
+  bitwarden:
+    env_file:
+      - settings.env
+    image: bitwarden/self-host:beta
+    restart: always
+    ports:
+      - "8080:8080"
+    volumes:
+      - bitwarden:/etc/bitwarden
+
+volumes:
+  bitwarden:
