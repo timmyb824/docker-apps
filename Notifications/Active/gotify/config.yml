@@ -1,0 +1,90 @@
+server:
+    # 0 = use Go default (15s); -1 = disable keepalive; set the interval in which keepalive packets will be sent. Only change this value if you know what you are doing.
+    keepaliveperiodseconds: 0
+    # the address to bind on, leave empty to bind on all addresses
+    listenaddr: ""
+    # the port the HTTP server will listen on
+    port: 80
+    ssl:
+        # if https should be enabled
+        enabled: false
+        # redirect to https if site is accessed by http
+        redirecttohttps: true
+        # the address to bind on, leave empty to bind on all addresses
+        listenaddr: ""
+        # the https port
+        port: 443
+        # the cert file (leave empty when using letsencrypt)
+        certfile: null
+        # the cert key (leave empty when using letsencrypt)
+        certkey: null
+        letsencrypt:
+            # if the certificate should be requested from letsencrypt
+            enabled: false
+            # if you accept the tos from letsencrypt
+            accepttos: false
+            # the directory of the cache from letsencrypt
+            cache: data/certs
+            # the hosts for which letsencrypt should request certificates
+            hosts: null
+    #      - mydomain.tld
+    #      - myotherdomain.tld
+    # response headers are added to every response (default: none)
+    responseheaders: null
+    #    X-Custom-Header: "custom value"
+    # Sets cors headers only when needed and provides support for multiple allowed origins. Overrides Access-Control-* Headers in response headers.
+    cors:
+        alloworigins: null
+        #      - ".+.example.com"
+        #      - "otherdomain.com"
+        allowmethods: null
+        #      - "GET"
+        #      - "POST"
+        allowheaders: null
+        #      - "Authorization"
+        #      - "content-type"
+    stream:
+        # the interval in which websocket pings will be sent. Only change this value if you know what you are doing.
+        pingperiodseconds: 45
+        # allowed origins for websocket connections (same origin is always allowed)
+        allowedorigins: null
+#      - ".+.example.com"
+#      - "otherdomain.com"
+# for database see (configure database section)
+database:
+    dialect: ENC[AES256_GCM,data:wnd4jtoEPAk=,iv:z4uG3XFeQwnHyuP7YF78eb2mnYveLdGUO6YcTkQI4v4=,tag:X20x5nzlF40atY8aNDB4nQ==,type:str]
+    connection: ENC[AES256_GCM,data:DKH6OyLP05rGQrw6m8lSO2yEGrnEeWedi7uGQtXXDCdrT17z+qPtFCYVvmLzFc993kuwjNER/GSJdMR0g+bc7FVP5aPORU+BscbanA0QhEzbYXOQyXDx0fk=,iv:6I3FGPUd2TQe1aGSG0nSMMFFXgYmmEsdagVg6SycOb4=,tag:9ZjrTyGnsltopk87rE4TQQ==,type:str]
+# on database creation, gotify creates an admin user
+defaultuser:
+    #ENC[AES256_GCM,data:nYsfJxYTyqt+xhGaZKNabmVmyNPFN+nLwctfZ/oWv2mt,iv:IvmUwZr1BmimQIdlfKUWjbxICeaZEMpc/ZQpJZ4kEN0=,tag:BD/QDK9XGxarYqvFqT/3fg==,type:comment]
+    name: ENC[AES256_GCM,data:s/BhZl2bhA==,iv:rsuNuK+hrS0aWiOamQfZpDSchQ0W74+/MI90sAALhNg=,tag:j+bWcuCzar2W4mmt89xjzw==,type:str]
+    #ENC[AES256_GCM,data:qhU30s5Xw+CEHE5dfZb8Nq5LG05lSgSiVLqMcI6j0zC9,iv:s16CAlOZPjTYXxdRkXTUL48nQA43XTBAoAvJcy8afUM=,tag:deZuZaFeNHEJq8Du559Uag==,type:comment]
+    pass: ENC[AES256_GCM,data:/91Y7jZPWsiHglQ9,iv:NyS0VAgPVwIA7RAUYwUNGdWULhkCbRxkHMNCIWM8GYI=,tag:ID/8Ktq6MLPex1GjQTcG3A==,type:str]
+# the bcrypt password strength (higher = better but also slower)
+passstrength: 10
+# the directory for storing uploaded images
+uploadedimagesdir: data/images
+# the directory where plugin resides
+pluginsdir: data/plugins
+# enable registrations
+registration: false
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1hhnjylnwfh0w6sxzlvc905ma8wa5pkspv9k2kj8a0d993m8h734se3jh7u
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBkUHNtdUxnaGlkVG16bDVH
+            VDJNRVRuMGZnZDJkSTROOXh0anJKVEdCN1NVCjZEWnliQWw3ZlduSXpvYkR0YWRy
+            OFpKMGZ0UU1DNU5SYXZjUWpWNTFnaHcKLS0tIGltdTVRMkt3M2hJM2NNVGdmRHp0
+            YTB2RUhvQkRYR0VaTjlCRThqNTZXOTAK63upHtM5qVzUeV18mIodtm0nK7pWtRml
+            cliOqVQnRyiHdNe4kxjcUnfdEuozA3tKp83ZQ8q1im1rP7wM923uew==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-10-15T19:53:49Z"
+    mac: ENC[AES256_GCM,data:t/D5yiZ1EBKaZW3HKMxczJ5q/J4k/sAshU1gWBbK/77zh1R5ZnGW94wguY1kPwSfbB61qigg8c/WUW7KJkuuXyBqYvoRt6e9c/v9ecIfIEcQkagQXa9oig1zB8cQJzJtD/7FkOev/PAOOFaGBLP254C3yjBymnjLVwkS0WpkGB8=,iv:MP3F+6DJ5Z5z8Kqy6wpfkDof/Qvq2o/UoTW0wgR5SGY=,tag:NmxcI3kxYZ5sRHXCUVpqsg==,type:str]
+    pgp: []
+    encrypted_regex: ^(database|defaultuser)$
+    version: 3.8.0

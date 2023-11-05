@@ -2,7 +2,9 @@
 .decrypted*
 
 Dashboards/dashy/item-icons/
-Monitoring/zabbix/zabbix-server/env_vars/*
+Monitoring/Templates/zabbix/server/env_vars/*
 AdGaurd.yaml
 # dynamic.yaml
 Monitoring/healthchecks.io/healthchecks/
+Podman/systemd/Archive/
+Podman/systemd/container*
