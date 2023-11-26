@@ -1,0 +1,14 @@
+---
+version: "3.1"
+services:
+  soft-serve:
+    image: charmcli/soft-serve:latest
+    container_name: soft-serve
+    volumes:
+      - ./data:/soft-serve
+    ports:
+      - 23231:23231
+      - 23232:23232
+      - 23233:23233
+      - 9418:9418
+    restart: unless-stopped

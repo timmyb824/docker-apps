@@ -1,6 +1,6 @@
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
     -   id: check-yaml
         args: [--unsafe] # prevents loading the yaml
@@ -17,9 +17,19 @@ repos:
         args: ['--fix=auto']
 
 -   repo: https://github.com/sirwart/ripsecrets
-    rev: v0.1.6  # Use latest tag on GitHub
+    rev: v0.1.7  # Use latest tag on GitHub
     hooks:
     -   id: ripsecrets
+
+-   repo: https://github.com/trufflesecurity/trufflehog
+    rev: v3.63.1
+    hooks:
+    -   id: trufflehog
+        name: TruffleHog
+        description: Detect secrets in your data.
+        entry: bash -c 'trufflehog git file://. --since-commit HEAD --only-verified --fail'
+        language: system
+        stages: ["commit"]
 
 # Example of local hook
 # -   repo: local
