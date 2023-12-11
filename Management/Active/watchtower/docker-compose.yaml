@@ -5,7 +5,7 @@ services:
     container_name: watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /home/tbryant/.docker/config.json:/config.json:ro
+      - $HOME/.docker/config.json:/config.json:ro
     environment:
       - WATCHTOWER_DEBUG=true
       - TZ=America/New_York
