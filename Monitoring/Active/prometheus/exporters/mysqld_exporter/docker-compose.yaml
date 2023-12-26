@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+    mysqld-exporter:
+        network_mode: host
+#        ports:
+#            - '9104:9104'
+        environment:
+            - 'MYSQLD_EXPORTER_PASSWORD=${MYSQLD_EXPORTER_PASSWORD}'
+        image: prom/mysqld-exporter
+        container_name: mysqld_exporter
+        restart: unless-stopped
+        command: '--mysqld.address=localhost:3306 --mysqld.username=${MYSQLD_EXPORTER_USERNAME} '

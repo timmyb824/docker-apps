@@ -1,3 +1,5 @@
+---
+# version using deprecated DATA_SOURCE_NAME
 version: '3.3'
 services:
     mysqld-exporter:
@@ -9,3 +11,16 @@ services:
         image: prom/mysqld-exporter
         container_name: mysqld_exporter
         restart: unless-stopped
+---
+# version using --config.my-cnf (can also pass as command line arguments)
+version: '3.9'
+services:
+    mysqld-exporter:
+        command: '--config.my-cnf=<path_to_cnf>'
+        image: prom/mysqld-exporter
+        networks:
+            my-mysql-network: {}
+        ports:
+            - '9104:9104'
+networks:
+    my-mysql-network: {}
