@@ -35,5 +35,11 @@ services:
       - DATABASE_URL=${DATABASE_URL}
     depends_on:
       - postgres  # my database container is called postgres, not db
+
 volumes:
   pgdata:
+
+networks:
+  default:
+    name: pg_db_network
+    external: true
