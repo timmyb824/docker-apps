@@ -13,7 +13,8 @@ services:
     security_opt:
       - apparmor:unconfined
     volumes:
-      - ./netdataconfig/netdata:/etc/netdata
+#      - ./netdataconfig/netdata:/etc/netdata
+      - netdataconfig:/etc/netdata
       - netdatalib:/var/lib/netdata
       - netdatacache:/var/cache/netdata
       - /etc/passwd:/host/etc/passwd:ro
@@ -22,15 +23,18 @@ services:
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro # remove for podman
-    environment:
-      - NETDATA_CLAIM_TOKEN=${NETDATA_CLAIM_TOKEN}
-      - NETDATA_CLAIM_URL=https://app.netdata.cloud
-      - NETDATA_CLAIM_ROOMS=${NETDATA_CLAIM_ROOMS}
+    env_file:
+      - ./.netdata.env
+#    environment:
+#      - NETDATA_CLAIM_TOKEN=${NETDATA_CLAIM_TOKEN}
+#      - NETDATA_CLAIM_URL=https://app.netdata.cloud
+#      - NETDATA_CLAIM_ROOMS=${NETDATA_CLAIM_ROOMS}
     # logging:
     #   driver: loki
     #   options:
     #     loki-url: "https://loki.local.timmybtech.com/loki/api/v1/push"
 
 volumes:
+  netdataconfig:
   netdatalib:
   netdatacache:
