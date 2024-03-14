@@ -8,3 +8,8 @@ AdGaurd.yaml
 Monitoring/healthchecks.io/healthchecks/
 Podman/systemd/Archive/
 Podman/systemd/container*
+
+/Monitoring/Active/netdata/hp-laptop-ubuntu/netdataconfig/*
+!/Monitoring/Active/netdata/hp-laptop-ubuntu/netdataconfig/health.d/
+!/Monitoring/Active/netdata/hp-laptop-ubuntu/netdataconfig/health.d/linux_power_supply.conf
+
