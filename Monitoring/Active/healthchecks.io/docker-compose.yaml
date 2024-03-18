@@ -1,4 +1,6 @@
 # git clone https://github.com/healthchecks/healthchecks.git
+# cd healthchecks && cd docker
+# create .env and docker-compose.yaml
 version: "3"
 services:
   healthchecks:
@@ -18,3 +20,7 @@ services:
     restart: unless-stopped
     labels:
         - com.centurylinklabs.watchtower.enable=False
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
