@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+    adguardhome:
+        container_name: adguardhome
+        restart: unless-stopped
+        network_mode: 'host'
+        volumes:
+            - './workdir:/opt/adguardhome/work'
+            - './confdir:/opt/adguardhome/conf'
+        image: adguard/adguardhome
+        labels:
+            io.containers.autoupdate: "registry"
