@@ -3,9 +3,9 @@
 
 Dashboards/dashy/item-icons/
 Monitoring/Templates/zabbix/server/env_vars/*
-AdGaurd.yaml
+AdGuard.yaml
 DNS/Active/adguardhome/hp-laptop-ubuntu/workdir/
-DNS/Active/adguardhome/hp-laptop-ubuntu/confidr/
+DNS/Active/adguardhome/hp-laptop-ubuntu/confdir/
 # dynamic.yaml
 Monitoring/healthchecks.io/healthchecks/
 Podman/systemd/Archive/
