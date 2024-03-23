@@ -1,52 +1,52 @@
-# cron expression to run in daemon mode. (default; "" = runs only once)
-cron: '*/15 * * * *'
-# runs the synchronisation on startup
-runOnStart: true
+#ENC[AES256_GCM,data:bd9EOcHpSrGq2tz42/DCA4Az/uFLyaWHf4TBK3imnUkkYSLbhFLLdivZv0XVJrsOQqWLdQDh4spZHH6+53hR5dZvgGc10Q==,iv:we4zj+nipyFnV4XjSuYwdb3rY1SSmR3eEBAa9EzYyaM=,tag:s4YLat+jcW1p5zK6TaNtug==,type:comment]
+cron: ENC[AES256_GCM,data:DiBFlvD/ZXhRLFKm,iv:mu+ZEkPHqjoaXVMLOkQZTuSq8P05S3R82RsjJt3tAik=,tag:9HY0K248hm2ZUXRbYmk4BQ==,type:str]
+#ENC[AES256_GCM,data:Ruku+ld9y8wk/Pfe5LZvRURaukwXm2KeWN4i/hbnSl2Pi1MC,iv:pBc74HGbHQ9A1Te3tEmBGmn5c0NIC5W6VYGdODaT8pI=,tag:gyoxVm53ezfECozq6XFPKg==,type:comment]
+runOnStart: ENC[AES256_GCM,data:JZPrCg==,iv:Ln3H2Doaarn0NZoolvKfZMj8IykJ//F0RZsa468zLpU=,tag:Bnha24fcT/YfbBi9m5YOAQ==,type:bool]
 origin:
-    #ENC[AES256_GCM,data:IqX198WNf/+Y9/XKFdEkLKHXEGtP0xQNbHPL,iv:Mu+wHY0dhOajZJQtPM71+bP2YJEeDKPWnYOIvCOC04U=,tag:a0R4kM3xKmJxaeB5vD/yyQ==,type:comment]
-    url: ENC[AES256_GCM,data:bFb/KAT4OQY/9rpWHcCz3nfWWEady/BfLNXqtP6X,iv:SzFJXPgR2bcugg5VZZYjZqN2vrFQUeFMNfZ259SQHTg=,tag:zyPf4vcDzwiBHi+HJgmu9w==,type:str]
-    #ENC[AES256_GCM,data:XJDhrWxIltFOszPGX5K7Fwm/jOHddKDbkWUzeglCy8N508Nwrt5FyfSbJlH+Nm+UNWGpVeQ=,iv:zNTpO9yQsGBYYnsbg6TbqwhQKSvn47OpQS9vrkPqw/s=,tag:INbCH8JAWK9llH2uZdTKTg==,type:comment]
-    #ENC[AES256_GCM,data:V/Le5jVGpYwfhLcAvSdAl2fsDjoieAD9hwI4jG8/OVWWbfrwBwhltySHHz87,iv:ntlp/HSflArlY2DjykRrFqq+RbtmmJNkM4osJcFiGAA=,tag:VsT/M0dl/HR6urkQfqr48w==,type:comment]
-    username: ENC[AES256_GCM,data:GG2Vr9E=,iv:w+w9ts6Cw2io+uTPvrbyAD8hRDa96iAd/KmcH3xdAk0=,tag:TSfCZTMGDvDt8ssb7sRyyQ==,type:str]
-    password: ENC[AES256_GCM,data:pwLRd8cezTR/i483,iv:pmJDCAwk0rpW83/L7ZOn7xMU3QuEOt6Eeyq5EEED52Y=,tag:9IDD8TO9qBf3SjiF95WspA==,type:str]
-# replica instance (optional, if only one)
-replica:
-    #ENC[AES256_GCM,data:IYSxaPIVyPlol+JBFfZYykduaxiecUV01eNQJA==,iv:iaM1UtxALsce5//TlNTuNHAIGln7N/dKhWMBtv1cx4g=,tag:z7RMVCvoSXV1zGjL9VCbYw==,type:comment]
-    url: ENC[AES256_GCM,data:O3mRAi2F5/rN9CGMcbgMvMJUf0+ALQgRCyO379QPgQ==,iv:lyqPin87iTTcW3zBbRpqi2Hn7cPBi3kQ8WDrNXiANMM=,tag:EODGX/0xGDVYeqi0icZm2g==,type:str]
-    username: ENC[AES256_GCM,data:ZGlxmrI=,iv:bi3ay6De+0KrGCicwjJQh5aVEYS0H3vrVPTJIwwsIKM=,tag:0EyCbPx1V2aA0GPr6wQsCw==,type:str]
-    password: ENC[AES256_GCM,data:21qzk6ALsb3v9abW,iv:3iNYEqFmBFyOFo7l0nZAlrSUZBOI6JgtPnwpn7heR34=,tag:9iz2kCwGhCGmuGNMGQ2pUA==,type:str]
-# replicas instances (optional, if more than one)
-# replicas:
-# url of the replica instance
-# - url: http://192.168.1.3
-#   username: username
-#   password: password
-# - url: http://192.168.1.4
-#   username: username
-#   password: password
-# autoSetup: true # if true, AdGuardHome is automatically initialized.
-# Configure the sync API server, disabled if api port is 0
+    #ENC[AES256_GCM,data:4y0cQNXKdgFJwihkhaNPqq0bCXX3cUpU5gWX,iv:8E7/UYFeS/20P+zuG0ysVAA62DAwdqP7uUt/wQObGvw=,tag:zYY95nY+9QF6zWpNMLdwqA==,type:comment]
+    url: ENC[AES256_GCM,data:hW6LlfG50v6Jr8dBFtBgw6APFqhCio1+7anmX+8/,iv:y0i+tKo0WP/hu78ZLgXAtyVkNFwrpCogI3+K9eti1zA=,tag:5rfXAGKCO2yzF9fWK93Nbw==,type:str]
+    #ENC[AES256_GCM,data:gD4Zrg6uPPqQkgGT7qr3CBBzzQoAyM6IWXuDyt26gy9hGW4qZzhZCQAIKcSnbIBMLgmdH0s=,iv:oJdPG42aKFkPJxokh0FDgzhlKIJqL5mPCJFlWOXJ6WA=,tag:4lDe7M510Vv3L5Z6VCeRUw==,type:comment]
+    #ENC[AES256_GCM,data:Ja1LRPy+1naNtb/q+uhFDW44DvbocPc9U8YXEsfaFLRKjmW9OwPPdZicDjmZ,iv:Tc7r/uSbtfrnua9MlcWO7GVJHjFgsdO5FrXFTr6YMJI=,tag:ptpnyCJMQn5lgQQN33muaQ==,type:comment]
+    username: ENC[AES256_GCM,data:pbTujDo=,iv:AGsocrgJ5DJp4S0FtAVihoFE0VckjyR0Ti58kXIy8n0=,tag:jiHTwQ8LUi6nJ/a4wEj5Ig==,type:str]
+    password: ENC[AES256_GCM,data:0khgGon6o6cKwM2w,iv:01vIeoCaLo7S8XF20ehoGcLCwU/QfjJ528Q72mOytV0=,tag:d3KBjX23PYbYNeMgihm6jw==,type:str]
+#ENC[AES256_GCM,data:C0x7Q9iUwL/WXrVk+F+nmHQ/nRTcOR2w+Mear2RcaBGIDAQH7v2+RA==,iv:8MYFH27TusP8eaazjtHhHsJ+h5WrnxUAJx4FqM4pl3s=,tag:LGWOic5MhaczA5kn1vacQA==,type:comment]
+#ENC[AES256_GCM,data:lc2RJcy+w+dq,iv:YkjyWUuit6gCdTSfekhvvUnxM6opllM7tiyPhH44kL4=,tag:HwlMtD9kvEDODKSsWJcbaA==,type:comment]
+#ENC[AES256_GCM,data:u2ljYrzREWPlVEqUMk/Y9DSbZZU/tWGXOEMuUA==,iv:bgHXdxu2Alsr8TX1Z5bEhxXhuzbmhiWS+nNjfGpAhDw=,tag:FEaFcFNPAk/jNqe66nQLBA==,type:comment]
+#ENC[AES256_GCM,data:k8i/BtqttnnmvtWIaV1S07scI/ZYTHPQ/XWwlqXsknGB+3YgFag=,iv:hb4YCb/7iFDImZbizYG3Rwh75mVn3DIGtZW73CcCRKA=,tag:8Hpzd/txhuRi8ePtcUXFTQ==,type:comment]
+#ENC[AES256_GCM,data:xYt+y/RpVhBrLeS8V6tOKYk=,iv:KG9I5siQZAP+iK99xjJSti/oljcEF3gaK6PjN8LdqvE=,tag:2hw87KN5wC+xzw2a6VcapQ==,type:comment]
+#ENC[AES256_GCM,data:jnIEQBDIVCkK65qyM76/F3uzUsr1IaHh,iv:9XQxw6L68lv/2fx0ZJvqptUA/YnElqXXvA9eCI2zgUU=,tag:FKnRTURERYAAEQbQuohR2g==,type:comment]
+#ENC[AES256_GCM,data:cPjXTzcYztpnuzmD9Z1DBpX1TkPOpV2Mg4AjZdPYhKDikwgGbhAII1krB57ISub+,iv:B3jWKrqR4K1yTU9cHv+I7ZCwuQOAJGoYi0a8xyvKuxM=,tag:DsdHpqlw+oifK4ZWbbOxkw==,type:comment]
+replicas:
+    - ENC[AES256_GCM,data:Si6pAvj3kARwrkdgcW1W5xBrvhDKBMrVDCxm3Q==,iv:RKBYWOiukHcOm7gtX1STQ3orBuPx3S+Yp1x72g7o028=,tag:HJus+v8uka8W+DCOwLrblw==,type:comment]
+    - url: ENC[AES256_GCM,data:Be5p/bG3UuyIrPh5JkBzxoClR5kyCjdhoFZDkJfm5g==,iv:539SmrZWDZ2Kw9cyeTyS2hi3XYoymMmnDwom1oycXTA=,tag:qLa2m6eaJdzYmQefFJJSbQ==,type:str]
+      username: ENC[AES256_GCM,data:azw0++I=,iv:XfZ51XfWlIzqiul9HHEFxPwSdVCphiH8mMYgwA4NpAs=,tag:21ImxA6K9PY052M5VJm18A==,type:str]
+      password: ENC[AES256_GCM,data:18zZD/x5twDg0NW8,iv:x/wp+rvggEdFnuYS48Ha84Nq4tei1Pbi4MXT2mvpZ/U=,tag:Hf1G/FD1JmngKS6GsB88kg==,type:str]
+    - url: ENC[AES256_GCM,data:HFp3eTsjaih7u0rfkTQpYEvt6q3Oq3bsLMitCeYELg==,iv:V620h22/6Hc920HdwDbF0AG2ubK/r0Sqc0mDtzlCvNU=,tag:Edn36MFRugOnBeuEHMiklw==,type:str]
+      username: ENC[AES256_GCM,data:bvGCOkc=,iv:+JsoC6MQDQ3Ah7+tuKInglLtFmXJip5tb6vC6YtyhaU=,tag:mlcW0qkU1wmYbXJtQjSbkg==,type:str]
+      password: ENC[AES256_GCM,data:qMWkwwMMnfC4ekVM,iv:azR47UuxWr3VronCA++0XNvcGiKqJmYWYapf5AIHC+w=,tag:fUEBjoXkILQWO3UTFFut1w==,type:str]
+      #ENC[AES256_GCM,data:+rIbM7HPX1NSUQ51qk4qnuzY5pC7XxyN/Nu3wWmXWY7ANkfpDD2GD5hpMORxcRmKGZZTHPLndh1s4cF78Sa9YZvKo5O1,iv:hxR1fWog6nHoYR9bLLR9n/9bqtopBPjB7bw/x+QduNo=,tag:Hgn1jLMiwC4gzp6NMRfTjw==,type:comment]
+#ENC[AES256_GCM,data:kSUAXIVUAOavLzrIYtaZT7WZhOds9aBbiLbq2QH9MbsxaMh10uAcXSOEed6j6D5LRJa6QsRHq41K,iv:V2LpOqDMwa4B0K3H5ltrO2/ym+pxi4RU7Teg52yAR10=,tag:9IT3Pvcy08p2cREFs4AFvw==,type:comment]
 api:
-    # Port, default 8080
-    port: 8080
-    # if username and password are defined, basic auth is applied to the sync API
-    # username: username
-    # password: password
-# Configure sync features; by default all features are enabled.
+    #ENC[AES256_GCM,data:B4rlSUfMcGtLKUTctQONSlJ8sg==,iv:gI4TcKuQcnsrRkLxloFHs0Z0wQNrNYJB0boPmP9I+GA=,tag:/FpOLCo9oT0fuviCnt/cEg==,type:comment]
+    port: ENC[AES256_GCM,data:biomPQ==,iv:dekOEVDxpprsFBYAgh+1Lk5lmditcYQ3Npv7wqk+l5s=,tag:GLpdeHESwiQYEOp5NJkYNw==,type:int]
+    #ENC[AES256_GCM,data:BQgttOB/K/Q4whG7VN6kM05q3+I1Zmpy5C3eYEFFbMP+kOeqt685YuVLHfHZWSw0T8zXhmiI9vBlQq2OuJHmXLl2J3OmjA6mHdSdGw==,iv:BdDgTBNwNggT3V1gJ5XEthj7Be3m7km5vyzPPD4AzsM=,tag:xQ86Olv5mExTAwju0bqE2g==,type:comment]
+    #ENC[AES256_GCM,data:bRET5OxVVh/MaLjY3Zk8ihMbLg==,iv:7JCraf+yfiy3T0hvJtwhs+u+gBrw+JjHKC/ywmOkklM=,tag:INmGd/bgbrl90qI3+F0JlA==,type:comment]
+    #ENC[AES256_GCM,data:BPFTKTJesxGu2kXZJj6qaZV1+Q==,iv:F48wJCLs+kfqajE+UePxb2rIdubpaTaaVpgcuyRBa8w=,tag:cdeiRHn4RxiuoG1Oc9q7Ng==,type:comment]
+#ENC[AES256_GCM,data:9uSMOFtX3dSsNL6qdLweP02DyDtMGyWrlG7bIIDcBw0PbHEMRLq/HPUe3PsPpveiKpxmRERu5eq1fab5KtQ=,iv:hWkw4WtQ2emfPERuL+J3BxEAPpiShW2wgrvHk6T/exg=,tag:fiBKMXFNqWbnp2Bz3rSkkA==,type:comment]
 features:
-    generalSettings: true
-    queryLogConfig: true
-    statsConfig: true
-    clientSettings: true
-    services: true
-    filters: true
+    generalSettings: ENC[AES256_GCM,data:gp+VCg==,iv:9/sbI2SaenQn0wMZ7r1hGWDXbgqZn7Lf39EeKDV78Lo=,tag:yWRWyRgTnpcY2zfNI4KF/w==,type:bool]
+    queryLogConfig: ENC[AES256_GCM,data:SIIE6w==,iv:gZd9g7duQXXUfOTATje6UenFiFkghKjKOvj1oqmoOUY=,tag:sVS+u2AuKjIqrrhr03f1bg==,type:bool]
+    statsConfig: ENC[AES256_GCM,data:2sFy/A==,iv:2m1cMe+Isy0Lhh38wzYxTUbekda4HGKrrYqTuGtBO00=,tag:fied0zzjdAKuleru5/LL+g==,type:bool]
+    clientSettings: ENC[AES256_GCM,data:nd/swQ==,iv:V6HHwSCIFL+QQmD+8a8RCL/WCXjgjarH3Td6O6CstNY=,tag:cuRf5Uf6SgfjQOqA7OWBsg==,type:bool]
+    services: ENC[AES256_GCM,data:7VSaNg==,iv:qva9Ib/qTWELtwST7dIHHzAS7X2yAsTJ5QIJufBjnbI=,tag:QU6R69EQIc2Sgfi1cPDHmg==,type:bool]
+    filters: ENC[AES256_GCM,data:Xh7ezw==,iv:r/DB9LUQjrlH5HHkLO7H5g3jrAgOkLEKe5WxKYAPRPY=,tag:4JMtjLNIrpwVc52mcXLfRg==,type:bool]
     dhcp:
-        serverConfig: false
-        staticLeases: false
+        serverConfig: ENC[AES256_GCM,data:866szsA=,iv:sYlslP4Kxw8zA4kyJn3MmGDiKeA7fiVKY1FzCRo8soU=,tag:HJPczdZISk/300rr5Du8OQ==,type:bool]
+        staticLeases: ENC[AES256_GCM,data:9OAIdvc=,iv:0uFTVRN/DkAy7POBqHwYxYK+MnZJUvD7VdjjPJ3VpJg=,tag:/2lrGH6xoI0j0iomaIElpg==,type:bool]
     dns:
-        serverConfig: true
-        accessLists: true
-        rewrites: true
+        serverConfig: ENC[AES256_GCM,data:OvnnUw==,iv:29VzMvyG+ReKCKC7FuM333NqbZOgwk0/TC2+TqbuPzs=,tag:+9rwziz/kP+gfEEsNBP9uQ==,type:bool]
+        accessLists: ENC[AES256_GCM,data:O96EvA==,iv:ZpZU4INM/BMAf4tUflEpoA9zL8XINvJLeA26rPyow7I=,tag:yscdurn0Egc+3efSCIyNFA==,type:bool]
+        rewrites: ENC[AES256_GCM,data:HZIdDg==,iv:27P1WGELA/s7R7x2tzVp1j4zyEDBSsMXh2Ee4mITXXs=,tag:z8K1jeB6Jewz8WXBgqnqEQ==,type:bool]
 sops:
     kms: []
     gcp_kms: []
@@ -56,14 +56,14 @@ sops:
         - recipient: age1hhnjylnwfh0w6sxzlvc905ma8wa5pkspv9k2kj8a0d993m8h734se3jh7u
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVa3I0Ukd2VGtwSmpTSktQ
-            OVV2Vzh1TlF4MC9kRFczMmwxRG8yY01BZVNRCk9PTkovdDZVZzkvQU5tRWlLaGRv
-            RHgvRlRCRWhhTTVrNkhnT2Rsb2NOYVkKLS0tIHE4TVVBV2ZkbUYvYlpUMjRVNjEr
-            UGhMME14V0h6UUttY1RXeW1lRUlvVTAK33qQ6DmAjw/LMz4EzR6b/Fhrwi4DFC8N
-            mFH/kv9JeuO38PMw8hm/Yr3zUjMv5qEjSUX+30ZjKdwKbwUPZetl7g==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBuNytVeG8yMkp1WEhZdE5I
+            bEFLemtqMUZ3TGtvUjJOS1VDMTJpUTdpUnlBClVsNVpVd21Td0dEc3JEZW90MjJI
+            bkFqc083L1Z0OEJreUxqUjRrNGZwcWsKLS0tIE8wYVhSSkcvbmRWM1NvRlorK21S
+            ZzB6WkJSS0NsRGVjeFoxTDVibGVRcUkKsQJxEOvV4w8uqbULzJ44D9foCYBUq2Bb
+            +QSB8oSw9oihEbDxklLwfuvYyPQTbBn5neOwSSDC1va8x7FHCPjR7Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-10-03T14:38:58Z"
-    mac: ENC[AES256_GCM,data:Be7q2DnY6/+IZF79w471vX+uUIRwPOSaRnFAKJI8pViy0lntnEyvXxU8mAbe1GmLQ3kq7qrwVGMe/a8xH7Mdc5UeJHj0w6+9i0WvwloVgUEir/ahpuOk9UUvaShK3dYZbXuzVAlQ/NfeYoB/RzmbUIykcPVUYhv7FbRE5ZpYed8=,iv:LzM4TdqtDBVr3U+lWrnlo1Lt66j+YDfMBxzjMUWzx/o=,tag:s1bp1hsPILNKTbJ9fmN+/Q==,type:str]
+    lastmodified: "2024-03-23T20:56:02Z"
+    mac: ENC[AES256_GCM,data:h5YO3hNBV3ax88Mgwa0CXomCx6s8iDz0G+tQF4uDBRgo1SfDEd8vaWg8n24+vkiBzlnit5WwIOajAJ4BmTcEzrDd9wPYBZCWCBEJ57ITpHoBQtzZtH6E3kmRvqE+rHV9NdFs3xfgNdIM+I6uZiyiJ48aM2pG3StEMU5LdmAr5Kw=,iv:Xprz9v0VYuooxT2NUXD1OvaF1UckmcnWEangoEDiCCs=,tag:w2pO2xZKh1S3wR0yxT6nxQ==,type:str]
     pgp: []
-    encrypted_regex: ^(origin|replica)$
-    version: 3.8.0
+    unencrypted_suffix: _unencrypted
+    version: 3.8.1
