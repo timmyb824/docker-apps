@@ -1,5 +1,5 @@
 ---
-version: '3'
+version: "3"
 
 volumes:
   prometheus_data:
@@ -17,15 +17,17 @@ services:
     restart: unless-stopped
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
+    labels:
+      io.containers.autoupdate: "registry" # for use with podman
 
   node_exporter:
     image: quay.io/prometheus/node-exporter:latest
     container_name: node_exporter
     command:
-      - '--path.rootfs=/host'
+      - "--path.rootfs=/host"
     pid: host
     restart: unless-stopped
     volumes:
-      - '/:/host:ro,rslave'
-
-
+      - "/:/host:ro,rslave"
+    labels:
+      io.containers.autoupdate: "registry" # for use with podman
