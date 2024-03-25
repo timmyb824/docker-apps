@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   netdata:
     image: netdata/netdata
@@ -12,7 +12,7 @@ services:
       - SYS_ADMIN
     security_opt:
       - apparmor:unconfined
-      - 'label=type:container_runtime_t' # for podman use
+      - "label=type:container_runtime_t" # for podman use
     volumes:
       - ./netdataconfig:/etc/netdata
       - netdatalib:/var/lib/netdata
@@ -34,6 +34,8 @@ services:
     #   driver: loki
     #   options:
     #     loki-url: "https://loki.local.timmybtech.com/loki/api/v1/push"
+    labels:
+      io.containers.autoupdate: "registry" # for use with podman
 
 volumes:
   netdatalib:
