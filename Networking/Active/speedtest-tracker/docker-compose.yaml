@@ -16,7 +16,7 @@ services:
             - DB_PASSWORD=${DB_PASSWORD}
             - APP_NAME="Speedtest Tracker"
             - APP_ENV=production
-            - APP_KEY=base64:ID9qNibWRy7zTVvapr8KI4UwQ9lkE/pO+Rxs7tK4dIQ=
+            - APP_KEY=${APP_KEY}
             - APP_DEBUG=false
             - APP_URL=https://speedtest.timmybtech.com/
         volumes:
