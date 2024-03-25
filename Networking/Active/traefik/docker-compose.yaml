@@ -9,13 +9,16 @@ services:
     ports:
       - 80:80
       - 443:443
-      - 5432:5432
+      - 8080:8080      
+    security_opt: # for podman use
+      - 'label=type:container_runtime_t'
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+     # - /var/run/docker.sock:/var/run/docker.sock:ro # for docker use
+      - /run/user/1001/podman/podman.sock:/var/run/docker.sock:z # for podman use
       - ./app/letsencrypt:/letsencrypt
       - ./dynamic.yaml:/etc/traefik/dynamic.yaml:ro
     command:
-      - --api.insecure=false
+      - --api.insecure=true
 #      - --api=true
 #      - --api.dashboard=true
       - --log.level=DEBUG
@@ -48,11 +51,11 @@ services:
     labels:
       traefik.enable: true
       traefik.docker.network: traefik_network
-      traefik.http.routers.traefik.rule: Host(`${APP_URL}`)
-      traefik.http.services.traefik.loadbalancer.server.port: 8080
-      traefik.http.routers.traefik.service: api@internal
-      traefik.http.middlewares.traefik-dashboard-auth.basicauth.users: tbryant:${TRAEFIK_DOCKER_PASSWORD}
-      traefik.http.routers.traefik-dashboard-http-router.middlewares: traefik-dashboard-auth
+      traefik.http.routers.traefik-dashboard.rule: Host(`${APP_URL}`)
+      traefik.http.services.traefik-dashboard.loadbalancer.server.port: 8080
+#      traefik.http.middlewares.traefik-dashboard-auth.basicauth.users: tbryant:$$apr1$$5oc3kth2$$.cIuqoF2VRngk9qOPiNLu0
+#      traefik.http.routers.traefik.service: api@internal
+#      traefik.http.routers.traefik.middlewares: traefik-dashboard-auth
 
 networks:
   default:
