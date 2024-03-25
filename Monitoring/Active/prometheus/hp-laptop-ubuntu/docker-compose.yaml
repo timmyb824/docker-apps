@@ -17,6 +17,8 @@ services:
     restart: unless-stopped
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
+    labels:
+      io.containers.autoupdate: "registry"
 
   node_exporter:
     image: quay.io/prometheus/node-exporter:latest
@@ -27,19 +29,21 @@ services:
     restart: unless-stopped
     volumes:
       - '/:/host:ro,rslave'
+    labels:
+      io.containers.autoupdate: "registry"
 
-  cadvisor:
-    image: gcr.io/cadvisor/cadvisor
-    container_name: cadvisor
+#  cadvisor:
+#    image: gcr.io/cadvisor/cadvisor
+#    container_name: cadvisor
     # ports:
     #   - "8080:8080"
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:ro
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
-      - /dev/disk/:/dev/disk:ro
-    devices:
-      - /dev/kmsg
-    restart: unless-stopped
+#    volumes:
+#      - /:/rootfs:ro
+#      - /var/run:/var/run:ro
+#      - /sys:/sys:ro
+#      - /var/lib/docker/:/var/lib/docker:ro
+#      - /dev/disk/:/dev/disk:ro
+#    devices:
+#      - /dev/kmsg
+#    restart: unless-stopped
 
