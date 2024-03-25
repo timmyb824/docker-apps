@@ -20,9 +20,19 @@ scrape_configs:
       target_label: instance
       replacement: 'hp-laptop-ubuntu'
 
-  - job_name: 'cadvisor'
+#  - job_name: 'cadvisor'
+#    static_configs:
+#      - targets: ['cadvisor:8080']
+#    relabel_configs:
+#    - source_labels: [__address__]
+#      regex: '.*'
+#      target_label: instance
+#      replacement: 'hp-laptop-ubuntu'
+
+  - job_name: 'adguardhome'
     static_configs:
-      - targets: ['cadvisor:8080']
+      - targets: ['192.168.86.53:9617']
+    metrics_path: '/metrics'
     relabel_configs:
     - source_labels: [__address__]
       regex: '.*'
