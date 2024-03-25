@@ -10,7 +10,7 @@ services:
       - "0.0.0.0:718:80"
       - "0.0.0.0:719:443"
     volumes:
-      - ./linkace.env:/app/.env
+      - ./.env:/app/.env
       - ./backups:/app/storage/app/backups
       - linkace_logs:/app/storage/logs
       # Remove the hash of the following line if you want to use HTTPS for this container
@@ -30,4 +30,4 @@ volumes:
 networks:
   default:
     name: traefik_network
-    external: trueß
+    external: true
