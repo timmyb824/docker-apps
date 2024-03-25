@@ -1,4 +1,4 @@
-version: '2'
+version: "2"
 services:
   cloudflare-ddns:
     image: oznu/cloudflare-ddns:latest
@@ -10,3 +10,6 @@ services:
       - PROXIED=true
       - PUID=1000
       - PGID=1000
+    # for use with podman
+    labels:
+      io.containers.autoupdate: "registry"

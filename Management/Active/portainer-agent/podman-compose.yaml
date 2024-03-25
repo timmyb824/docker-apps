@@ -11,3 +11,5 @@ services:
     container_name: portainer_agent
     ports:
       - "9001:9001"
+    labels:
+      - io.containers.autoupdate: "registry" # for use with podman

@@ -21,6 +21,7 @@ services:
       traefik.docker.network: traefik_network
       traefik.http.routers.linkace.rule: Host(`linkace.timmybtech.com`)
       traefik.http.services.linkace.loadbalancer.server.port: 718
+      io.containers.autoupdate: "registry" # for use with podman
 
 volumes:
   linkace_logs:

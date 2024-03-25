@@ -1,34 +1,36 @@
 services:
-    semaphore:
-        container_name: semaphore
-        restart: unless-stopped
-        ports:
-            - 3005:3000
-        image: semaphoreui/semaphore:latest
-        environment:
-            SEMAPHORE_DB_USER: ${SEMAPHORE_DB_USER}
-            SEMAPHORE_DB_PASS: ${SEMAPHORE_DB_PASS}
-            SEMAPHORE_DB_HOST: ${SEMAPHORE_DB_HOST}
-            SEMAPHORE_DB_PORT: ${SEMAPHORE_DB_PORT}
-            SEMAPHORE_DB_DIALECT: postgres
-            SEMAPHORE_DB: semaphore
-            SEMAPHORE_PLAYBOOK_PATH: /tmp/semaphore/
-            SEMAPHORE_ADMIN_PASSWORD: ${SEMAPHORE_ADMIN_PASSWORD}
-            SEMAPHORE_ADMIN_NAME: ${SEMAPHORE_ADMIN_NAME}
-            SEMAPHORE_ADMIN_EMAIL: ${SEMAPHORE_ADMIN_EMAIL}
-            SEMAPHORE_ADMIN: ${SEMAPHORE_ADMIN}
-            SEMAPHORE_ACCESS_KEY_ENCRYPTION: ${SEMAPHORE_ACCESS_KEY_ENCRYPTION}
-            # if you wish to use ldap, set to: 'yes'
-            SEMAPHORE_LDAP_ACTIVATED: "no"
-        volumes:
-            - /home/tbryant/.ssh/id_master_key_nopass:/home/semaphore/.ssh/id_master_key_nopass
-        labels:
-            traefik.enable: true
-            traefik.docker.network: traefik_network
-            traefik.http.routers.semaphore.rule: Host(`semaphore.timmybtech.com`)
-            traefik.http.services.semaphore.loadbalancer.server.port: 3000
-            com.centurylinklabs.watchtower.enable: false
+  semaphore:
+    container_name: semaphore
+    restart: unless-stopped
+    ports:
+      - 3005:3000
+    image: semaphoreui/semaphore:latest
+    environment:
+      SEMAPHORE_DB_USER: ${SEMAPHORE_DB_USER}
+      SEMAPHORE_DB_PASS: ${SEMAPHORE_DB_PASS}
+      SEMAPHORE_DB_HOST: ${SEMAPHORE_DB_HOST}
+      SEMAPHORE_DB_PORT: ${SEMAPHORE_DB_PORT}
+      SEMAPHORE_DB_DIALECT: postgres
+      SEMAPHORE_DB: semaphore
+      SEMAPHORE_PLAYBOOK_PATH: /tmp/semaphore/
+      SEMAPHORE_ADMIN_PASSWORD: ${SEMAPHORE_ADMIN_PASSWORD}
+      SEMAPHORE_ADMIN_NAME: ${SEMAPHORE_ADMIN_NAME}
+      SEMAPHORE_ADMIN_EMAIL: ${SEMAPHORE_ADMIN_EMAIL}
+      SEMAPHORE_ADMIN: ${SEMAPHORE_ADMIN}
+      SEMAPHORE_ACCESS_KEY_ENCRYPTION: ${SEMAPHORE_ACCESS_KEY_ENCRYPTION}
+      # if you wish to use ldap, set to: 'yes'
+      SEMAPHORE_LDAP_ACTIVATED: "no"
+    volumes:
+      - /home/tbryant/.ssh/id_master_key_nopass:/home/semaphore/.ssh/id_master_key_nopass
+    labels:
+      traefik.enable: true
+      traefik.docker.network: traefik_network
+      traefik.http.routers.semaphore.rule: Host(`semaphore.timmybtech.com`)
+      traefik.http.services.semaphore.loadbalancer.server.port: 3000
+      com.centurylinklabs.watchtower.enable: false # for use with docker
+      io.containers.autoupdate: "registry" # for use with podman
+
 networks:
-    default:
-        name: traefik_network
-        external: true
+  default:
+    name: traefik_network
+    external: true
