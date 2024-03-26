@@ -20,3 +20,13 @@ scrape_configs:
       target_label: instance
       replacement: 'vm307'
 
+  - job_name: 'podman_exporter'
+    static_configs:
+      - targets: ['192.168.86.240:9882']
+    metrics_path: '/metrics'
+    relabel_configs:
+    - source_labels: [__address__]
+      regex: '.*'
+      target_label: instance
+      replacement: 'vm307'
+
