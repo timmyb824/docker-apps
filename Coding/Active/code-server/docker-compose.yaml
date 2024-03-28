@@ -5,7 +5,8 @@ services:
     container_name: code-server
     environment:
       # Install packages during installation
-      - DOCKER_MODS=linuxserver/mods:code-server-python3|linuxserver/mods:code-server-nodejs|linuxserver/mods:code-server-terraform|linuxserver/mods:code-server-zsh
+      # - DOCKER_MODS=linuxserver/mods:code-server-python3|linuxserver/mods:code-server-nodejs|linuxserver/mods:code-server-terraform|linuxserver/mods:code-server-zsh
+      - DOCKER_MODS=linuxserver/mods:code-server-zsh
       - PUID=1000
       - PGID=1000
       - TZ=America/New_York
