@@ -2,7 +2,7 @@ version: "3"
 
 services:
   traefik-app:
-    image: traefik:latest
+    image: docker.io/traefik:latest
     container_name: traefik
     restart: always
     ports:
