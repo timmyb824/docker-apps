@@ -18,6 +18,7 @@ services:
       #- DEFAULT_WORKSPACE=/config/workspace #optional
     volumes:
       - ./config:/config
+      - ./bin/:/usr/local/bin/:Z
     ports:
       - 8443:8443
     restart: unless-stopped
