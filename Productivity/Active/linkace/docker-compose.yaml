@@ -3,7 +3,7 @@ version: "3"
 services:
   # --- LinkAce Image with PHP and nginx
   app:
-    image: linkace/linkace:simple
+    image: docker.io/linkace/linkace:simple
     restart: unless-stopped
     container_name: linkace
     ports:
