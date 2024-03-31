@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  focalboard:
+    image: mattermost/focalboard
+    ports:
+      - "8001:8000"
+    environment:
+      - FOCALBOARD_DBTYPE=postgres
+      - FOCALBOARD_DBCONFIG="${FOCALBOARD_DBCONFIG}"
