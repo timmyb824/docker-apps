@@ -4,7 +4,7 @@ services:
     restart: unless-stopped
     ports:
       - 3005:3000
-    image: semaphoreui/semaphore:latest
+    image: docker.io/semaphoreui/semaphore:latest
     environment:
       SEMAPHORE_DB_USER: ${SEMAPHORE_DB_USER}
       SEMAPHORE_DB_PASS: ${SEMAPHORE_DB_PASS}
