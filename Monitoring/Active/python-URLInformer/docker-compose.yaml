@@ -1,9 +1,0 @@
----
-services:
-    urlinformer:
-        image: docker.io/timmyb824/python-urlinformer:latest
-        container_name: urlinformer
-        volumes:
-            - './checks.yaml:/app/src/checks.yaml'
-        environment:
-            - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}
