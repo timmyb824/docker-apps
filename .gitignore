@@ -14,7 +14,7 @@ Podman/systemd/container*
 /Monitoring/Active/netdata/hp-laptop-ubuntu/netdataconfig/*
 !/Monitoring/Active/netdata/hp-laptop-ubuntu/netdataconfig/health.d/
 !/Monitoring/Active/netdata/hp-laptop-ubuntu/netdataconfig/health.d/linux_power_supply.conf
-Monitoring/Active/netdata/vm307/netdataconfig/
+Monitoring/Active/netdata/vm3xx/netdataconfig/
 
 Networking/Active/watchyourlan/data/
 Networking/Active/traefik/app/
