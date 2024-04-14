@@ -21,6 +21,7 @@ services:
       - /etc/group:/host/etc/group:ro
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
+      - /:/host:ro # for diskspace monitoring
       - /etc/os-release:/host/etc/os-release:ro
       - /run/user/1001/podman/podman.sock:/var/run/docker.sock:z # for podman use
     #  - /var/run/docker.sock:/var/run/docker.sock:ro # for docker use
