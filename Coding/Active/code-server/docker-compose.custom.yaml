@@ -1,0 +1,28 @@
+---
+services:
+  code-server:
+    image: code-server:latest
+    environment:
+      - DOCKER_USER=${USER}
+    user: "${UID}:${GID}" # or '$(id -u):$(id -g)'
+    volumes:
+      - ./project:/home/coder/project
+      - ./config:/home/coder/.config
+      - ./local:/home/coder/.local
+      - ./bin/:/usr/local/bin/:Z
+    ports:
+      - "127.0.0.1:8080:8080"
+    container_name: code-server
+    tty: true
+    stdin_open: true
+    labels:
+      traefik.enable: true
+      traefik.docker.network: traefik_network
+      traefik.http.routers.code-server.rule: Host(`code-server.timmybtech.com`)
+      traefik.http.services.code-server.loadbalancer.server.port: 8443
+      io.containers.autoupdate: "registry" # for use with podman
+
+networks:
+  default:
+    name: traefik_network
+    external: true
