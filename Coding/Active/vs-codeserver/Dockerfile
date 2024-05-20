@@ -1,18 +1,11 @@
 # Use Ubuntu as the base image
 FROM ubuntu:22.04
 
-# ARG ROOT_PASSWORD
-# ARG USER_NAME
-# ARG USER_PASSWORD
-# ARG TOKEN
-# ARG ARCH_TYPE
-
-# Set environment variables for the credentials and configuration
-ENV ROOT_PASSWORD=${ROOT_PASSWORD}
-ENV USER_NAME=${USER_NAME}
-ENV USER_PASSWORD=${USER_PASSWORD}
-ENV TOKEN=${TOKEN}
-ENV ARCH_TYPE=${ARCH_TYPE}
+ARG ROOT_PASSWORD
+ARG USER_NAME
+ARG USER_PASSWORD
+ARG TOKEN
+ARG ARCH_TYPE
 
 # Set the root password for the IDE system
 RUN echo 'root:${ROOT_PASSWORD}' | chpasswd
