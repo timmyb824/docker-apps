@@ -2,8 +2,19 @@
 services:
   vscode-server:
     container_name: vs-codeserver
-    image: vs-codeserver
+    image: vs-codeserver:latest
     ports:
       - "8585:8585"
+    user: "${UID}:${GID}"
     volumes:
      - ./data:/home/$USER/
+    labels:
+      traefik.enable: true
+      traefik.docker.network: traefik_network
+      traefik.http.routers.code-server.rule: Host(`vs-codeserver.timmybtech.com`)
+      traefik.http.services.code-server.loadbalancer.server.port: 8080
+
+networks:
+  default:
+    name: traefik_network
+    external: true

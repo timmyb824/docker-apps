@@ -8,7 +8,7 @@ ARG TOKEN
 ARG ARCH_TYPE
 
 # Set the root password for the IDE system
-RUN echo 'root:${ROOT_PASSWORD}' | chpasswd
+RUN echo "root:${ROOT_PASSWORD}" | chpasswd
 
 # Install necessary packages
 RUN apt-get update && apt-get install -y software-properties-common apt-transport-https wget
@@ -31,16 +31,16 @@ RUN apt-get -y install sudo -y \
   ssh
 
 # Create a non-root user
-RUN useradd -m ${USER_NAME}
+RUN useradd -m "${USER_NAME}"
 
 # Set the password for the non-root user
-RUN echo '${USER_NAME}:${USER_PASSWORD}' | chpasswd
+RUN echo "${USER_NAME}:${USER_PASSWORD}" | chpasswd
 
 # Add the non-root user to the sudo group
-RUN adduser ${USER_NAME} sudo
+RUN adduser "${USER_NAME}" sudo
 
 # Switch to the non-root user
-USER ${USER_NAME}
+USER "${USER_NAME}"
 
 # Set the home directory for the non-root user
 ENV HOME /home/${USER_NAME}
