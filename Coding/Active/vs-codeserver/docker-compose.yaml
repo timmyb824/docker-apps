@@ -1,0 +1,15 @@
+---
+services:
+  vscode-server:
+    container_name: vs-codeserver
+    image: vs-codeserver
+    environment:
+      ROOT_PASSWORD: ${ROOT_PASSWORD}
+      USER_NAME: ${USER_NAME}
+      USER_PASSWORD: ${USER_PASSWORD}
+      TOKEN: ${TOKEN}
+      ARCH_TYPE: arm64
+    ports:
+      - "8585:8585"
+    volumes:
+     - ./data:/home/$USER/
