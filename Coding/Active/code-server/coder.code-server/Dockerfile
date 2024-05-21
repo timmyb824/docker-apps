@@ -26,6 +26,7 @@ RUN apt-get -y update && \
 # RUN chmod +x /home/coder/install_extensions.sh
 # RUN /home/coder/install_extensions.sh
 
+
 RUN code-server --install-extension aaron-bond.better-comments && \
     code-server --install-extension catppuccin.catppuccin-vsc && \
     code-server --install-extension catppuccin.catppuccin-vsc-icons && \
@@ -65,7 +66,6 @@ RUN code-server --install-extension aaron-bond.better-comments && \
     code-server --install-extension ms-python.pylint && \
     code-server --install-extension ms-python.python && \
     code-server --install-extension ms-vscode.makefile-tools && \
-    code-server --install-extension ms-vscode.powershell && \
     code-server --install-extension ms-vscode.test-adapter-converter && \
     code-server --install-extension njpwerner.autodocstring && \
     code-server --install-extension oderwat.indent-rainbow && \
