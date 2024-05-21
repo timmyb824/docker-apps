@@ -5,8 +5,8 @@ services:
     container_name: openvscode-server
     environment:
       - DOCKER_MODS=linuxserver/mods:code-server-zsh
-      - PUID=1000
-      - PGID=1000
+      - PUID=1001
+      - PGID=1001
       - TZ=America/New_York
       - CONNECTION_TOKEN=${CONNECTION_TOKEN}
       - SUDO_PASSWORD=${SUDO_PASSWORD}
