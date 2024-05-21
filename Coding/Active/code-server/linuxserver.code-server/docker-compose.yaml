@@ -1,4 +1,3 @@
-version: "2.1"
 services:
   code-server:
     image: lscr.io/linuxserver/code-server:latest
@@ -6,9 +5,9 @@ services:
     environment:
       # Install packages during installation
       # - DOCKER_MODS=linuxserver/mods:code-server-python3|linuxserver/mods:code-server-nodejs|linuxserver/mods:code-server-terraform|linuxserver/mods:code-server-zsh
-      - DOCKER_MODS=linuxserver/mods:code-server-zsh
-      - PUID=1000
-      - PGID=1000
+      #  - DOCKER_MODS=linuxserver/mods:code-server-zsh
+      - PUID=1001
+      - PGID=1001
       - TZ=America/New_York
       #optional
       - PASSWORD=${PASSWORD}

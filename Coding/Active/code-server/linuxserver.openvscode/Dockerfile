@@ -21,8 +21,8 @@ RUN apt-get -y update && \
     wget
 
 ####### EXTENSIONS #######
-COPY ../scripts/install_thirdparty_extensions.sh /tmp/install_thirdparty_extensions.sh
-COPY ../extensions /tmp/extensions
+COPY scripts/install_thirdparty_extensions.sh /tmp/install_thirdparty_extensions.sh
+COPY extensions/ /tmp/extensions
 RUN chmod +x /tmp/install_thirdparty_extensions.sh
 RUN /tmp/install_thirdparty_extensions.sh
 
@@ -94,6 +94,5 @@ RUN ${OPENVSCODE} --install-extension aaron-bond.better-comments && \
     ${OPENVSCODE} --install-extension yzhang.markdown-all-in-one
 
 ####### DOTFILES #######
+RUN rm -rf /config/workspace/dotfiles_linux
 RUN git clone https://github.com/timmyb824/dotfiles_linux.git /config/workspace/dotfiles_linux
-
-USER abc

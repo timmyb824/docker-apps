@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+OPENVSCODE_BIN="/app/openvscode-server/bin/openvscode-server"
+
 # define extension list
 extensions=(
 100lvlmaster.one-for-all
@@ -132,7 +134,7 @@ zhuangtongfa.material-theme
 install_extension() {
     local extension=$1
     local output
-    output=$(code-server --install-extension "$extension" 2>&1)
+    output=$($OPENVSCODE_BIN --install-extension "$extension" 2>&1)
     if echo "$output" | grep -q "not found"; then
         echo "Failed to install $extension"
         echo "$output"
