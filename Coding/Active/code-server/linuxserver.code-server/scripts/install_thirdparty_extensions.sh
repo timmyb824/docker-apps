@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-EXTENSIONS_DIR="/tmp/extensions"
-OPENVSCODE_BIN="/app/openvscode-server/bin/openvscode-server"
+EXTENSIONS_DIR="/config/workspace/DEV/temp/extensions"
+VSCODE_BIN="/app/code-server/lib/vscode/bin/remote-cli/code-server"
 
 # Function to install a single extension and handle output
 install_extension() {
     local extension=$1
     local output
     cd "$EXTENSIONS_DIR" || exit
-    output=$($OPENVSCODE_BIN --install-extension "$extension" 2>&1)
+    output=$($VSCODE_BIN --install-extension "$extension" 2>&1)
     echo "$output"
     if echo "$output" | grep -q "not found"; then
         echo "Failed to install $extension"
