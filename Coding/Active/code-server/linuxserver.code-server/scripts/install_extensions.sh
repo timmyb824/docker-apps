@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-OPENVSCODE_BIN="/app/openvscode-server/bin/openvscode-server"
+VSCODE_BIN="/app/code-server/lib/vscode/bin/remote-cli/code-server"
 
 # define extension list
 extensions=(
@@ -42,6 +42,7 @@ magicstack.magicpython
 marcostazi.vs-code-vagrantfile
 mechatroner.rainbow-csv
 mhutchie.git-graph
+ms-azuretools.vscode-docker
 ms-python.black-formatter
 ms-python.debugpy
 ms-python.isort
@@ -86,7 +87,7 @@ zhuangtongfa.material-theme
 install_extension() {
     local extension=$1
     local output
-    output=$($OPENVSCODE_BIN --install-extension "$extension" 2>&1)
+    output=$($VSCODE_BIN --install-extension "$extension" 2>&1)
     if echo "$output" | grep -q "not found"; then
         echo "Failed to install $extension"
         echo "$output"
