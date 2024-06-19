@@ -1,73 +1,73 @@
 server:
-    # 0 = use Go default (15s); -1 = disable keepalive; set the interval in which keepalive packets will be sent. Only change this value if you know what you are doing.
-    keepaliveperiodseconds: 0
-    # the address to bind on, leave empty to bind on all addresses
+    #ENC[AES256_GCM,data:sr7lVOGj2v2WvlgejQL5xgZQ8U66HkkhxvpDGOLn2yGNCPMV2PJfDHMNe8BtbC+3copFf+AV0N0GzJ6sEWGiBR85HO1YQXHubGdh1hBMJCETZaLrAE9mKQUDcKx/D7oy6/2DVJ9sY6WhFvTXDg2UOl728EF0wNHzuXpcyPh9VdXVWOSpaZEuL1X8LL/QJMhQOrGrahA4HMrHy13E03+szTeDAA==,iv:w36cx+s+fsbcpObyTGEMARB7pLX0Mplw9CCCWOgUgDM=,tag:6Z3ed8NN7oAiLBmg3SfChA==,type:comment]
+    keepaliveperiodseconds: ENC[AES256_GCM,data:bg==,iv:b4i93XrLtiCsSo56wHRbYxLg7H3jD882T5/XLBgMzgo=,tag:atAEwOaxS4XbIaWXrlGM5w==,type:int]
+    #ENC[AES256_GCM,data:cHMjHsnHpQqcC0534Xe4jrVU4omRxKK0dDG5KU7fczJrLVYY+MxnO/3MesUg9N+llLyvy8+dxQ0NfNA3Sg==,iv:c9NNavfTlvG8LY17NyCuDFfk/HmqZg/u/MWRfz8gatc=,tag:mXHOvC+MHwORPia/Njk7IQ==,type:comment]
     listenaddr: ""
-    # the port the HTTP server will listen on
-    port: 80
+    #ENC[AES256_GCM,data:2Rz4aRMcSD87ihHh0MMzGS1sid+uzSizdB51+d34hHrJNv2DsMI8wA==,iv:136h4J5skTgBrOStn7ceebvkMDXfZ2LzbQv4EsqItdU=,tag:IoqilDrzIIvXxLR+0MW8jw==,type:comment]
+    port: ENC[AES256_GCM,data:K7E=,iv:FNphN/7H7XQHfm8uWDwYGYiTKDoPVEUYnvGEd+fgrcI=,tag:8hjY8gyJifLsD5B1wRRweA==,type:int]
     ssl:
-        # if https should be enabled
-        enabled: false
-        # redirect to https if site is accessed by http
-        redirecttohttps: true
-        # the address to bind on, leave empty to bind on all addresses
+        #ENC[AES256_GCM,data:dpQOxH2O63sJXWQkUnE+V0t09zhcTGls3bOd,iv:Wia3BQmGpLYCY52Qvn4+FAfWZINIPuPxbcsNYRyFf3Q=,tag:xcD3FVD3EIjc0ebFqAxRTw==,type:comment]
+        enabled: ENC[AES256_GCM,data:n36w1VA=,iv:zaAL+CE6EkaLfceQEhoo1JmFsrG2i08hoR4lJ2Kwh9g=,tag:zc2+5Ww5h3G8yfznB9SJdw==,type:bool]
+        #ENC[AES256_GCM,data:gRD4lMHg0PCh47UiWQD0CpMocH+ShcNDOXgCSs6q5VY14ixzbsV/lZE1WV4wpg==,iv:dAwYrsxHKCsSZZ7tBJA1lY2s30rLRLw8VPo2xX3PIzI=,tag:p1t9ptFFnhE01l1ob61k8Q==,type:comment]
+        redirecttohttps: ENC[AES256_GCM,data:XsulJA==,iv:wQZaPYP/CphLo7MZKuNiOxA8DRzeEoWluwd7xB84SBQ=,tag:N31L7D/SyjfHn9At4kQoag==,type:bool]
+        #ENC[AES256_GCM,data:/W/j8ADK+BiPXK/5Wk8YCYPqAp82qUJ7ROEE/+A5pnuP0TRxFEAUakWby/kyGQISWHL6oDxQupcWmD+G9A==,iv:33HOzqNrNSuckVL2zgu3Jgt7Qrk8io5CmYYmhsXxEqg=,tag:bbePw1JojZmY2qReb54j0g==,type:comment]
         listenaddr: ""
-        # the https port
-        port: 443
-        # the cert file (leave empty when using letsencrypt)
+        #ENC[AES256_GCM,data:BG1pT0lVFIAPu1AUOfVZ,iv:U4q12IZRIXuXXwVpEl3P2XtcBwniMobdlT3aNy01nVU=,tag:tU1Pz6c7UdMTl4OrhqUUcg==,type:comment]
+        port: ENC[AES256_GCM,data:XF+y,iv:EWcbk0d6JnaJDN7rcmcFOeeG0nneTapwdZKQ7e4GabI=,tag:n2aCHUaQ429wUsSOActRYQ==,type:int]
+        #ENC[AES256_GCM,data:Hx0XdbwBTuJmqWkk2hbp7hXHIo5sJVIU9HTXmzSwTRt6j2C0o4GaJSFvcY9bXL8Gz087,iv:oadyKWiIQdRbtwEDYRO4FgQsoY7DULtoE5DjuAGBDT4=,tag:6f3XOyMMNknzLSLzdiEHzQ==,type:comment]
         certfile: null
-        # the cert key (leave empty when using letsencrypt)
+        #ENC[AES256_GCM,data:xMWvq3W3eSYPiWNfZvnGg1G8UsZxCe8VseIMsKDzfvegF0AvhPzsgfkYauOXP/QTZfo=,iv:/i7tT/FxAIWMx4SpB4NhLSzPp0+HEYb4pbkEo/HFIi0=,tag:C+rt9vVkBG1vreIJha0srg==,type:comment]
         certkey: null
         letsencrypt:
-            # if the certificate should be requested from letsencrypt
-            enabled: false
-            # if you accept the tos from letsencrypt
-            accepttos: false
-            # the directory of the cache from letsencrypt
-            cache: data/certs
-            # the hosts for which letsencrypt should request certificates
+            #ENC[AES256_GCM,data:UuAFe9+e3370gNhFNW5nN95cYIIB0pqTII22enmSdPQfhvTg5FpBQWxnwnQudwJsVSYvYsq1A+M=,iv:tH0WvTj1HOZisb4jk/beFUGJ1kb+yDJ4DymU9jSdkng=,tag:U9yUadI85yjimmJxlX+h5w==,type:comment]
+            enabled: ENC[AES256_GCM,data:XnIunow=,iv:J1hjJ2qQLwJ02aN8HvrLNU9p2323gxIE4eUQmwXRJQE=,tag:LcNytKxROGun0+JzirViNA==,type:bool]
+            #ENC[AES256_GCM,data:FeSR6UD/9ncbPdfjqtepu+nDGwObyZcsjxI84kCHvrSmgL6GRS78,iv:Qz2A7cMBXx90gZ9lAIXJMsRmkK85LNRiKyb77B1OMc8=,tag:A1Ab6B7eT/q1L+4ZEjyBBQ==,type:comment]
+            accepttos: ENC[AES256_GCM,data:a+CoMgE=,iv:NQBlUQDcfjaCZjo4vr21/n5HXRXh36KYqqGSf/4QRwY=,tag:8b43hY/acWhdroiN1r1Zng==,type:bool]
+            #ENC[AES256_GCM,data:j+FwXlANtmWgor4/By9Ht6jHkILQdlSm5nO/3BWbO7OGDYBtbVrwmahAccU=,iv:NEDebifdqxQE2Ci6vmkPYjv1jXeIm7ymzkKlaqPVAU4=,tag:zmRleI4zMrYNmkdYLb7tIQ==,type:comment]
+            cache: ENC[AES256_GCM,data:FNBo8qrrU5cNqg==,iv:/AvSPHjYWEEN77dbZdqAfI9m6qzqPNtFWECbSCcRL7U=,tag:l4BIcLviacVM8pI9cKBDzw==,type:str]
+            #ENC[AES256_GCM,data:euL23VYHqw0sE4wG4K+uBKeyuvnKSBryXKDaRzh4b+h2DX2d5BRhL8ZupZLrez4rVjYxry1lN7bqH9Sg,iv:KQm+KvO1RtTik+fMIQk6ZNdlST1c1HECsdYX341Z8So=,tag:3PsWYNkeNrUJGHY8X9gMAA==,type:comment]
             hosts: null
-    #      - mydomain.tld
-    #      - myotherdomain.tld
-    # response headers are added to every response (default: none)
+    #ENC[AES256_GCM,data:8JvD8s7FlHwSYD47DF1a042IHGU=,iv:/4XcmgIXfaJFUQPuNPdYHt589cK1srzTtmR+Vdn9whc=,tag:JeGDps3pf8L+Mv1e4X0UVQ==,type:comment]
+    #ENC[AES256_GCM,data:Wftl2C24sOYo3qOA/PNeGofuiY15wOBmYg==,iv:vMvHMxQ2Qbgn0vAsAokrK/5Dt38RrKFjSJ6cl4iVlqs=,tag:txP+Q9XlYxI+mroeO8rYgA==,type:comment]
+    #ENC[AES256_GCM,data:phVRa2x7xh44FisbVQrVC3XXUcKRlhETBPfpoG9wtMHSW3BcZh9F4dZ4E+piVOW39w0ih60qHt6uxX5gTg==,iv:+BntSgFjAuIG353Ot8ixeRhuXr9SIwt0hhPrTRvUCxQ=,tag:DZtzPZtsklTIBWV4ALKx2w==,type:comment]
     responseheaders: null
-    #    X-Custom-Header: "custom value"
-    # Sets cors headers only when needed and provides support for multiple allowed origins. Overrides Access-Control-* Headers in response headers.
+    #ENC[AES256_GCM,data:i8LYqnxB9MtfHL6mhV0DlRCo79bpM5RGW9tSM5yQsI9nVB0=,iv:zC78mSVyNLTD17bb3sHbp1Sco08fvkidpWjHekYqDpM=,tag:NnOaPHwToM49ZQdTwMZ67Q==,type:comment]
+    #ENC[AES256_GCM,data:P5JpWXFjnaMVM4TaLh33qHp36Bk9LSMOZN+nAfu74JGfasZt715HyM0457yghOIaXX8xXxunaq+JoBSpeM0KKGTibM0SSqC75aSS2XSUpdkBjBNBEet2/98GPAEt4L5mYnFicDEADLSH+XdvxjtJ7nCzcrasELfQfKRfq4FzOS1ok9OWl47nRllafRme2g==,iv:oy1/roZrUSs+hf0pp/KMQ/pPeH30uDzjVe5jpmSOK7o=,tag:obiEkUaZ4ceb8Olw1zbxSQ==,type:comment]
     cors:
         alloworigins: null
-        #      - ".+.example.com"
-        #      - "otherdomain.com"
+        #ENC[AES256_GCM,data:Svck0dAdjBCRqpyRcmp58y4ORpiWR8kE,iv:EVp0xEosmIxrjaIJVneDZU7wQ6N353pJfGCW35zu+Go=,tag:Z5TE3bg8tn35ccllwwZaYA==,type:comment]
+        #ENC[AES256_GCM,data:MAXjkjluQrPDSelnnrB4S+m2gdOuGY2FqQ==,iv:nRimd4sUWaY1uOTXG6GVqPlYtrecDVqhZlQWt5vq0LQ=,tag:nMubMY40ONjgahomWj6RhA==,type:comment]
         allowmethods: null
-        #      - "GET"
-        #      - "POST"
+        #ENC[AES256_GCM,data:l6MrXbgWxfebnPZ8PA==,iv:SZhGV2fkIw1lwoGi73pswddACUA4Uw/fixPzPDW2cBI=,tag:N1YUF7JJRKgpf9iM/gRUdA==,type:comment]
+        #ENC[AES256_GCM,data:jm8rE3AngO4IZj3QckI=,iv:zd2jS50QdAOtUv5Su+J6sxCs2UfdaFyCy05FC4sg7so=,tag:zf6JglDKR9lJOrCGVBkqow==,type:comment]
         allowheaders: null
-        #      - "Authorization"
-        #      - "content-type"
+        #ENC[AES256_GCM,data:JfZqH+sLaotCp58/iQEv4AapCImCLVI=,iv:7zE2Vy23Ge+5Nk3fDeC7VES2rz5jtTx9gSBYlN1yy6M=,tag:PbFu1Dd03NMzDn8GllF5ug==,type:comment]
+        #ENC[AES256_GCM,data:KtBbLcWW1cdOOg8AYd7XPCi/E6h6Xw==,iv:yjIYxyvn8xXZXtSj951jkeDc9JuEfpV3azyY4oMMcTQ=,tag:WdupNcTSZ/mtfkNE96oa4g==,type:comment]
     stream:
-        # the interval in which websocket pings will be sent. Only change this value if you know what you are doing.
-        pingperiodseconds: 45
-        # allowed origins for websocket connections (same origin is always allowed)
+        #ENC[AES256_GCM,data:orXE5VtWxQAAN/CNBxSwjm7plNobt+KfHFC8KDc0jx0V7mtLSeKxh4jHRYxTKTqVRLbhPU+j9aH7tJQ6tUQ1fUkOa7H3Np5TUh6MGynSQ3fkOw2oYNdPrU5RT7pUZFqgWSXxE9bQjvcxlcE=,iv:V0SsHr0nZKs+SmONYgZRTkJGQsIl6EwhAfukG4wRJ9s=,tag:wUboPQ1qa7ENwF9M/Yga9A==,type:comment]
+        pingperiodseconds: ENC[AES256_GCM,data:21Y=,iv:IMIOxQSbLA7teRNgfmi3j9ZMLMPc5z8y73zN0n3sz34=,tag:fcHFHzwK3ZxGgafKPWc0bQ==,type:int]
+        #ENC[AES256_GCM,data:boa4cUFmqDgg2OsWcI7taubU+kIC22lYmHJcE4VNBz0ZRQftBiM9PcNGnUdFddJZtxcsfVXPhQmXW6i3hIeFDHke3J8KMFEa6Gc=,iv:TdMvPmD1ZXjDqiOGzDb7QJbvpeKYTRdEwZG6ANEA7NI=,tag:zWhbSJIC024JVIfD9Me5Ow==,type:comment]
         allowedorigins: null
-#      - ".+.example.com"
-#      - "otherdomain.com"
-# for database see (configure database section)
+#ENC[AES256_GCM,data:FXe7p43adxqTKM8ARb1pcwWG7A6klWof,iv:7JISPp0KeXkEpyMOAcA9JDLhwYwwVBEluH6kl+VswqM=,tag:rtTGFYIcwMNudiBVXnF4xA==,type:comment]
+#ENC[AES256_GCM,data:qXIFUdYhF8tOJy0TaaTP7mj0EuCTMUiacw==,iv:3Pl7f0jl0zeDw2RsG/ZzDP6OuUcZNgvvrodf9WPHYck=,tag:sIL2AWDchQ1V3qd6Btj8gA==,type:comment]
+#ENC[AES256_GCM,data:5bfkiozgCyka1Y1+eL8XErZOFUloRC185ja45LY5phf7FEznZGFjlxO9fBg63A==,iv:jiJ/Rp5myHsE2DDNO7I0cyG14inWEnHs+l+/CDNB8z8=,tag:+5dN1mjYXtWTN0nd7KzcyA==,type:comment]
 database:
-    dialect: ENC[AES256_GCM,data:wnd4jtoEPAk=,iv:z4uG3XFeQwnHyuP7YF78eb2mnYveLdGUO6YcTkQI4v4=,tag:X20x5nzlF40atY8aNDB4nQ==,type:str]
-    connection: ENC[AES256_GCM,data:DKH6OyLP05rGQrw6m8lSO2yEGrnEeWedi7uGQtXXDCdrT17z+qPtFCYVvmLzFc993kuwjNER/GSJdMR0g+bc7FVP5aPORU+BscbanA0QhEzbYXOQyXDx0fk=,iv:6I3FGPUd2TQe1aGSG0nSMMFFXgYmmEsdagVg6SycOb4=,tag:9ZjrTyGnsltopk87rE4TQQ==,type:str]
-# on database creation, gotify creates an admin user
+    dialect: ENC[AES256_GCM,data:aCNnC9mMfc0=,iv:vFvboYPS/LHEx8dI0DJn7jyWcSArayALRgnPdDLaTq4=,tag:X5xjRmwZu81XvAk/jYRaVQ==,type:str]
+    connection: ENC[AES256_GCM,data:3Pyf0/feUqPqtVl/hyKGo+hur6vHOqwmbKL2fjVc08V4ctfiewUC+CkbRihsYySz7yHttBVBRvpXNf6PBW1evRapdWlyJYIDQvjV5VgA0f/xX1pVJysX0BMtMMry,iv:n/zAWt+jnm2+wh8kXmTO5evCPiuI2UwE/mD7gqgTZ0c=,tag:FFMwWckIuh1HqzItFOG5VA==,type:str]
+#ENC[AES256_GCM,data:mqQjFHKvqYq5r9yyFUFYGZ0JZESnYLrbrLU4aCBhd3tvootMPMtqHlJY/lUgL7iDqi+2,iv:cDQZ1bs9Q2M/az6NnJcL4NHNFcGYspZeIcV2u9CGeqY=,tag:3HOer+4Jb4oVNlCTGGD91g==,type:comment]
 defaultuser:
-    #ENC[AES256_GCM,data:nYsfJxYTyqt+xhGaZKNabmVmyNPFN+nLwctfZ/oWv2mt,iv:IvmUwZr1BmimQIdlfKUWjbxICeaZEMpc/ZQpJZ4kEN0=,tag:BD/QDK9XGxarYqvFqT/3fg==,type:comment]
-    name: ENC[AES256_GCM,data:s/BhZl2bhA==,iv:rsuNuK+hrS0aWiOamQfZpDSchQ0W74+/MI90sAALhNg=,tag:j+bWcuCzar2W4mmt89xjzw==,type:str]
-    #ENC[AES256_GCM,data:qhU30s5Xw+CEHE5dfZb8Nq5LG05lSgSiVLqMcI6j0zC9,iv:s16CAlOZPjTYXxdRkXTUL48nQA43XTBAoAvJcy8afUM=,tag:deZuZaFeNHEJq8Du559Uag==,type:comment]
-    pass: ENC[AES256_GCM,data:/91Y7jZPWsiHglQ9,iv:NyS0VAgPVwIA7RAUYwUNGdWULhkCbRxkHMNCIWM8GYI=,tag:ID/8Ktq6MLPex1GjQTcG3A==,type:str]
-# the bcrypt password strength (higher = better but also slower)
-passstrength: 10
-# the directory for storing uploaded images
-uploadedimagesdir: data/images
-# the directory where plugin resides
-pluginsdir: data/plugins
-# enable registrations
-registration: false
+    #ENC[AES256_GCM,data:094B3HcGUjGHBFwRaoCgmF25VRywwBpWkR9KtUhKRwJ+,iv:8q5JgiMuo1tq+NzJ+9aJDoi+0Fsg0uCA1MNBliQ1nQE=,tag:H6hXye4LxJ81u8K6IJWohQ==,type:comment]
+    name: ENC[AES256_GCM,data:KmBXhfbz7A==,iv:UfLAtNIkhkT2/5qY9xChgIR5mFnJIx1pyqoYBCosiYY=,tag:p4u00rkmA8rEMLnEPnw5aQ==,type:str]
+    #ENC[AES256_GCM,data:LL4Q/IF/j7Aq1snHn8AgdYD7hI2JOsyguBQQT1xiO0t7,iv:V6k/H1CY52GTgxdbXA6ZmLhFrQq+ae/ksX1cgkHx9as=,tag:lNfGthPiifuv0Fv/v0jNVA==,type:comment]
+    pass: ENC[AES256_GCM,data:H6QoTezfJeSqohb+,iv:RAhIlvHiq9HBx0a7bqqw/BORPmxTwk1uL4ocVQtiwgs=,tag:jj0KHDTtIzO3el5tWwhbgQ==,type:str]
+#ENC[AES256_GCM,data:f8Kk7I2L/cJr5Y7bNTcoIEMlCuZeDeK1/H6IA6FPLBahqbBahZ0tjBlQgzlIpdwl9eVAev2spAewe9VBNgy/,iv:hPee7i31M0bXRRhdZv6rsbW0F6Nvt3MmdfeaQ1Akupk=,tag:WjkBaAt255dUKfyQeMdCOg==,type:comment]
+passstrength: ENC[AES256_GCM,data:x8I=,iv:IemTutHyFW4ns1npumqw0TaFctlOe9iwnW1JkmBXyAU=,tag:tqWDKOsLzXtsNSpiuINYBg==,type:int]
+#ENC[AES256_GCM,data:JQ0cYU/n+r20OkmHbA9nxfPccDOssqLLrbZV8smWsCmGMXeugqcMJuqS,iv:VWGFrxXlruqpsuRtBC2d5HEpxGQBN0JyQzUcBiZ75kg=,tag:NXfOxRm05xl7h8RrEyf0wA==,type:comment]
+uploadedimagesdir: ENC[AES256_GCM,data:+BH0k+JFZ0pYh6E=,iv:ks2hemuFqXWnnJFtHYBhbkYXZpOHAKitHowCKiuftfU=,tag:xZ6YjErdrCmMZWk2bfyyXg==,type:str]
+#ENC[AES256_GCM,data:vmnyUGCGM971rj/Bc9bf8P6RUUEVC3lPa8T7qJ6H8Mn93H4=,iv:sukHVmbOdoaSoubjmeeJnSep+T6SE2Xle4BuzaW6K9M=,tag:hp6wgOioKA+1XlvVZJU1xg==,type:comment]
+pluginsdir: ENC[AES256_GCM,data:HyvoA9Ksd79nCQOe,iv:UfF62ObOwZggtFPranCUIqfaCmd98fO4mJm9jwPOAaw=,tag:VhFpIr0aI6goGsOSS1695w==,type:str]
+#ENC[AES256_GCM,data:Vst/Kc3r46FR+yi1+/SZtQlE0TBQ,iv:OrysHrCTACkyzcVEvULugT+NA1enIIYkEgmsFYzDc98=,tag:pejgZke/6ioUOgaNoFXxKg==,type:comment]
+registration: ENC[AES256_GCM,data:H6OlMLs=,iv:W7r6Cd+QYjP1YM9ftpaywbzHQDyHj28jyfMA/8eQA/4=,tag:Q0wVHWlS9psCmHraEs9Xxw==,type:bool]
 sops:
     kms: []
     gcp_kms: []
@@ -77,14 +77,14 @@ sops:
         - recipient: age1hhnjylnwfh0w6sxzlvc905ma8wa5pkspv9k2kj8a0d993m8h734se3jh7u
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBkUHNtdUxnaGlkVG16bDVH
-            VDJNRVRuMGZnZDJkSTROOXh0anJKVEdCN1NVCjZEWnliQWw3ZlduSXpvYkR0YWRy
-            OFpKMGZ0UU1DNU5SYXZjUWpWNTFnaHcKLS0tIGltdTVRMkt3M2hJM2NNVGdmRHp0
-            YTB2RUhvQkRYR0VaTjlCRThqNTZXOTAK63upHtM5qVzUeV18mIodtm0nK7pWtRml
-            cliOqVQnRyiHdNe4kxjcUnfdEuozA3tKp83ZQ8q1im1rP7wM923uew==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA3U2dWd0JKclpBOXQrZFZi
+            eW1iQUdHSjBxd1JpTktHeUNKclJYak5xa2hBCkQzODZ1L3liSFhBbzdITWFGOE1Z
+            NjBhbUdxcDYwSzJsUm8rWVpjRnQzNjQKLS0tIGc5VXZRT251MHhoNndHcWRaY2kw
+            QVBSemk4c2Vrc2dzVmROQjZyMjB0bFEKL/PocQi3cbd8TEXS3Yyr3hmgyyFBzfd1
+            4jrm2g5Ez1Av+35muMWe5q//YvA7AwV+uj+TcCHyr/lF8nq6gg6yzA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-10-15T19:53:49Z"
-    mac: ENC[AES256_GCM,data:t/D5yiZ1EBKaZW3HKMxczJ5q/J4k/sAshU1gWBbK/77zh1R5ZnGW94wguY1kPwSfbB61qigg8c/WUW7KJkuuXyBqYvoRt6e9c/v9ecIfIEcQkagQXa9oig1zB8cQJzJtD/7FkOev/PAOOFaGBLP254C3yjBymnjLVwkS0WpkGB8=,iv:MP3F+6DJ5Z5z8Kqy6wpfkDof/Qvq2o/UoTW0wgR5SGY=,tag:NmxcI3kxYZ5sRHXCUVpqsg==,type:str]
+    lastmodified: "2024-06-19T18:29:51Z"
+    mac: ENC[AES256_GCM,data:WKDN0WjflDefealA6BSmdtfBL2Ja/EbAnXrIZ1+usJDGpQ/TAwbRrhP5mvtq2jCpI3MisSpPnehHGV9sNp7nercNwtIdWAJNc8sJMJrp3Tgwits0LwTnoRRZDFBjG0omNgLjlD5dCvfr+QSL78Ziwopw4bZOz5crScidZEjywFY=,iv:/JxBv4JfdR0eZdOHG5VM+zLOzfKYBtXbBVDGgl/GiYY=,tag:1NLqGpFi3/Zw9B9igVFzZQ==,type:str]
     pgp: []
-    encrypted_regex: ^(database|defaultuser)$
-    version: 3.8.0
+    unencrypted_suffix: _unencrypted
+    version: 3.8.1
