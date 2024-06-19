@@ -1,26 +1,34 @@
-# git clone https://github.com/healthchecks/healthchecks.git
-# cd healthchecks && cd docker
-# create .env and docker-compose.yaml
 version: "3"
 services:
   healthchecks:
-    build:
-        context: ..
-        dockerfile: docker/Dockerfile
-    env_file:
-        - .healthchecks.env
-    ports:
-        - "8000:8000"
-        # To enable SMTP on port 2525, set SMTPD_PORT=2525 in .env
-        # and uncomment the following line:
-        # - "2525:2525"
-    container_name: healthchecks
-    # comment out if using your own database outside of docker-compose
-    # command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; uwsgi /opt/healthchecks/docker/uwsgi.ini'
+    image: docker.io/healthchecks/healthchecks:v3.3
     restart: unless-stopped
+    container_name: healthchecks
+    environment:
+      - INTEGRATIONS_ALLOW_PRIVATE_IPS=True
+      - DB=postgres
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_PORT=5432
+      - DB_SSLMODE=disable
+      - DB_USER=${DB_USER}
+      - ADMINS=${ADMIN_EMAIL}
+      - DEFAULT_FROM_EMAIL=healthchecks@timmybtech.com
+      - EMAIL_HOST=${EMAIL_HOST}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+      - EMAIL_HOST_USER=${EMAIL_HOST_USER}
+      - EMAIL_HOST_PORT=465
+      - EMAIL_USE_SSL=False
+      - EMAIL_USE_TLS=True
+      - PROMETHEUS_ENABLED=True
+      - SITE_NAME=HomelabChecks
+      - SITE_ROOT=https://healthchecks.local.timmybtech.com
+      - SECRET_KEY=${SECRET_KEY}
+      -  #UWSGI_DISABLE_LOGGING=1 # Uncomment to disable logging
+      - DISCORD_CLIENT_ID=${DISCORD_CLIENT_ID}
+      - DISCORD_CLIENT_SECRET=${DISCORD_CLIENT_SECRET}
     labels:
-        - com.centurylinklabs.watchtower.enable=False
-    logging:
-      driver: "json-file"
-      options:
-        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+      io.containers.autoupdate: "registry" # for use with podman
+    ports:
+      - "8000:8000"

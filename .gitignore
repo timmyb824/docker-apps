@@ -19,6 +19,7 @@ Monitoring/Active/netdata/vm3xx/netdataconfig/
 Networking/Active/watchyourlan/data/
 Networking/Active/traefik/app/
 Networking/Active/speedtest-tracker/web/
+Networking/Active/speedtest-tracker/config/
 Miscellaneous/Active/archivebox/data/
 Networking/Active/traefik/app_vm304/
 Networking/Active/watchyourlan/data_vm304/

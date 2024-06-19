@@ -4,7 +4,7 @@ version: "3"
 
 services:
   gotify:
-    image: gotify/server-arm64
+    image: gotify/server:2.4.0 # oci: gotify/server-arm64
     container_name: gotify
     restart: unless-stopped
     ports:
@@ -14,18 +14,23 @@ services:
     volumes:
       - "./gotify_data:/app/data"
       - "./config.yml:/etc/gotify/config.yml"
-
-  alertmanager-to-gotify:
-    container_name: alertmanager-to-gotify
+    # oci
+#    logging:
+#      driver: "json-file"
+#      options:
+#        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+        
+#  alertmanager-to-gotify:
+#    container_name: alertmanager-to-gotify
 #    image: a1kmm/alertmanager-to-gotify
-    build: ./alertmanager-to-gotify
-    restart: unless-stopped
-    ports:
-      - 8435:8435
-    environment:
-      - GOTIFY_TOKEN=${GOTIFY_TOKEN}
-      - GOTIFY_MESSAGE_ENDPOINT=http://gotify/message
-    links:
-        - gotify
-    labels:
-        - com.centurylinklabs.watchtower.enable=False
+#    build: ./alertmanager-to-gotify
+#    restart: unless-stopped
+#    ports:
+#      - 8435:8435
+#    environment:
+#      - GOTIFY_TOKEN=${GOTIFY_TOKEN}
+#      - GOTIFY_MESSAGE_ENDPOINT=http://gotify/message
+#    links:
+#        - gotify
+#    labels:
+#        - com.centurylinklabs.watchtower.enable=False
