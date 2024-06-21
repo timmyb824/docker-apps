@@ -6,6 +6,8 @@ Monitoring/Templates/zabbix/server/env_vars/*
 AdGuard.yaml
 DNS/Active/adguardhome/hp-laptop-ubuntu/workdir/
 DNS/Active/adguardhome/hp-laptop-ubuntu/confdir/
+DNS/Active/adguardhome/pihole2/workdir/
+DNS/Active/adguardhome/pihole2/confdir/
 # dynamic.yaml
 Monitoring/healthchecks.io/healthchecks/
 Podman/systemd/Archive/

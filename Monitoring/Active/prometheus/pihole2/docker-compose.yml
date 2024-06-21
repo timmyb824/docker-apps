@@ -1,0 +1,35 @@
+---
+
+volumes:
+  prometheus_data:
+    external: true
+
+services:
+  prometheus:
+    image: docker.io/prom/prometheus
+    container_name: prometheus
+    user: "root"
+    volumes:
+      - "./prometheus.yml:/etc/prometheus/prometheus.yml"
+      - "prometheus_data:/prometheus"
+    restart: unless-stopped
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    labels:
+      io.containers.autoupdate: "registry"
+    network_mode: host
+
+  # node-exporter is being run as a systemd service due to issues get it to run in a container; port 9100 would not open
+  
+  snmp_exporter:
+    image: docker.io/prom/snmp-exporter
+    container_name: snmp_exporter
+    restart: unless-stopped
+    volumes:
+      - ./snmp_exporter/snmp.yml:/etc/snmp_exporter/snmp.yml
+    command:
+      - "--config.file=/etc/snmp_exporter/snmp.yml"
+    labels:
+      io.containers.autoupdate: "registry"
+    network_mode: host
+
