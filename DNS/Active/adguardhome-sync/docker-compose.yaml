@@ -1,8 +1,7 @@
 ---
-version: "3.0"
 services:
   adguardhome-sync:
-    image: linuxserver/adguardhome-sync
+    image: docker.io/linuxserver/adguardhome-sync
     container_name: adguardhome-sync
     environment:
       - PUID=1000
