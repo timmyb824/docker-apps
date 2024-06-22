@@ -1,9 +1,9 @@
 
-version: '3.9'
 services:
 # First run `systemctl start --user podman.socket` if not already running
+# Check the uid running podman.socket and update volume below if needed
 # Next run `mkdir config && sudo chown -R 755 config`
-# Must be running podman 4.0.0+
+# Must be running podman 4.0.0+ if not `sudo apt purge podman` then install with podman.sh
     podman-exporter-rootless:
         image: quay.io/navidys/prometheus-podman-exporter
         container_name: podman-exporter
@@ -13,7 +13,7 @@ services:
         ports:
             - '9882:9882'
         volumes:
-            - '/run/user/1001/podman/podman.sock:/run/podman/podman.sock:z'
+            - '/run/user/1000/podman/podman.sock:/run/podman/podman.sock:z'
             - './config:/.config'
         environment:
             - 'CONTAINER_HOST=unix:///run/podman/podman.sock'
