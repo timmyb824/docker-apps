@@ -1,15 +1,12 @@
-# Deployed using the same compose file as the postgres container
 ---
-version: "3.8"
-
 services:
   pgweb:
     container_name: pgweb  # optional
     restart: always  # optional
     image: sosedoff/pgweb
     ports:
-      - "8083:8081"
-    links:
-      - postgres:postgres  # my database container is called postgres, not db
+      - "8084:8081"
+#    links:
+#      - postgres:postgres  # my database container is called postgres, not db
     environment:
-      - DATABASE_URL=${DATABASE_URL}
+      - PGWEB_DATABASE_URL=${DATABASE_URL}

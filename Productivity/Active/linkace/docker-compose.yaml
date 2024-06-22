@@ -17,18 +17,13 @@ services:
       #- ./nginx-ssl.conf:/etc/nginx/conf.d/default.conf:ro
       #- /path/to/your/ssl/certificates:/certs:ro
     labels:
-      traefik.enable: false
-      traefik.docker.network: traefik_network
-      traefik.http.routers.linkace.rule: Host(`linkace.timmybtech.com`)
-      traefik.http.services.linkace.loadbalancer.server.port: 718
+      #      traefik.enable: false
+      #      traefik.docker.network: traefik_network
+      #      traefik.http.routers.linkace.rule: Host(`linkace.timmybtech.com`)
+      #      traefik.http.services.linkace.loadbalancer.server.port: 718
       io.containers.autoupdate: "registry" # for use with podman
 
 volumes:
   linkace_logs:
   db:
     driver: local
-
-networks:
-  default:
-    name: traefik_network
-    external: true
