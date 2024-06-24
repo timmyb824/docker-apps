@@ -1,51 +1,88 @@
 global:
-  scrape_interval: 60s # By default, scrape targets every 15 seconds.
-
-  # For Prometheus federation
-  external_labels:
-    origin_prometheus: podman-01
-
-scrape_configs:
-  - job_name: "prometheus"
+    # By default, scrape targets every 15 seconds.
     scrape_interval: 60s
-    static_configs:
-      - targets: ["localhost:9090"]
-
-  - job_name: "node_exporter"
-    static_configs:
-      - targets: ["node-exporter:9100"]
-    relabel_configs:
-      - source_labels: [__address__]
-        regex: ".*"
-        target_label: instance
-        replacement: "podman-01"
-
-  - job_name: "podman_exporter"
-    static_configs:
-      - targets: ["192.168.86.143:9882"]
-    metrics_path: "/metrics"
-    relabel_configs:
-      - source_labels: [__address__]
-        regex: ".*"
-        target_label: instance
-        replacement: "podman-01"
-
-  - job_name: postgres
-    static_configs:
-      - targets: ["192.168.86.143:9187"]
-    relabel_configs:
-      - source_labels: [__address__]
-        regex: ".*"
-        target_label: instance
-        replacement: "postgresql.homelab.lan"
-
-  #  - job_name: "mysqld_exporter"
-  #    static_configs:
-  #      - targets: ["192.168.86.74:9104"]
-  #    tls_config:
-  #      insecure_skip_verify: true
-  #    relabel_configs:
-  #      - source_labels: [__address__]
-  #        regex: ".*"
-  #        target_label: instance
-  #        replacement: "podman-01"
+    # For Prometheus federation
+    external_labels:
+        origin_prometheus: podman-01
+scrape_configs:
+    - job_name: prometheus
+      scrape_interval: 60s
+      static_configs:
+        - targets:
+            - localhost:9090
+    - job_name: node_exporter
+      static_configs:
+        - targets:
+            - node-exporter:9100
+      relabel_configs:
+        - source_labels:
+            - __address__
+          regex: .*
+          target_label: instance
+          replacement: podman-01
+    - job_name: podman_exporter
+      static_configs:
+        - targets:
+            - 192.168.86.143:9882
+      metrics_path: /metrics
+      relabel_configs:
+        - source_labels:
+            - __address__
+          regex: .*
+          target_label: instance
+          replacement: podman-01
+    - job_name: postgres
+      static_configs:
+        - targets:
+            - 192.168.86.143:9187
+      relabel_configs:
+        - source_labels:
+            - __address__
+          regex: .*
+          target_label: instance
+          replacement: postgresql.homelab.lan
+    - job_name: uptime
+      scheme: http
+      metrics_path: /metrics
+      static_configs:
+        - targets:
+            - 192.168.86.143:3001
+      # Only needed if authentication is enabled (default)
+      basic_auth:
+        password: ENC[AES256_GCM,data:U9oTvhy8Bim+YmLy6IzBH7Fzwyqd3Xpxp53rOQUC2THdGk50r01yAr3re0o=,iv:TDknlZNd9D9kLf60GhMozpo+CcCR0jtyXmXXw/zUcqw=,tag:irv80KQQKGs0L3rE6ec/3w==,type:str]
+      relabel_configs:
+        - source_labels:
+            - __address__
+          regex: .*
+          target_label: instance
+          replacement: podman-01
+#  - job_name: "mysqld_exporter"
+#    static_configs:
+#      - targets: ["192.168.86.74:9104"]
+#    tls_config:
+#      insecure_skip_verify: true
+#    relabel_configs:
+#      - source_labels: [__address__]
+#        regex: ".*"
+#        target_label: instance
+#        replacement: "podman-01"
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1hhnjylnwfh0w6sxzlvc905ma8wa5pkspv9k2kj8a0d993m8h734se3jh7u
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBkajAzeVMvaDN2N0RNZXQ4
+            dmJBOE92NUIrMERETXV3S1Y0SjMxTUhZYUZzClo4aitSa3N2R1NEdlY1TFMwWnVo
+            Zk1zRHVVQytTZm5SUUVIWXp0alJzUFUKLS0tIGFHNHpFaE1lZmhHNHNTMHdhdzNM
+            T2NQQ3JiaXFvcEMySE5BeHBtUmVnL2cKHljQzijBiICJ1CMTHFBaECehfH7L9fFt
+            dq84ceHfENbfI+BHxmzZnLNXVkXKd6vuOB4WcdOeFP4KKa/SvYoxEw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-06-24T16:23:31Z"
+    mac: ENC[AES256_GCM,data:+Ziiub0po+Flm8ImZkzK0U0GWmfGbSSRilg+baDcSmq4ZXO6TOMQdsPLpgNVuPEejjx9nIxkYhQJbYBE70y3rmdKJ+OyJrk1EBs2HWXmHOFCWb4cQsBJG8p/VITn8c4xN+uuxGQthW6/wsaSHU1YEeXNwxGKXX1kMLUvLVuBOkY=,iv:M5ipfA+SXg4qdkBvEIZx8cr6IV/Lc4ZbXIMZFka4kaE=,tag:ey1Vlfp6PvxNY+d8UFBG7Q==,type:str]
+    pgp: []
+    encrypted_regex: ^(basic_auth)$
+    version: 3.8.1
