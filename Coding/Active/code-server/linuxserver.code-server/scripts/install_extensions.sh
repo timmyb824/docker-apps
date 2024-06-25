@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VSCODE_BIN="/app/code-server/lib/vscode/bin/remote-cli/code-server"
+VSCODE_BIN="/usr/bin/code-server" 
 
 # define extension list
 extensions=(

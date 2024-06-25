@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-EXTENSIONS_DIR="/config/workspace/DEV/temp/extensions"
-VSCODE_BIN="/app/code-server/lib/vscode/bin/remote-cli/code-server"
+EXTENSIONS_DIR="/home/tbryant/DEV/docker-apps/Coding/Active/code-server/linuxserver.code-server/extensions"
+VSCODE_BIN="/usr/bin/code-server"
 
 # Function to install a single extension and handle output
 install_extension() {
