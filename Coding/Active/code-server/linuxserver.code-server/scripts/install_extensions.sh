@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VSCODE_BIN="/usr/bin/code-server" 
+VSCODE_BIN="$(which code-server)"
 
 # define extension list
 extensions=(
