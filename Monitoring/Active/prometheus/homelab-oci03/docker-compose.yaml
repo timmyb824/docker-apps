@@ -7,7 +7,7 @@ services:
     image: docker.io/prom/prometheus:latest
     container_name: prometheus
     security_opt:
-      - "privileged=true"
+      - label=disable
     ports:
       - "9090:9090"
     volumes:
