@@ -3,7 +3,7 @@ global:
 
   # For Prometheus federation
   external_labels:
-    origin_prometheus: vm307
+    origin_prometheus: vm304
 
 scrape_configs:
   - job_name: 'prometheus'
@@ -18,15 +18,14 @@ scrape_configs:
     - source_labels: [__address__]
       regex: '.*'
       target_label: instance
-      replacement: 'vm307'
+      replacement: 'vm304'
 
   - job_name: 'podman_exporter'
     static_configs:
-      - targets: ['192.168.86.240:9882']
+      - targets: ['192.168.86.201:9882']
     metrics_path: '/metrics'
     relabel_configs:
     - source_labels: [__address__]
       regex: '.*'
       target_label: instance
-      replacement: 'vm307'
-
+      replacement: 'vm304'
