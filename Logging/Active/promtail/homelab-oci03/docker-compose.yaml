@@ -5,7 +5,7 @@ services:
     image: docker.io/grafana/promtail:2.9.8
     container_name: promtail
     volumes:
-      - ./promtail-config.yaml:/etc/promtail/config.yml
+      - ./promtail-config.yaml:/etc/promtail/config.yml:Z
     command: -config.file=/etc/promtail/config.yml
     restart: unless-stopped
     labels:
