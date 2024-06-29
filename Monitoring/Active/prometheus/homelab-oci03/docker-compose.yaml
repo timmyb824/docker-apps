@@ -32,7 +32,9 @@ services:
   fail2ban_exporter:
     image: registry.gitlab.com/hectorjsmith/fail2ban-prometheus-exporter:latest
     container_name: fail2ban-exporter
+    security_opt:
+      - label:disable
     volumes:
-      - /var/run/fail2ban/:/var/run/fail2ban:Z
+      - /var/run/fail2ban/:/var/run/fail2ban:ro
     ports:
       - "9191:9191"
