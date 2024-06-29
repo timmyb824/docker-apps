@@ -5,5 +5,5 @@ services:
     container_name: fail2ban-exporter
     volumes:
     - /var/run/fail2ban/:/var/run/fail2ban:ro
-    ports:
-    - "9191:9191"
+    user: root
+    network_mode: host
