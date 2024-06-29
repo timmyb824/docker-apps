@@ -36,3 +36,6 @@ services:
     - /var/run/fail2ban/:/var/run/fail2ban:Z
     ports:
     - "9191:9191"
+    pid: host
+    labels:
+      io.containers.autoupdate: "registry"
