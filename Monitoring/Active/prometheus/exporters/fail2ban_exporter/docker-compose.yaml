@@ -6,4 +6,10 @@ services:
     volumes:
     - /var/run/fail2ban/:/var/run/fail2ban:ro
     user: root
+    pid: host
+    cap_add:
+      - SYS_PTRACE
+      - SYS_ADMIN
+    security_opt:
+      - apparmor:unconfined
     network_mode: host
