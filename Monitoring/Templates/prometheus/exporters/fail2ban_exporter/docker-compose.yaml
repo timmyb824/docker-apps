@@ -1,0 +1,8 @@
+---
+services:
+  exporter:
+    image: registry.gitlab.com/hectorjsmith/fail2ban-prometheus-exporter:latest
+    volumes:
+    - /var/run/fail2ban/:/var/run/fail2ban:ro
+    ports:
+    - "9191:9191"

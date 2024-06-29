@@ -21,10 +21,18 @@ services:
     image: quay.io/prometheus/node-exporter:latest
     container_name: node_exporter
     command:
-      - '--path.rootfs=/host'
+      - "--path.rootfs=/host"
     pid: host
     restart: unless-stopped
     volumes:
-      - '/:/host:ro,rslave'
+      - "/:/host:ro,rslave"
     labels:
       io.containers.autoupdate: "registry"
+
+  fail2ban_exporter:
+    image: registry.gitlab.com/hectorjsmith/fail2ban-prometheus-exporter:latest
+    container_name: fail2ban-exporter
+    volumes:
+      - /var/run/fail2ban/:/var/run/fail2ban:ro
+    ports:
+      - "9191:9191"
