@@ -17,13 +17,5 @@ services:
       - "./uploads:/zipline/uploads"
       - "./public:/zipline/public"
     labels:
-      traefik.enable: true
-      traefik.docker.network: traefik_network
-      traefik.http.routers.zipline.rule: Host(`zipline.timmybtech.com`)
-      traefik.http.services.zipline.loadbalancer.server.port: 3000
       io.containers.autoupdate: "registry" # for use with podman
 
-networks:
-  default:
-    name: traefik_network
-    external: true
