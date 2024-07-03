@@ -3,6 +3,7 @@ services:
   web:
     image: ghcr.io/hoarder-app/hoarder-web:${HOARDER_VERSION:-release}
     restart: unless-stopped
+    container_name: hoarder-web
     volumes:
       - data:/data
     ports:
@@ -15,11 +16,13 @@ services:
       DATA_DIR: /data
   redis:
     image: redis:7.2-alpine
+    container_name: hoarder-redis
     restart: unless-stopped
     volumes:
       - redis:/data
   chrome:
     image: gcr.io/zenika-hub/alpine-chrome:123
+    container_name: hoarder-chrome
     restart: unless-stopped
     command:
       - --no-sandbox
@@ -30,6 +33,7 @@ services:
       - --hide-scrollbars
   meilisearch:
     image: getmeili/meilisearch:v1.6
+    container_name: hoarder-meilisearch
     restart: unless-stopped
     env_file:
       - .env
@@ -39,6 +43,7 @@ services:
       - meilisearch:/meili_data
   workers:
     image: ghcr.io/hoarder-app/hoarder-workers:${HOARDER_VERSION:-release}
+    container_name: hoarder-workers
     restart: unless-stopped
     volumes:
       - data:/data
@@ -49,16 +54,21 @@ services:
       MEILI_ADDR: http://meilisearch:7700
       BROWSER_WEB_URL: http://chrome:9222
       DATA_DIR: /data
-      # OPENAI_API_KEY: ...
+      OPENAI_API_KEY: $OPENAI_API_KEY
     depends_on:
       web:
         condition: service_started
   cf-tunnel:
     image: cloudflare/cloudflared:latest
+    container_name: hoarder-cloudflared
     restart: unless-stopped
-    command: tunnel --no-autoupdate --metrics 127.0.0.1:60123 run
-    environment:
-      - TUNNEL_TOKEN=$CF_TUNNEL_TOKEN
+    command: tunnel --no-autoupdate --metrics 0.0.0.0:60123 run
+    volumes:
+      - ./cloudflared:/etc/cloudflared:Z
+    ports:
+      - 60123:60123
+    depends_on:
+      - web
 
 volumes:
   redis:
