@@ -18,6 +18,7 @@ services:
       - APP_KEY=${APP_KEY}
       - APP_DEBUG=false
       - APP_URL=https://speedtest.timmybtech.com/
+      - SPEEDTEST_SCHEDULE=0 */12 * * *
     volumes:
       - ./config:/config
       - ./web:/etc/ssl/web
