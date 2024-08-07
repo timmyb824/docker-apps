@@ -8,6 +8,9 @@ services:
       - "label=type:container_runtime_t" # for podman use
     volumes:
       - /run/user/1000/podman/podman.sock:/var/run/docker.sock:z # for podman use
+    environment:
+      - DOZZLE_REMOTE_AGENT=192.168.86.53:7007
+      - DOZZLE_HOSTNAME=pihole2
     ports:
       - 9999:8080
     restart: unless-stopped
