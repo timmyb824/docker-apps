@@ -12,6 +12,6 @@ services:
       start_period: 5s
       start_interval: 5s
     environment:
-       - DOZZLE_HOSTNAME=hp-laptop-ubuntu
+       - DOZZLE_HOSTNAME=${HOSTNAME}
     ports:
       - 7007:7007
