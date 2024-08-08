@@ -1,6 +1,6 @@
 services:
   dozzle-agent:
-    image: amir20/dozzle:latest
+    image: docker.io/amir20/dozzle:latest
     container_name: dozzle-agent
     command: agent
     volumes:
