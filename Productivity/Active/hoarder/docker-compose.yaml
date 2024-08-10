@@ -32,7 +32,7 @@ services:
       - --remote-debugging-port=9222
       - --hide-scrollbars
   meilisearch:
-    image: getmeili/meilisearch:v1.6
+    image: getmeili/meilisearch:v1.9
     container_name: hoarder-meilisearch
     restart: unless-stopped
     env_file:
