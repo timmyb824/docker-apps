@@ -29,7 +29,7 @@ services:
 
   # --- nginx
   nginx:
-    image: bitnami/nginx:1.26
+    image: bitnami/nginx:1.27
     restart: unless-stopped
     ports:
       - "0.0.0.0:80:8080"
