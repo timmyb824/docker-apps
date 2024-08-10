@@ -17,7 +17,7 @@ services:
       - loki
 
   promtail:
-    image: grafana/promtail:2.9.10
+    image: grafana/promtail:3.1.1
     container_name: promtail
     volumes:
       - /var/log:/var/log:ro
