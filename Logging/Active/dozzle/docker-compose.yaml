@@ -9,7 +9,7 @@ services:
     volumes:
       - /run/user/1000/podman/podman.sock:/var/run/docker.sock:z # for podman use
     environment:
-      - DOZZLE_REMOTE_AGENT=192.168.86.53:7007
+      - DOZZLE_REMOTE_AGENT=${DOZZLE_AGENTS}
       - DOZZLE_HOSTNAME=${HOSTNAME}
     ports:
       - 9999:8080
