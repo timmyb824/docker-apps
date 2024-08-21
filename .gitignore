@@ -39,3 +39,5 @@ Coding/Active/code-server/linuxserver.code-server/config/
 Notifications/Active/gotify/gotify_data/
 Monitoring/Active/uptime-kuma/data
 Productivity/Active/hoarder/cloudflared/
+Networking/Active/cloudflared-tunnel/cloudflared/cert.pem
+Networking/Active/cloudflared-tunnel/cloudflared/*.json
