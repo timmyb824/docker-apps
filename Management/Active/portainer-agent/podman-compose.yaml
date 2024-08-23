@@ -1,8 +1,8 @@
 services:
   agent:
-    image: "portainer/agent:2.16.2"
+    image: docker.io/portainer/agent:2.16.2
     volumes:
-      - "${HOME}/.local/share/containers/storage/volumes:/var/lib/docker/volumes"
+      - "${USER_HOME}/.local/share/containers/storage/volumes:/var/lib/docker/volumes"
       - "/run/user/${USER_ID-1000}/podman/podman.sock:/var/run/docker.sock:Z"
     restart: always
     security_opt:
