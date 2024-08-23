@@ -1,0 +1,58 @@
+services:
+  monitor-core:
+    image: ghcr.io/mbecker20/monitor:latest
+    restart: unless-stopped
+    logging:
+      driver: local # enable log rotation by default. see `https://docs.docker.com/config/containers/logging/local/`
+    networks:
+      - monitor-network
+    ports:
+      - 9120:9120
+    environment: # https://github.com/mbecker20/monitor/blob/main/config_example/core.config.example.toml
+      MONITOR_HOST: https://monitor.local.timmybtech.com
+      MONITOR_TITLE: Homelab Monitor
+      MONITOR_ENSURE_SERVER: http://monitor-periphery:8120 # Created the "default" server.
+      MONITOR_MONGO_ADDRESS: 192.168.86.167:27017
+      MONITOR_MONGO_USERNAME: ${MONITOR_MONGO_USERNAME}
+      MONITOR_MONGO_PASSWORD: ${MONITOR_MONGO_PASSWORD}
+      ## KEYS
+      MONITOR_PASSKEY: ${MONITOR_PASSKEY} # used to auth against periphery
+      MONITOR_WEBHOOK_SECRET: ${MONITOR_WEBHOOK_SECRET} # used to authenticate incoming webhooks
+      MONITOR_JWT_SECRET: ${MONITOR_JWT_SECRET} # Optional. If empty, will have to log in again on restart.
+      ## AUTH
+      MONITOR_LOCAL_AUTH: true # the default is false.
+      # MONITOR_GITHUB_OAUTH_ENABLED: true # also support google oauth
+      # MONITOR_GITHUB_OAUTH_ID: your_oauth_id
+      # MONITOR_GITHUB_OAUTH_SECRET: your_oauth_secret
+      ## AWS
+      # MONITOR_AWS_ACCESS_KEY_ID: your_aws_key_id
+      # MONITOR_AWS_SECRET_ACCESS_KEY: your_secret_access_key
+      ## HETZNER
+      # MONITOR_HETZNER_TOKEN: your_hetzner_token
+    labels:
+      io.containers.autoupdate: "registry"
+
+  ## To deploy it on the host directly use https://github.com/mbecker20/monitor/tree/main/scripts
+  monitor-periphery:
+    image: ghcr.io/mbecker20/periphery:latest
+    logging:
+      driver: local
+    networks:
+      - monitor-network
+    volumes:
+      # - /var/run/docker.sock:/var/run/docker.sock
+      - /run/user/${USER_ID-1000}/podman/podman.sock:/var/run/docker.sock:z
+      - monitor-repos:/etc/monitor/repos # manage repos in a docker volume, or change it to an accessible host directory.
+    # environment:
+    #   # If the disk size is overreporting, can use one of these to
+    #   # whitelist / blacklist the disks to filter them, whichever is easier.
+    #   PERIPHERY_INCLUDE_DISK_MOUNTS: /etc/monitor/repos
+    #   PERIPHERY_EXCLUDE_DISK_MOUNTS: /snap
+    labels:
+      io.containers.autoupdate: "registry"
+
+volumes:
+  monitor-repos:
+
+networks:
+  monitor-network: {}
