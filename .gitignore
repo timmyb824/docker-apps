@@ -41,3 +41,4 @@ Monitoring/Active/uptime-kuma/data
 Productivity/Active/hoarder/cloudflared/
 Networking/Active/cloudflared-tunnel/cloudflared/cert.pem
 Networking/Active/cloudflared-tunnel/cloudflared/*.json
+DNS/Active/adguardhome-sync/config/*
