@@ -1,6 +1,7 @@
 services:
   monitor-core:
     image: ghcr.io/mbecker20/monitor:latest
+    container_name: monitor
     restart: unless-stopped
     logging:
       driver: local # enable log rotation by default. see `https://docs.docker.com/config/containers/logging/local/`
@@ -35,6 +36,7 @@ services:
   ## To deploy it on the host directly use https://github.com/mbecker20/monitor/tree/main/scripts
   monitor-periphery:
     image: ghcr.io/mbecker20/periphery:latest
+    container_name: monitor-agent
     logging:
       driver: local
     networks:
