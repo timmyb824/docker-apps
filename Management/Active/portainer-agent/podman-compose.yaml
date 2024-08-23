@@ -11,4 +11,4 @@ services:
     ports:
       - "9001:9001"
     labels:
-      - io.containers.autoupdate: "registry" # for use with podman
+      io.containers.autoupdate: "registry" # for use with podman
