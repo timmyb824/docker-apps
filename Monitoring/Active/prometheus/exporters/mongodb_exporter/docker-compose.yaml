@@ -1,0 +1,7 @@
+services:
+    mongodb_exporter:
+        command: '--mongodb.uri=${MONGODB_URI}'
+        image: 'percona/mongodb_exporter:0.40'
+        ports:
+            - '9216:9216'
+        container_name: mongodb-exporter
