@@ -2,7 +2,7 @@ version: "3"
 
 services:
   promtail:
-    image: docker.io/grafana/promtail:2.9.10
+    image: docker.io/grafana/promtail:3.1.1
     container_name: promtail
     network_mode: host
     volumes:
