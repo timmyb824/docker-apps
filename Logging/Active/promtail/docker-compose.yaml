@@ -2,7 +2,7 @@ version: "3"
 
 services:
   promtail:
-    image: grafana/promtail:3.1.1
+    image: grafana/promtail:3.2.0
     container_name: promtail
     volumes:
       - /var/log:/var/log:ro
