@@ -14,22 +14,6 @@ services:
       MEILI_ADDR: http://meilisearch:7700
       BROWSER_WEB_URL: http://chrome:9222
       DATA_DIR: /data
-<<<<<<< HEAD
-  redis:
-    image: redis:7.4-alpine
-    container_name: hoarder-redis
-    restart: unless-stopped
-    volumes:
-      - redis:/data
-||||||| parent of cecde87 (fix: use new  hoarder image and remove previously needed services)
-  redis:
-    image: redis:7.2-alpine
-    container_name: hoarder-redis
-    restart: unless-stopped
-    volumes:
-      - redis:/data
-=======
->>>>>>> cecde87 (fix: use new  hoarder image and remove previously needed services)
   chrome:
     image: gcr.io/zenika-hub/alpine-chrome:124
     container_name: hoarder-chrome
