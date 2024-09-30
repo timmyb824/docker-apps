@@ -1,7 +1,7 @@
 ---
 services:
   web:
-    image: ghcr.io/hoarder-app/hoarder-web:${HOARDER_VERSION:-release}
+    image: ghcr.io/hoarder-app/hoarder:${HOARDER_VERSION:-release}
     restart: unless-stopped
     container_name: hoarder-web
     volumes:
@@ -11,15 +11,25 @@ services:
     env_file:
       - .env
     environment:
-      REDIS_HOST: redis
       MEILI_ADDR: http://meilisearch:7700
+      BROWSER_WEB_URL: http://chrome:9222
       DATA_DIR: /data
+<<<<<<< HEAD
   redis:
     image: redis:7.4-alpine
     container_name: hoarder-redis
     restart: unless-stopped
     volumes:
       - redis:/data
+||||||| parent of cecde87 (fix: use new  hoarder image and remove previously needed services)
+  redis:
+    image: redis:7.2-alpine
+    container_name: hoarder-redis
+    restart: unless-stopped
+    volumes:
+      - redis:/data
+=======
+>>>>>>> cecde87 (fix: use new  hoarder image and remove previously needed services)
   chrome:
     image: gcr.io/zenika-hub/alpine-chrome:124
     container_name: hoarder-chrome
@@ -32,7 +42,7 @@ services:
       - --remote-debugging-port=9222
       - --hide-scrollbars
   meilisearch:
-    image: getmeili/meilisearch:v1.10
+    image: docker.io/getmeili/meilisearch:v1.10
     container_name: hoarder-meilisearch
     restart: unless-stopped
     env_file:
@@ -40,39 +50,10 @@ services:
     environment:
       MEILI_NO_ANALYTICS: "true"
     volumes:
-      - meilisearch:/meili_data
-  workers:
-    image: ghcr.io/hoarder-app/hoarder-workers:${HOARDER_VERSION:-release}
-    container_name: hoarder-workers
-    restart: unless-stopped
-    volumes:
-      - data:/data
-    env_file:
-      - .env
-    environment:
-      REDIS_HOST: redis
-      MEILI_ADDR: http://meilisearch:7700
-      BROWSER_WEB_URL: http://chrome:9222
-      DATA_DIR: /data
-      OPENAI_API_KEY: $OPENAI_API_KEY
-    depends_on:
-      web:
-        condition: service_started
-#  cf-tunnel:
-#    image: cloudflare/cloudflared:latest
-#    container_name: hoarder-cloudflared
-#    restart: unless-stopped
-#    command: tunnel --no-autoupdate --metrics 0.0.0.0:60123 run
-#    volumes:
-#      - ./cloudflared:/etc/cloudflared:Z
-#    ports:
-#      - 60123:60123
-#    depends_on:
-#      - web
+      - meilisearch_20240828:/meili_data
 
 volumes:
-  redis:
-  meilisearch:
+  meilisearch_20240828:
   data:
 
 networks:
