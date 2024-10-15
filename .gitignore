@@ -42,3 +42,4 @@ Productivity/Active/hoarder/cloudflared/
 Networking/Active/cloudflared-tunnel/cloudflared/cert.pem
 Networking/Active/cloudflared-tunnel/cloudflared/*.json
 DNS/Active/adguardhome-sync/config/*
+Monitoring/Active/beszel/beszel_data/
