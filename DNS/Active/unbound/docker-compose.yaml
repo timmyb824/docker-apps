@@ -3,9 +3,10 @@ services:
     image: docker.io/klutchell/unbound:latest
     container_name: unbound
     volumes:
-      - ./unbound.conf:/etc/unbound/unbound.conf:ro
-      - ./custom.conf.d:/etc/unbound/custom.conf.d:ro
+#      - ./unbound.conf:/etc/unbound/unbound.conf:ro
+      - ./unbound.conf:/usr/local/etc/unbound/unbound.conf:ro
+#      - ./custom.conf.d:/etc/unbound/custom.conf.d:ro
     ports:
-      - "53:53/tcp"
-      - "53:53/udp"
+      - "5335:53/tcp"
+      - "5335:53/udp"
     restart: unless-stopped

@@ -1,15 +1,7 @@
 services:
     mongodb_exporter:
-<<<<<<< HEAD
-        command: '--mongodb.uri=${MONGODB_URI}'
         image: 'docker.io/percona/mongodb_exporter:0.41'
-||||||| parent of 7d4a670 (feat: Add --collect-all option to mongodb_exporter command)
-        command: '--mongodb.uri=${MONGODB_URI}'
-        image: 'docker.io/percona/mongodb_exporter:0.40'
-=======
         command: '--mongodb.uri=${MONGODB_URI} --collect-all'
-        image: 'docker.io/percona/mongodb_exporter:0.40'
->>>>>>> 7d4a670 (feat: Add --collect-all option to mongodb_exporter command)
         ports:
             - '9216:9216'
         container_name: mongodb-exporter
