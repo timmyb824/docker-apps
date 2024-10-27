@@ -3,7 +3,7 @@ services:
   pgweb:
     container_name: pgweb  # optional
     restart: always  # optional
-    image: sosedoff/pgweb
+    image: docker.io/sosedoff/pgweb
     ports:
       - "8084:8081"
 #    links:
