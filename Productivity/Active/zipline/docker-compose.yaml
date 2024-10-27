@@ -1,11 +1,9 @@
-version: "3"
 services:
   zipline:
     image: ghcr.io/diced/zipline
     container_name: zipline
     ports:
       - "3000:3000"
-    restart: unless-stopped
     environment:
       - CORE_RETURN_HTTPS=false
       - CORE_SECRET=${ZIPLINE_CORE_SECRET}
