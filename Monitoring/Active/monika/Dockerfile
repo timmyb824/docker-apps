@@ -1,6 +1,6 @@
 # Need to use node 16 because symon mode doesn't work in lower version.
 # Also need to use 16.15 because npm ci fails with 16.15.
-FROM node:16.20-alpine AS builder
+FROM node:22.11-alpine AS builder
 
 WORKDIR /monika
 
@@ -11,7 +11,7 @@ RUN npm install typescript
 RUN npm run prepack
 RUN npm pack
 
-FROM node:16.20-alpine AS runner
+FROM node:22.11-alpine AS runner
 
 # Had to change directory to use /packages/notification
 COPY --from=builder /monika/packages/notification/hyperjumptech-monika-*.tgz ./
