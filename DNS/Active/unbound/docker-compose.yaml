@@ -10,3 +10,5 @@ services:
       - "5335:53/tcp"
       - "5335:53/udp"
     restart: unless-stopped
+    labels:
+      io.containers.autoupdate: "registry"
