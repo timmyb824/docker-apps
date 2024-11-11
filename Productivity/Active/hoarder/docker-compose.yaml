@@ -36,6 +36,22 @@ services:
     volumes:
       - meilisearch_20240828:/meili_data
 
+  backup:
+    image: docker.io/offen/docker-volume-backup:latest
+    container_name: backup-hoarder
+    restart: always
+    env_file: ./backup.env
+    volumes:
+      - data:/backup/my-app-backup:ro
+      - ./backups:/archive:Z
+      # Mounting the Docker socket allows the script to stop and restart
+      # the container during backup and to access the container labels to
+      # specify custom commands. You can omit this if you don't want to
+      # stop the container or run custom commands. In case you need to
+      # proxy the socket, you can also provide a location by setting
+      # `DOCKER_HOST` in the container
+      # - /var/run/docker.sock:/var/run/docker.sock:ro
+
 volumes:
   meilisearch_20240828:
   data:
