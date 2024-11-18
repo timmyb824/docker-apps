@@ -49,7 +49,7 @@ scrape_configs:
             - 192.168.86.143:3001
       # Only needed if authentication is enabled (default)
       basic_auth:
-        password: uk1_4I2zzKKrOnjQ1ZpLF9eq-5i8kb3k3hoR5CfSHZw3
+        password: ENC[AES256_GCM,data:9D7jjMugxkSv+btrarEzgIQlj+89HlPRf4CtcuYKKJRz2W84KHdYzaXoMGU=,iv:JAQ7+85PdSHczY8VCEWpT24iXDoTE6ceTOCYqPbKlnY=,tag:mPKzLuFue26lO9qixvavNg==,type:str]
       relabel_configs:
         - source_labels:
             - __address__
@@ -67,4 +67,24 @@ scrape_configs:
             - __address__
           regex: .*
           target_label: instance
-          replacement: "hoarder|healthchecks.timmybtech.com"
+          replacement: hoarder|healthchecks.timmybtech.com
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1hhnjylnwfh0w6sxzlvc905ma8wa5pkspv9k2kj8a0d993m8h734se3jh7u
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBzVVY1OStGa0ZLa0ZqSGxq
+            Y3pubWFvd0tGeXc2N2JuOHc0cUJjUVJmbzFFCjZLUXFFWWF1a2RLSUFXUS9kczFp
+            OHlPUmJqWWhOYXlaMm5FT2hVUFJhaEUKLS0tIDVKeXVaYUpUeEVSbTAwNTZaREM1
+            UVBiWHltd3dDUktIWmdCbUFuWFJzcWcKRPz3FaK0XZOw9dzO/+KpZQYi6+jQGxGI
+            char1YnO+qCFiy5CAr7OqtP4pLkWwaRmCZK9xHXg+DIdvIsQUQ1Olg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-11-18T03:29:34Z"
+    mac: ENC[AES256_GCM,data:ZGGO9VGgGOOa9XxlK7coxy+kW8QdQSPI1s/+3o58Wo6TlAl7QsU+od/YnZuYSCytE//6n48XhUIfSNu8QPIH1Pm1SbU73Qkkb3W5L6KPyydNoVV7rhMCwCSKtF735dM4hzcH6WQOhhouJMMDY6a4nmBIgGXJSKpIY9v3E8fQYm0=,iv:Ujy/jiTbmRzIk06UGv06kUFotjJbQbDwZEfN+bBQMXU=,tag:HUCR2BEAFyvFfW0NBMNIUg==,type:str]
+    pgp: []
+    encrypted_regex: ^(password)$
+    version: 3.8.1
