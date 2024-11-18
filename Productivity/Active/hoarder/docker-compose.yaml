@@ -38,7 +38,7 @@ services:
 
   backup:
     image: docker.io/offen/docker-volume-backup:latest
-    container_name: backup-hoarder
+    container_name: hoarder-backup
     restart: always
     env_file: ./backup.env
     volumes:
