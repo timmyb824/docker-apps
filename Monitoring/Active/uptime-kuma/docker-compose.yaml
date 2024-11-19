@@ -6,13 +6,13 @@ services:
     image: docker.io/louislam/uptime-kuma:1
     container_name: uptime-kuma
     volumes:
-      - ./data:/app/data
+      - ./data:/app/data:Z
     #    ports:
     #      - 3001:3001
     restart: unless-stopped
     # for oci
-    #    security_opt:
-    #      - no-new-privileges:true
+    # security_opt:
+    #   - no-new-privileges:true
     network_mode: "host"
     labels:
       io.containers.autoupdate: "registry"

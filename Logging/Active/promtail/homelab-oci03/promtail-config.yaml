@@ -1,21 +1,37 @@
 server:
-  http_listen_port: 9080
-  grpc_listen_port: 0
-
+    http_listen_port: 9080
+    grpc_listen_port: 0
 positions:
-  filename: /tmp/positions.yaml
-
+    filename: /tmp/positions.yaml
 clients:
-  - url: http://logging.tailebee.ts.net:3100/loki/api/v1/push
-    external_labels:
-      host: homelab-oci03
-
+    - url: ENC[AES256_GCM,data:+ZzJbiAXLWAvJBekQgjgsflYQ792b/LFcsV/D/tTV2eDhGeYLFepPhEc,iv:Pg/psXVtniKqJB/0E8HdGZBHKJb/JCJwLFgs0EL6JwU=,tag:b6u2bA3LUGonl3k6XMLtgw==,type:str]
+      external_labels:
+        host: homelab-oci03
 scrape_configs:
-
-- job_name: system
-  static_configs:
-  - targets:
-      - localhost
-    labels:
-      job: syslog
-      __path__: /var/log/messages
+    - job_name: system
+      static_configs:
+        - targets:
+            - localhost
+          labels:
+            job: syslog
+            __path__: /var/log/messages
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1hhnjylnwfh0w6sxzlvc905ma8wa5pkspv9k2kj8a0d993m8h734se3jh7u
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB3RnFNbXArVjhRYk5lZlhY
+            VUtqNVk0ZzgxZlFZenJrTmVqcWxTZU1xR24wCkV6S3BSVXY5cGREWXdUTUhKaHpT
+            VytVQXo0SmpXSnBTWUJBQ1FoSG9XZlUKLS0tIHhPeW9JNkY3ajJ3QWF2TnpFRWEw
+            UXlxVTQ2aXVyeER5NC9KTFArNjFKVkUKf9Ds1qZWXCp9IueNcQqjBKCS8l/e1hbk
+            u5YvvG2vQr30IMx/BIJg9dFs8XJwtpkFod6Et7F954vD/Pq+jRQpGA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-11-19T17:06:52Z"
+    mac: ENC[AES256_GCM,data:Y7iFTulV8P5uGKEHQ6kM1qZ7buDGMPB+7seSHjgCXc7Rx0E6jnqNlfs3A6Tr2qru7HdgXiCXfAmLS9O03DsVsqOvg30fmdTXiY5bQS014FkzKvFJVYakPUvi0AJBSjKfBB9EqA9PBMdk/sJJOejzrDHeHIU62NTSBl/ydvJfeVs=,iv:UGiz0bFQhY0iUyyE/IsbskSmKWL03C3DqT3GRD0TcUw=,tag:AsB+O1/AlE1mnmPpEH46yA==,type:str]
+    pgp: []
+    encrypted_regex: ^(url)$
+    version: 3.9.1
