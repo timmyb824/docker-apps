@@ -28,6 +28,17 @@ scrape_configs:
       target_label: instance
       replacement: 'homelab-oci03'
 
+  - job_name: 'podman_exporter'
+    static_configs:
+      - targets: ['10.0.0.26:9882']
+    metrics_path: '/metrics'
+    relabel_configs:
+    - source_labels: [__address__]
+      regex: '.*'
+      target_label: instance
+      replacement: 'homelab-oci03'
+
+
 #  - job_name: 'monika_exporter'
 #    static_configs:
 #      - targets: ['10.0.0.14:3001']
