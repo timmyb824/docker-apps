@@ -13,7 +13,7 @@ services:
         ports:
             - '9882:9882'
         volumes:
-            - '/run/user/1000/podman/podman.sock:/run/podman/podman.sock:z'
+            - '/run/user/${USER_ID}/podman/podman.sock:/run/podman/podman.sock:z'
             - './config:/.config'
         environment:
             - 'CONTAINER_HOST=unix:///run/podman/podman.sock'
