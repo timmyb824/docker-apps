@@ -33,7 +33,7 @@ services:
   # added `pid: host` to the service definition to allow the container to access the host's fail2ban socket
   # TODO: Find a way to run this container as a non-root user
   fail2ban:
-    image: registry.gitlab.com/hectorjsmith/fail2ban-prometheus-exporter:latest
+    image: registry.gitlab.com/hctrdev/fail2ban-prometheus-exporter:latest
     container_name: fail2ban-exporter
     volumes:
     - /var/run/fail2ban/:/var/run/fail2ban:Z
