@@ -1,6 +1,7 @@
 services:
   app:
     image: ghcr.io/maybe-finance/maybe:latest
+    container_name: maybe
     volumes:
       - app-storage:/rails/storage
     ports:
@@ -12,7 +13,7 @@ services:
       RAILS_ASSUME_SSL: "false"
       GOOD_JOB_EXECUTION_MODE: async
       SECRET_KEY_BASE: ${SECRET_KEY_BASE:?}
-      DB_HOST: postgres
+      DB_HOST: ${POSTGRES_HOST:-postgres}
       POSTGRES_DB: ${POSTGRES_DB:-maybe}
       POSTGRES_USER: ${POSTGRES_USER:-maybe_user}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?}

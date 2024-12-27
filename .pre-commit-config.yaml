@@ -35,6 +35,8 @@ repos:
     rev: v8.19.0
     hooks:
         - id: gitleaks
+          entry: gitleaks git --pre-commit --redact --staged --verbose
+          language: system
 
 # Example of local hook
 # -   repo: local
