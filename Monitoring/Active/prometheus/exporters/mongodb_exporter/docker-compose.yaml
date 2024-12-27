@@ -5,5 +5,5 @@ services:
         ports:
             - '9216:9216'
         container_name: mongodb-exporter
-        labels:
-            io.containers.autoupdate: "registry"
+#        labels:
+#            io.containers.autoupdate: "registry"
