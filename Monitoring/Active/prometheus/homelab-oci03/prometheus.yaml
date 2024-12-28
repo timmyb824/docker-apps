@@ -11,7 +11,7 @@ scrape_configs:
     - job_name: node_exporter
       static_configs:
         - targets:
-            - node_exporter:9100
+            - node-exporter:9100
       relabel_configs:
         - source_labels:
             - __address__
@@ -44,10 +44,11 @@ scrape_configs:
       metrics_path: /metrics
       static_configs:
         - targets:
-            - 10.0.0.26:3001
+            - 100.71.136.91:3001
       # Only needed if authentication is enabled (default)
       basic_auth:
-        password: ENC[AES256_GCM,data:V1QsmOJa+e5+N89n11NKh4MMO72hQUWJgCOfypbqhPC3pk0DB1Ujo3mMzlM=,iv:2lU2rhcC0kNVNlH7VNlL8rYyF83ox62fbhgClUTY0xQ=,tag:jBROiluztCZe65/M5qkblg==,type:str]
+        username: ENC[AES256_GCM,data:HMtDoFGtrA==,iv:w+L/1ZY6dfann2N+o7RCywdjXMqQzvlaxJXrMEj5p+s=,tag:h/ofI+hkT8KDJE4c1WFcAg==,type:str]
+        password: ENC[AES256_GCM,data:rbICygI9p+z/+yRyzLgg4NhAoEvN0hNZVLJPfjYEJAeFwQ3LA3ngQ0zV/gw=,iv:TFduYw/HIg4rH4K/XkrX4gA3Lwni2Td1OdnxxxT9N+Q=,tag:1kwR73FgJvZWptehWueRVw==,type:str]
       relabel_configs:
         - source_labels:
             - __address__
@@ -72,14 +73,14 @@ sops:
         - recipient: age1hhnjylnwfh0w6sxzlvc905ma8wa5pkspv9k2kj8a0d993m8h734se3jh7u
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBkVk84SW10MVRYRVFMcTBl
-            SXJqMG9rNVpxcXkvSFBJMVZtQ2RMVGp4QjNRCm5VZHRpcC92RmhkbGxOSFFXWEpV
-            MThpYmNTdnhxdXlEQklRTmZVMFFUeUUKLS0tIDVvUkdKYmF0S1luc1RzTlRDU0Ja
-            YXEvRm9QblU4UEUxZnJKVkErU3JCc28KuCQMjaASjKwYnPYMRos9g3TFz869etUn
-            L2uHiDEPYB7llKocboDOUIIDfdL2cvH/11SA7q9OKLL7DL5+uZVKRg==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB6RVc3YnZzOFVzWG5tMlpZ
+            dWhjRWdIQjdncnMrTU1FaEUycGp3U1ZibENvCkhTQkFOeUJreGFvNWQwa0F2R2Iv
+            NWVPNWlGQTlmT3BKRkU3S3hGaE9RWDQKLS0tIHFxbWpkRWtBZE9TQ2UvOTYybHQx
+            TTVLUHhsb080K2dteUtUUUR5VjhYWFkK9TtlZWkwqFgdSnaHvSH7d5iDmDt7+AjN
+            WQNIHBY24JH0hV/G/SteVqwlV1qU24WkOM50OuN/kwwtKRluQGcu3w==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-28T09:48:02Z"
-    mac: ENC[AES256_GCM,data:Tvg6n9X6UIEN/84DJs4/CUsglx8zvtP4TuzsUFJqMsnAtoOlu58BVedTLC2MeTNwJe4sTwFSppdAy2vRTutmAL4dMho18i4zP2I0FYo3Wrx1w4wV7SJUIMq8SxHWPDxAcrZNqpXqY9lO4/9wCM6Iv2Av+EY16H/nT28p+559F6c=,iv:q6XKwXaCFR7+rFD84QQmbEYVInJxt7MPb9NtXy3tlSg=,tag:hv82GazQ/WdCxZwGqmzhkg==,type:str]
+    lastmodified: "2024-12-28T10:29:26Z"
+    mac: ENC[AES256_GCM,data:2XbxypepIwrRBeXahKuFNtwHsyIt3uQ8v85desSonDG8RWOO6182m0spbhItHu4ZM+wmFhoSh1HIfy/2UCV93GsJAekNJDRPRBpU5ZE1sZx1jXL2L1ZXG5ju5fFH2GuBo6c9c6wpgv96QrKp8eXAFomleEs0WNSN91E1pKcNOGY=,iv:tRnAgBw6k7LtqlARidk/kWAVjQ1S1jWFXGMDqLFJIQE=,tag:5JU5Rr05tvPbN5/FL+RE4w==,type:str]
     pgp: []
-    encrypted_regex: ^(password)$
+    encrypted_regex: ^(password|username)$
     version: 3.9.1
