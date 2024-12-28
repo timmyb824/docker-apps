@@ -1,44 +1,59 @@
 global:
-  scrape_interval: 60s
-
-  external_labels:
-    origin_prometheus: homelab-oci03
-
-scrape_configs:
-  - job_name: 'prometheus'
     scrape_interval: 60s
-    static_configs:
-      - targets: ['10.0.0.26:9090']
-
-  - job_name: 'node_exporter'
-    static_configs:
-      - targets: ['node_exporter:9100']
-    relabel_configs:
-    - source_labels: [__address__]
-      regex: '.*'
-      target_label: instance
-      replacement: 'homelab-oci03'
-
-  - job_name: 'fail2ban_exporter'
-    static_configs:
-      - targets: ['fail2ban-exporter:9191']
-    relabel_configs:
-    - source_labels: [__address__]
-      regex: '.*'
-      target_label: instance
-      replacement: 'homelab-oci03'
-
-  - job_name: 'podman_exporter'
-    static_configs:
-      - targets: ['10.0.0.26:9882']
-    metrics_path: '/metrics'
-    relabel_configs:
-    - source_labels: [__address__]
-      regex: '.*'
-      target_label: instance
-      replacement: 'homelab-oci03'
-
-
+    external_labels:
+        origin_prometheus: homelab-oci03
+scrape_configs:
+    - job_name: prometheus
+      scrape_interval: 60s
+      static_configs:
+        - targets:
+            - 10.0.0.26:9090
+    - job_name: node_exporter
+      static_configs:
+        - targets:
+            - node_exporter:9100
+      relabel_configs:
+        - source_labels:
+            - __address__
+          regex: .*
+          target_label: instance
+          replacement: homelab-oci03
+    - job_name: fail2ban_exporter
+      static_configs:
+        - targets:
+            - fail2ban-exporter:9191
+      relabel_configs:
+        - source_labels:
+            - __address__
+          regex: .*
+          target_label: instance
+          replacement: homelab-oci03
+    - job_name: podman_exporter
+      static_configs:
+        - targets:
+            - 10.0.0.26:9882
+      metrics_path: /metrics
+      relabel_configs:
+        - source_labels:
+            - __address__
+          regex: .*
+          target_label: instance
+          replacement: homelab-oci03
+    - job_name: uptime
+      scheme: http
+      metrics_path: /metrics
+      static_configs:
+        - targets:
+            - 10.0.0.26:3001
+      # Only needed if authentication is enabled (default)
+      basic_auth:
+        password: ENC[AES256_GCM,data:V1QsmOJa+e5+N89n11NKh4MMO72hQUWJgCOfypbqhPC3pk0DB1Ujo3mMzlM=,iv:2lU2rhcC0kNVNlH7VNlL8rYyF83ox62fbhgClUTY0xQ=,tag:jBROiluztCZe65/M5qkblg==,type:str]
+      relabel_configs:
+        - source_labels:
+            - __address__
+          regex: .*
+          target_label: instance
+          replacement: homelab-oci03
 #  - job_name: 'monika_exporter'
 #    static_configs:
 #      - targets: ['10.0.0.14:3001']
@@ -48,3 +63,23 @@ scrape_configs:
 #      regex: '.*'
 #      target_label: instance
 #      replacement: 'homelab-oci03'
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1hhnjylnwfh0w6sxzlvc905ma8wa5pkspv9k2kj8a0d993m8h734se3jh7u
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBkVk84SW10MVRYRVFMcTBl
+            SXJqMG9rNVpxcXkvSFBJMVZtQ2RMVGp4QjNRCm5VZHRpcC92RmhkbGxOSFFXWEpV
+            MThpYmNTdnhxdXlEQklRTmZVMFFUeUUKLS0tIDVvUkdKYmF0S1luc1RzTlRDU0Ja
+            YXEvRm9QblU4UEUxZnJKVkErU3JCc28KuCQMjaASjKwYnPYMRos9g3TFz869etUn
+            L2uHiDEPYB7llKocboDOUIIDfdL2cvH/11SA7q9OKLL7DL5+uZVKRg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-12-28T09:48:02Z"
+    mac: ENC[AES256_GCM,data:Tvg6n9X6UIEN/84DJs4/CUsglx8zvtP4TuzsUFJqMsnAtoOlu58BVedTLC2MeTNwJe4sTwFSppdAy2vRTutmAL4dMho18i4zP2I0FYo3Wrx1w4wV7SJUIMq8SxHWPDxAcrZNqpXqY9lO4/9wCM6Iv2Av+EY16H/nT28p+559F6c=,iv:q6XKwXaCFR7+rFD84QQmbEYVInJxt7MPb9NtXy3tlSg=,tag:hv82GazQ/WdCxZwGqmzhkg==,type:str]
+    pgp: []
+    encrypted_regex: ^(password)$
+    version: 3.9.1
