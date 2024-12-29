@@ -55,7 +55,7 @@ services:
         condition: service_healthy
 
   postgres:
-    image: postgres:16
+    image: postgres:17
     restart: unless-stopped
     volumes:
       - postgres-data:/var/lib/postgresql/data
