@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   diun:
-    image: docker.io/crazymax/diun:4.28
+    image: docker.io/crazymax/diun:4.29
     container_name: diun
     command: serve
     volumes:
