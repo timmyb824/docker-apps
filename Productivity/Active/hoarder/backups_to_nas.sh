@@ -11,11 +11,8 @@ if ! [ -d "$NAS_BACKUP_DIR" ] || ! ls "$NAS_BACKUP_DIR" &>/dev/null; then
 fi
 
 # Sync backups using rsync
-rsync -avh --delete "$LOCAL_BACKUP_DIR" "$NAS_BACKUP_DIR" >> "$LOG_FILE" 2>&1
-
-# Log success
-if [ $? -eq 0 ]; then
-    echo "$(date): Backups synced successfully to $NAS_BACKUP_DIR." | tee -a "$LOG_FILE"
+if sudo rsync -avh --delete "$LOCAL_BACKUP_DIR" "$NAS_BACKUP_DIR"; then
+    echo "$(date): Backups synced successfully to $NAS_BACKUP_DIR."
 else
     echo "$(date): Error syncing backups to $NAS_BACKUP_DIR." | tee -a "$LOG_FILE"
 fi
