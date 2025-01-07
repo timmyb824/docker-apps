@@ -34,6 +34,8 @@ services:
     environment:
       MEILI_NO_ANALYTICS: "true"
     volumes:
+      # If seeing "Error: Your database version (X.XX.X) is incompatible with your current engine version (X.XX.X)."
+      # then recreate the container with a new volume
       - meilisearch_20250107:/meili_data
 
   backup:
