@@ -34,7 +34,7 @@ services:
     environment:
       MEILI_NO_ANALYTICS: "true"
     volumes:
-      - meilisearch_20240828:/meili_data
+      - meilisearch_20250107:/meili_data
 
   backup:
     image: docker.io/offen/docker-volume-backup:latest
@@ -53,7 +53,7 @@ services:
       # - /var/run/docker.sock:/var/run/docker.sock:ro
 
 volumes:
-  meilisearch_20240828:
+  meilisearch_20250107:
   data:
 
 networks:
