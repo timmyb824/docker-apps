@@ -22,15 +22,8 @@ services:
       SEMAPHORE_LDAP_ACTIVATED: "no"
     volumes:
       - /home/tbryant/.ssh/id_master_key_nopass:/home/semaphore/.ssh/id_master_key_nopass
+      - ./config.json:/etc/semaphore/config.json
     labels:
-#      traefik.enable: true
-#      traefik.docker.network: traefik_network
-#      traefik.http.routers.semaphore.rule: Host(`semaphore.timmybtech.com`)
-#      traefik.http.services.semaphore.loadbalancer.server.port: 3000
- #     com.centurylinklabs.watchtower.enable: false # for use with docker
       io.containers.autoupdate: "registry" # for use with podman
 
-#networks:
-#  default:
-#    name: traefik_network
-#    external: true
+
