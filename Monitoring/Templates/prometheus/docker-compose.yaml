@@ -82,7 +82,7 @@ services:
   alertmanager:
     depends_on:
       - prometheus
-    image: prom/alertmanager:v0.27.0
+    image: prom/alertmanager:v0.28.0
     container_name: alertmanager
     restart: unless-stopped
     ports:
