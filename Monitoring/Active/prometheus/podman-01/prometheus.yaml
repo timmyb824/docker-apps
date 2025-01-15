@@ -1,73 +1,73 @@
 global:
-    #ENC[AES256_GCM,data:rnPBafXWEf1ZnlBvtZ5I33nzyKuSUPZM29rdAwFNHSb4lGPUeSzon+2IHCjw,iv:UShA7zONDKvaADe1PQWr46Lq8WRZnAb3y1zPpGocLSQ=,tag:ns6123pQ/IHMw+w90hpSbA==,type:comment]
-    scrape_interval: ENC[AES256_GCM,data:bs3T,iv:qhyPHuAr6B+EW6fZsnIdwOUDU5DhuQAI81hPxslGLVg=,tag:DgqtDM29cbZm7cdx0h7Bfw==,type:str]
-    #ENC[AES256_GCM,data:SRz8jfhJxO1QNvO1Eb8F5FkHM+GebKXfHL8=,iv:j+WZWbVevEgjwgJiD9LDinxBP8JgqC4nPnNtXQg4Xgw=,tag:Pz9uVtaL4RXuZM6Bi1nxKA==,type:comment]
+    # By default, scrape targets every 15 seconds.
+    scrape_interval: 60s
+    # For Prometheus federation
     external_labels:
-        origin_prometheus: ENC[AES256_GCM,data:R3NzYkBsrwho,iv:bXqaiU3y6GMcAa+LdnSIDgVzcxxcxEd0WaCCDyD4U9I=,tag:FBr4EGc5cHQ+0GZ1wSh3Yg==,type:str]
+        origin_prometheus: podman-01
 scrape_configs:
-    - job_name: ENC[AES256_GCM,data:Z7Tsdl/ZIGFl2g==,iv:k8QHBjGUfrKjdYFAtt/Ctfj++hGOrBJMSwdOXuAl458=,tag:fNQpfQ0M5lc7aXKLn0db2w==,type:str]
-      scrape_interval: ENC[AES256_GCM,data:Z3SR,iv:V+hH6OOXiXn2N3wtyYGgixIBaho/DbkpRC0wF/lJ1Xs=,tag:SHoAkgYTJJvRa3jCcCGmtA==,type:str]
+    - job_name: prometheus
+      scrape_interval: 60s
       static_configs:
         - targets:
-            - ENC[AES256_GCM,data:sDUOeeU3z/QJNdQlA8I=,iv:Wekd1YZ/EwRo+cXU+9s4YBYvwS630fSQJhaaIUzJxeA=,tag:9sIgJEb1Shz//+kt6op2oQ==,type:str]
-    - job_name: ENC[AES256_GCM,data:sBouh68pA69vO9OdRg==,iv:Z6+t4hWgDa9FZmmk0iRT6mNL9wX+hHAbakzx+VXBVFY=,tag:w9D1PY+g8Koacm/M1Edpcg==,type:str]
+            - localhost:9090
+    - job_name: node_exporter
       static_configs:
         - targets:
-            - ENC[AES256_GCM,data:8F2bUVd4HLSDEu3cV1VqFuhU,iv:7PvZXODI3qCsXoJe6Bl+uQy77BQevsa3ppouQkJCP+M=,tag:PZd4in/OG5hhS7U3cdkuLw==,type:str]
+            - node-exporter:9100
       relabel_configs:
         - source_labels:
-            - ENC[AES256_GCM,data:rzpb8YmhCAlHcKY=,iv:pKah6RX9pnZUwLpqMZqYmivAHBWay20IkbOJmSAbO64=,tag:MPRi5vsAlZUG7lnZA4YxmQ==,type:str]
-          regex: ENC[AES256_GCM,data:2xc=,iv:/sy0UKsEGAmbjGs8wHQTmsxKawhXjSN98yXMIwf/zl4=,tag:sHr0fBz8re2imhrQnuLnxQ==,type:str]
-          target_label: ENC[AES256_GCM,data:UXuzcAQQWKs=,iv:HRsVPcD1pIw05yiPgr/PfzGTDTYhMoWVizOd5r6yat8=,tag:5ZnMt07ySswE8JRL06LMmQ==,type:str]
-          replacement: ENC[AES256_GCM,data:TV5XZaQnN/z3,iv:H5+vKANhURy94YYUSowJVJkL5yMqq71hYu4OqcZOVdk=,tag:ivxf7PND3e0yFbToJz7f1g==,type:str]
-    - job_name: ENC[AES256_GCM,data:dCJTp7/bEnyCi6JN4GuX,iv:0rTW1bUewcKL9uf5w8u84Za0n1Sqfk14zpj/Bdv9xE8=,tag:0Hjy1KxmayZK6aIaX8lQ0A==,type:str]
+            - __address__
+          regex: .*
+          target_label: instance
+          replacement: podman-01
+    - job_name: podman_exporter
       static_configs:
         - targets:
-            - ENC[AES256_GCM,data:/eWWCTHvWFsFsYut915bODbhdA==,iv:kLw6kcAnSOu8Jc5BnACz1etD5ydJMAl5gP7y4gTtWEg=,tag:T/lujGmCBOscSvMN6SgQEA==,type:str]
-      metrics_path: ENC[AES256_GCM,data:J4Nf+lyOGWo=,iv:1mYoUdJ18J1lGOckMoh/5dfdrxD0mkxVD7B7z5IHFFI=,tag:L8va4W9UlhS+rouX7a8RHQ==,type:str]
+            - 192.168.86.143:9882
+      metrics_path: /metrics
       relabel_configs:
         - source_labels:
-            - ENC[AES256_GCM,data:6/S91J4I/uS2ij0=,iv:KHMvgmtQBVVWtmqgPf6LbjLkyI9m0M4AIAGuWRWA420=,tag:ow7MZpWqRtHaaHIj0CAvUA==,type:str]
-          regex: ENC[AES256_GCM,data:ov4=,iv:EgyallmtzTV3pLnKRDt6mDMN/Kie4NC5gArHiGsqnsY=,tag:qLtax7P4AVq2o3w5S604/A==,type:str]
-          target_label: ENC[AES256_GCM,data:165B50s2LTc=,iv:BOA3+/fqYwkdpOTUdSmoZA4yIlE/0l4EFKUEOAYmdAs=,tag:c7y3Vuz61wombg+YnkA+7Q==,type:str]
-          replacement: ENC[AES256_GCM,data:7zQCW9CUuiIE,iv:dzvIQ4uVgmcfKXufHfHHjwKJcuGqpAWe0G6r7+inc3E=,tag:F3fnxBkry15dff2lHfC9aQ==,type:str]
-    - job_name: ENC[AES256_GCM,data:ragGT0YLjcY=,iv:zmRiKcwrlw3MauXSpQUNmKEsJEdp/MVh7gpBW8VNZac=,tag:IStIFIf4J1aKrF2GOmhfFw==,type:str]
+            - __address__
+          regex: .*
+          target_label: instance
+          replacement: podman-01
+    - job_name: postgres
       static_configs:
         - targets:
-            - ENC[AES256_GCM,data:GgSGuOWJ1/8mOiDhFwF0t7pL4w==,iv:sXRC7CBo8EXq3AN7iQe7T8pL5jLZgWNx4FmmbY3DuXI=,tag:MoFBsQiy2E/4aU5qRuN9bg==,type:str]
+            - 192.168.86.143:9187
       relabel_configs:
         - source_labels:
-            - ENC[AES256_GCM,data:jrxjQvhJILjedlY=,iv:zUQyCRFWUh2hX3IU+TGOmbYM6q6olFKiv6KhrB9Yndc=,tag:lR+dKsl+zbBamLv6WqSvsA==,type:str]
-          regex: ENC[AES256_GCM,data:X+Q=,iv:LwlqjFKoIKp35TMSSZ1j4PGxuEIa/UrLU4So3Eh+ScU=,tag:kuW9D8YaQvFoocnKJ56tDw==,type:str]
-          target_label: ENC[AES256_GCM,data:GHg+N1NmUvg=,iv:5XRa25P9M5hMoLaz9rJyff0YG6rJZoeg7wZcN7/U4XQ=,tag:517O48nF42eTE7NEQtH75Q==,type:str]
-          replacement: ENC[AES256_GCM,data:3NVKn80E4FwBk2aF77qE8lAOonqnNQ==,iv:oVvmf2MZ9Bwo/sXvbwto49uYY+fFW6Kp2pMS1mL2SGM=,tag:8+5hZzWPFVxsDlal53W8GQ==,type:str]
-    - job_name: ENC[AES256_GCM,data:Y1CFI+GS,iv:iBxt921cblnUcqDlXc661jCRyYd5U7vDpl2i8ZDGxP0=,tag:Y8gbgZh8NPMoOE7MWM/19g==,type:str]
-      scheme: ENC[AES256_GCM,data:jzVwgw==,iv:IMP48HFieA4OO9ZUuii29kZWOYDciiebXhXFjfzLGxs=,tag:fs5dj2KgjOJ85uWOM4R0QA==,type:str]
-      metrics_path: ENC[AES256_GCM,data:QCoegvJKg/k=,iv:BanVcVW964IYgmQ8eFiVYlmORhcOcSxig3Cutld0cW0=,tag:/aoppNPJ1IgtUsWK0B3Mdw==,type:str]
+            - __address__
+          regex: .*
+          target_label: instance
+          replacement: postgresql.homelab.lan
+    - job_name: uptime
+      scheme: http
+      metrics_path: /metrics
       static_configs:
         - targets:
-            - ENC[AES256_GCM,data:QFQBFN/dYPljfxOVm3vColk0Bw==,iv:efT+wQ9ZDC5MwXRnSQ3H5iWqCZL/qopQL8z9URse9eY=,tag:4Qq/XkYkDuJUnq+4iMAP1g==,type:str]
-      #ENC[AES256_GCM,data:IO8SfmkL8UD18HL9/tPIO0uUXKFAlpP5QsknJ/UxTcfWsOf2c/jJUffnAZBsDzLE073w,iv:PupMwsaaKF/I6g/TPfDj1JA3LI7n1FXJWG/59V6PCug=,tag:Zzav/A7fEIEG1Bw7Ifh9Sw==,type:comment]
+            - 192.168.86.143:3001
+      # Only needed if authentication is enabled (default)
       basic_auth:
-        password: ENC[AES256_GCM,data:bFLTnWOml1IRSrpvHRob1XNToi7i/Rrmmts1cRPvjyQRgLBa/mT64xUnVTY=,iv:3+pxsluekmAXG9BH0KESZ29cd1RWpharT5Nwbl1nghU=,tag:GbJkbL1bw/zTIocoi9S6Pw==,type:str]
+        password: ENC[AES256_GCM,data:zyFoEwIUdQn+TfPk84ldmfKU7Iw5LrHrGENXGHe03US5fSYpukb3fznsmXU=,iv:mpL+gU/N6gktOj3lubsp7vs+kxgcYJS/U6/0idyISy8=,tag:qaGDXhA/RgVeRoxQ2PoShg==,type:str]
       relabel_configs:
         - source_labels:
-            - ENC[AES256_GCM,data:W0YIch7sUdZnxRs=,iv:cA2hI8M53btG+pT+oE7KncMWpCDMA22mH2jzvuUAivQ=,tag:JUCVt9rh+ZWljuH1U6ZACQ==,type:str]
-          regex: ENC[AES256_GCM,data:tV4=,iv:YcKuqMEAFNWH37+czQWz4HfQ3oKBtOPVVTH6fDvaHtA=,tag:vkj80El3sPOMFgPIOO3Z9Q==,type:str]
-          target_label: ENC[AES256_GCM,data:ZLMNfj3slwo=,iv:+6QFVZhgXIxAyuwFy4eYxfv19CWIm+ptkZxgEogaz74=,tag:tjrjoUyj4rzGamHWDfTBpQ==,type:str]
-          replacement: ENC[AES256_GCM,data:QagXf6NCJAi4,iv:upYWhd8VUa8R7ibanev55M1j9nfxMqvYZh/w4wOs+xs=,tag:89B4d0NbhzdHj/roO/OxjA==,type:str]
-    - job_name: ENC[AES256_GCM,data:R3vwODV3jUN+QKE=,iv:kiP01uDiurafOYN574PsSw+cVSyK4iJMa0slK6WRw7M=,tag:p9tRwpaRhvR2DcFifM0Qdg==,type:str]
-      scrape_interval: ENC[AES256_GCM,data:TAaT,iv:Lp4aA/7AXAXD0NJXn8HbLjWU0AuJjHRi6tXHEypt+HQ=,tag:crdE1FQtZNG8r5mUjPw5zA==,type:str]
-      metrics_path: ENC[AES256_GCM,data:w/PIJgPcc0c=,iv:zZO8t8OsztvkLlX1miEoN0c2pTFRhx/Spu/Qggsebc8=,tag:sX4djCZuSh2ymFCaC06fiw==,type:str]
+            - __address__
+          regex: .*
+          target_label: instance
+          replacement: podman-01
+    - job_name: cloudflared
+      scrape_interval: 60s
+      metrics_path: /metrics
       static_configs:
         - targets:
-            - ENC[AES256_GCM,data:BtmgBbCKTdlokk0GUNPTzNb+N8Q=,iv:bnNDLJw0H5FaK674kMEKvJyKSNxLmThonEiiqaPBNxU=,tag:M2GWbpA+c4a9ezK1/vyuzA==,type:str]
+            - 192.168.86.143:60123
       relabel_configs:
         - source_labels:
-            - ENC[AES256_GCM,data:mFbSL0Zx1oMg878=,iv:XzQ3YcnDP6et5ewLkvAf6yrdv0biS4lQk7d1ntPXg9Y=,tag:aZSjbdsGRVtGuyHyk7T2Zw==,type:str]
-          regex: ENC[AES256_GCM,data:d8w=,iv:nzPjfCImuCm38Cr+t4Fu3v2cVm/d5fwD3CH9iGBlFmA=,tag:ih3OQ+cftotWZynXIdn/Bw==,type:str]
-          target_label: ENC[AES256_GCM,data:ha2jJpFczYE=,iv:uBtiku2Xyug38yDDADFerqyE3ZinDSwCmkB5PRbhtKU=,tag:wz+4oEEG4zShpbxnzRgqUQ==,type:str]
-          replacement: ENC[AES256_GCM,data:wIChDRabbu6AN+OrNBmdItHdYe7my1m5ArdG1lCO5Q9pGcQ=,iv:zYFg2utfuEw3GNU4AJMcEZ/9RfINc/rz4KBC7JLMwPo=,tag:nrwKcoUnlwQCTn7dsoxs+w==,type:str]
+            - __address__
+          regex: .*
+          target_label: instance
+          replacement: healthchecks.timmybtech.com
 sops:
     kms: []
     gcp_kms: []
@@ -77,14 +77,14 @@ sops:
         - recipient: age1hhnjylnwfh0w6sxzlvc905ma8wa5pkspv9k2kj8a0d993m8h734se3jh7u
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBGY0hSYW5uWWJiMkZHZDBm
-            a2ZWTXJ4OU1LTjdTa0pFd1VENTlJMFZlS2ljCkNiakc3UVljUmJHRllsMFVuVHF3
-            TXkydGJ1emxzd3YwbXpPM0piKzZVYUkKLS0tIG9IaVRsa2ltM2FoY09aSnVKS0J0
-            bXFxTW5DSTNrRERocER4aWN1NjV1dkEK8ugUBipfyxTL9g9qHrdRvxNWfTQ/k+SN
-            2dt15L9buWSpnJxfiMrkVs6gw/08eNhQbZmbq+2mIwasaK56ZLc4qQ==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB0SFpIZVVONFh2VUttNXNX
+            c3RSa09LaVNLVW5HSDVMYk9HRGVqSkRDL1Y4CkxtMW5neGoxZ2p6elFLdlF5MUVS
+            WnF5UkxOTjFFNi9XbFNTVFZPK0tsOFEKLS0tIFU0RWJkSDFwdnNNbnV4R0ZMQ2dP
+            VEN2L0RHSzBvNmFXcmdUeUdGYVVzMncKBvFc476gjxhCNF/p28BCeXieoXA03Y07
+            TraqeA4AaDo/13VxV8Eg4nMSTyG45p7ftZEj4IBopdwX0MRlKlTr6Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-01-03T16:11:12Z"
-    mac: ENC[AES256_GCM,data:CyCGKgjHcMUuAf73SYL0G/57gJ0Ef6pEYZKBEODL49PrzqwasQp/yefb4oQz9mO6k5EAccIujIS0h5qtpg4OAr2EAFEQZ2ojiMIk54MgP04peF1D8dWKzBDbFRD0nvLd1UgN+Mh717zDl31FEMN3RP4dRJnYyQkQu9wzyViRAxQ=,iv:dXm+IQCrMXMGicox4XL6/Zu3PVUT9PFcSdCQhoVJGI4=,tag:tFEVjRd6TjFv+9WVgFkeQQ==,type:str]
+    lastmodified: "2025-01-15T14:59:36Z"
+    mac: ENC[AES256_GCM,data:ic8bvO8gNy+5FDXU2XstQ++3TA4hpLscD2I2FuPEfHuy1WZSIoM+zspzhnNwL4kmtNyFWkUP48oy7EVss1fjTLWQg11BDD890P0r2J1V9Y/CrCezvMmFApnuASz2BRe0xaH1GClkjiKQWoEgWOuo/An6pBuS0taITTx7+PhJAw0=,iv:WpX+b9o2fVOutXMukx8B/Bz2PsLGG9nnwI7cvye6tlA=,tag:kQALZdb06z/xotSxKi4LFw==,type:str]
     pgp: []
-    unencrypted_suffix: _unencrypted
+    encrypted_regex: ^(password|username)$
     version: 3.8.1
