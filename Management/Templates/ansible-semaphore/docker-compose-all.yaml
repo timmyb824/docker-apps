@@ -18,7 +18,7 @@ services:
     restart: unless-stopped
     ports:
       - 3306:3306
-    image: mysql:9.1
+    image: mysql:9.2
     hostname: mysql
     volumes:
       - semaphore-mysql:/var/lib/mysql
