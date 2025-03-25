@@ -19,7 +19,7 @@ services:
   wordpress:
     depends_on:
       - db
-    image: wordpress:6.7.1-fpm-alpine
+    image: wordpress:6.7.2-fpm-alpine
     container_name: wordpress
     restart: "no"
     env_file: .env
