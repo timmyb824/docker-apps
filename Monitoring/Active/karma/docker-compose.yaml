@@ -4,7 +4,7 @@ services:
     container_name: karma
     environment:
       - "ALERTMANAGER_URI=https://alertmanager.local.timmybtech.com"
-    image: "ghcr.io/prymitive/karma:v0.120"
+    image: "ghcr.io/prymitive/karma:v0.121"
     ports:
       - 8082:8080
     labels:
