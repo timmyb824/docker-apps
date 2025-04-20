@@ -2,7 +2,7 @@ version: "3"
 
 services:
   portainer:
-    image: portainer/agent:2.26.1
+    image: portainer/agent:2.29.0
     container_name: portainer-agent
     restart: always
     volumes:
