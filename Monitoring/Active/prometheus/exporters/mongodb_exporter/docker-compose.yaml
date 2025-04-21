@@ -1,6 +1,6 @@
 services:
     mongodb_exporter:
-        image: 'docker.io/percona/mongodb_exporter:0.43'
+        image: 'docker.io/percona/mongodb_exporter:0.44'
         command: '--mongodb.uri=${MONGODB_URI} --collect-all'
         ports:
             - '9216:9216'
