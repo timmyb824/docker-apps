@@ -1,6 +1,6 @@
 services:
     mongodb_exporter:
         command: '--mongodb.uri=mongodb://127.0.0.1:17001'
-        image: 'percona/mongodb_exporter:0.43'
+        image: 'percona/mongodb_exporter:0.44'
         ports:
             - '9216:9216'
