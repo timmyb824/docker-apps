@@ -1,0 +1,9 @@
+services:
+  pulse-server:
+    image: docker.io/rcourtman/pulse:latest
+    container_name: pulse
+    restart: unless-stopped
+    ports:
+      - "7655:7655"
+    env_file:
+      - .env
