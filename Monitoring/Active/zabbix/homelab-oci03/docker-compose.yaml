@@ -40,7 +40,7 @@ services:
       - ./custom-zabbix.conf:/etc/php84/php-fpm.d/zabbix.conf:z
 
   zabbix-agent:
-    image: docker.io/zabbix/zabbix-agent:latest
+    image: docker.io/zabbix/zabbix-agent2:latest
     container_name: zabbix-agent
     restart: unless-stopped
     depends_on:
