@@ -36,7 +36,8 @@ services:
       - SYS_ADMIN
     volumes:
       - zabbix-web-data:/usr/share/zabbix
-      - ./custom-nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./custom-nginx.conf:/etc/nginx/nginx.conf:z
+      - ./custom-zabbix.conf:/etc/php84/php-fpm.d/zabbix.conf:z
 
   zabbix-agent:
     image: docker.io/zabbix/zabbix-agent:latest
