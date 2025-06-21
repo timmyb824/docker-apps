@@ -1,112 +1,62 @@
-###############################################################################
-# nut server configuration
-###############################################################################
-# these settings define the connection parameters to contact the nut (ups) server
 nut_server:
-    # ip address of the nut server
     host: 192.168.86.44
-    # port used for connection
     port: 3493
-    # socket connection timeout in seconds
     timeout: 3
-###############################################################################
-# notifications configuration
-###############################################################################
-# configure notification methods below.
 notifications:
-    # set to false to disable all notifications
     enabled: true
-    # time to wait (s) between sending new alerts
     cooldown: 60
-    # apprise is used for all notifications
-    # for more information on how to construct apprise urls for over 100 services,
-    # see: https://github.com/caronc/apprise
     urls:
-        - url: ENC[AES256_GCM,data:5iC0O+H1xFvuFi9NJmpt4/zYNhCaWLupxyeMiiQ78igMtiMib5xfYFAEodnrbNHtSrsov1hPka5Sf/7NS18pG7r9Q4xezZfMfWuymTBbDVKvF868dOhlfwIDZgPRFqItOzGTQMLuxTown4LXvIzEaF8C4PsGOPPStd94K2a/LsQE2jO11A==,iv:28sVjQKWfkPJtRDUZ4O09mNpxB5jQeYYCTLtxVFUhkw=,tag:9f9vU0w8zUdE1ABrbSjdsA==,type:str]
-          enabled: ENC[AES256_GCM,data:Inwz2A==,iv:yYJmmxyk72puoW22xXfc23qNoyMXvfHm0S4W3CT1KyI=,tag:7iCDiOlbWYRvfMYlPJfEQQ==,type:bool]
-        - url: ENC[AES256_GCM,data:YV6c0DRoLQBMb1C9dqv9/WxU0XCDWjg9RFMXkcbYOhBtf1m4vTlKDUEph4qofzsmsqG3MGC3iCC5NLkV4qq1CmchMD4N7WqOCX0hJ1Oxngt+VhRzCDYHdYdPI8qJ2OT7Mhw=,iv:+YGHZudVTsyw8OSn0oGEsq5qFjd9LK73dZj5kA71Mag=,tag:HMG12UUhpY1mIgtRTPJx+g==,type:str]
-          enabled: ENC[AES256_GCM,data:Bhg8HQ==,iv:OlplfdNW64Y4Djt4OJlgebSqhgRIMbUJt4clWnpIYoo=,tag:lzWlgrBWqKnc+R+ENBaxiQ==,type:bool]
-###############################################################################
-# check interval and alert mode
-###############################################################################
-# how often to check the ups data (in seconds)
+        - url: ENC[AES256_GCM,data:ETM2Oh/W2khtvubI3JL0+6yHLw1wINZQpBcnybPr1pUwBz2K2SLVJ1Lzb3OZKNHj8bZBTxJXZKKKqc42JODOp8LXxbIMymvbXhCdXG/mKE7eFIHxyA==,iv:p0TtPySNmMpBzklnLrh2Ll53VWHuZZm3wlEr4DKWP38=,tag:57pMY+iWXPKFY3n9N+IkCw==,type:str]
+          enabled: ENC[AES256_GCM,data:bC0cSA==,iv:+YsCeJDKbQJ9drpFOzSaNKoUldGsmNaSwbOcIsgSrks=,tag:VJaWCmKiwQU1+FdOUndyRw==,type:bool]
+        - url: ENC[AES256_GCM,data:Hz1mZlpHU4CHcTwH4t9C/jQQlC8V/2lYeT8uzBFEUWI7b4igTlftHUrAW32WT+7uKAAVtFKZ/zMz2sUfbqNAADF6E0Ca71YXejkKYkk+Wd1Orvbes5/W1xWVmPI1WoaFYq0=,iv:LDz7kA5pMKVQIOMFw0svykL3nMCWw14lNSFFq6STZYc=,tag:hYqwZ2ovbfgqfYLruwu8BA==,type:str]
+          enabled: ENC[AES256_GCM,data:5dTnpA==,iv:LsxkBsURqdu6AbFrFNrdIMbnKIbOwdkIAjcBk8DEbLI=,tag:H65IC3vpvj6Gk6h3HUJ2GA==,type:bool]
 check_interval: 15
-# choose alert mode: "basic" or "formula"
 alert_mode: basic
-###############################################################################
-# basic alert confuguration - simple threshold-based alerts
-###############################################################################
-# note: even if you opt to use formula mode, it is recommended to set the accetable values in basic
-# mode as these values are used to create better thresholds for dashboard gauages (purely cosmetic)
-# if ANY enabled alert condition fails, an alert will be triggered (using OR logic)
 basic_alerts:
-    # battery charge alert
     battery_charge:
         enabled: true
-        # minimum acceptable battery charge (%)
         min: 90
         message: UPS battery charge below minimum threshold
-    # runtime alert - simple threshold check
     runtime:
         enabled: true
-        # minimum acceptable runtime in minutes
         min: 15
         message: UPS runtime below minimum threshold
-    # load alert - separate from runtime
     load:
         enabled: true
-        # maximum acceptable load percentage
         max: 50
         message: UPS load exceeds maximum threshold
-    # voltage alert
     input_voltage:
         enabled: false
-        # minimum acceptable input voltage (volts)
         min: 110
-        # maximum acceptable input voltage (volts)
         max: 130
         message: UPS input voltage outside acceptable range
-    # status alert
     ups_status:
         enabled: true
         acceptable:
-            # acceptable ups operational statuses
             - ol
             - online
-        # enable if you only want to send an alert when the ups status has changed
         alert_when_status_changed: false
         message: UPS status not in acceptable list
-###############################################################################
-# advanced alert configuration - formula-based alerts
-###############################################################################
-# formula mode: create a custom formula using ups data
-# available variables for your formula:
-#   ups_load - current ups load percentage
-#   battery_charge - current battery charge percentage
-#   actual_runtime_minutes - current battery runtime in minutes
-#   battery_voltage - current battery voltage
-#   input_voltage - current input voltage
-#   ups_status - current ups status string (lowercase)
-# your formula should return True to trigger an alert
-# examples:
-# - simple condition check: "battery_charge < 90 or ups_status != 'ol'"
-# - load-based runtime: "actual_runtime_minutes < (60 if ups_load <= 15 else (30 if ups_load >= 50 else 60 - (ups_load * 0.6)))"
-# - complex calculation: "(battery_charge / 100.0) * (battery_voltage / input_voltage) * (actual_runtime_minutes / 60) < 0.5"
 formula_alert:
     expression: (battery_charge < 90 or actual_runtime_minutes < 20) and ups_load > 20
     message: 'UPS load: {ups_load}%, charge: {battery_charge}%, runtime: {actual_runtime_minutes:.1f} mins'
 sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
     age:
         - recipient: age1hhnjylnwfh0w6sxzlvc905ma8wa5pkspv9k2kj8a0d993m8h734se3jh7u
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA3SjNkQTVyNDdmN09TVDRj
-            WEkvTXNYelJ5TVNsK1h0MUd0Um05WkNuUmhJCmRGVVo5bTFlbGNqdmYrd3RjYkov
-            RkFieVVWZ2hwdnVCeUhoR1M4bDZLZVUKLS0tIHp6R0ZOQXVTTzdPd2cwUExjVDRI
-            RkRsUFVCMUcybkJDcGxWMHBxZFVBdjAK3BM5zDphcuCgu6Za/WOsxIHeX0sQMQvd
-            XytTii3ulzvu5UvTzljntxMWq5sLb5Vr8q6zP1wv1C+5DVJl9lhk+Q==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBvMVRHcVhYZlNGVCtmQjlh
+            alNXeGJUMVUyaEU1a1Bjb3dadDhFRFkvQm1nCmNmYkRUdkFtc3V1VTdMdisvY200
+            aUJIdTRzRGlCT01RLy9ha3BaeHUyb2MKLS0tIHVObFZZb051MnVYb214eTRaK3BD
+            YnJaT3VDVi95Y0NWc1FETHVTSGtQYmsKenKHgpNR1daZb4saWOFLBu4y5qyqsj5W
+            dJmkQ7ROM3kHtkRqRajsBgmdmJ/QjzbSvKJAZiMvLaEWVlS1m8avHQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-06-21T00:10:39Z"
-    mac: ENC[AES256_GCM,data:LFTMvW1ccbA9NwAnDGf4TcOgbwtOXcI5Fb4fuWy5F7PRhNxLu6PogN4+0T/HDTpMWrx+jL8VUHSveNAZ9zIY85ebqFm3N3AUya34u/FEnxOq5DK+jJdVn/7dyTua4MgFq3RFLZMfCqX3eODz62nxMfNHo/TlTIoWUevRmpW7brQ=,iv:ybXJaxzcJmRzx+P7L/hAv1achSxkR7VPEMku+ujAzLM=,tag:hHOkL9KgyYigrphiKK4prg==,type:str]
+    lastmodified: "2025-06-21T00:51:17Z"
+    mac: ENC[AES256_GCM,data:oEDUS31Hg6r2cUOfKd5knEK61ponjWSAUIAsNMQMOKseWUzjusb8KNuVDG1zRKaD920vNI8jXWlXs5C29WkOK3xZe4ighwsKPYCB+vKbxXoYhw80XNc/tH5c/lQ7KEDip9q0k2jdsd6HHAw3zjHZOQsf2jKiXkvvmcVAOART4rE=,iv:OTPIbG1Mv/lMyCrw1CJmsZVhWbsldmttoYvjYs06mSI=,tag:6G46yDeLKeDxSA6YgLN9wg==,type:str]
+    pgp: []
     encrypted_regex: ^(urls)$
-    version: 3.10.2
+    version: 3.8.1
