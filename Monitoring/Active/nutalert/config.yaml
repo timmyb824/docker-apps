@@ -6,10 +6,10 @@ notifications:
     enabled: true
     cooldown: 60
     urls:
-        - url: ENC[AES256_GCM,data:ETM2Oh/W2khtvubI3JL0+6yHLw1wINZQpBcnybPr1pUwBz2K2SLVJ1Lzb3OZKNHj8bZBTxJXZKKKqc42JODOp8LXxbIMymvbXhCdXG/mKE7eFIHxyA==,iv:p0TtPySNmMpBzklnLrh2Ll53VWHuZZm3wlEr4DKWP38=,tag:57pMY+iWXPKFY3n9N+IkCw==,type:str]
-          enabled: ENC[AES256_GCM,data:bC0cSA==,iv:+YsCeJDKbQJ9drpFOzSaNKoUldGsmNaSwbOcIsgSrks=,tag:VJaWCmKiwQU1+FdOUndyRw==,type:bool]
-        - url: ENC[AES256_GCM,data:Hz1mZlpHU4CHcTwH4t9C/jQQlC8V/2lYeT8uzBFEUWI7b4igTlftHUrAW32WT+7uKAAVtFKZ/zMz2sUfbqNAADF6E0Ca71YXejkKYkk+Wd1Orvbes5/W1xWVmPI1WoaFYq0=,iv:LDz7kA5pMKVQIOMFw0svykL3nMCWw14lNSFFq6STZYc=,tag:hYqwZ2ovbfgqfYLruwu8BA==,type:str]
-          enabled: ENC[AES256_GCM,data:5dTnpA==,iv:LsxkBsURqdu6AbFrFNrdIMbnKIbOwdkIAjcBk8DEbLI=,tag:H65IC3vpvj6Gk6h3HUJ2GA==,type:bool]
+        - url: ENC[AES256_GCM,data:A6tXnlKzzFT3gZKWqZu0u2QdeJ6kPN2ul0SaWTfDlVVca0aMd2DEo0/DWBaa6zPShckrxz6o15rZBotT7Tl1L03gjm9ZJi+cZom2IVq6X+KoauEc4A==,iv:g2GWyzVL+mfS1/iKmpowsAwnlEx/P42WSgtIu8TLTqE=,tag:1AuTE0in8UW9sC+cUQIP4Q==,type:str]
+          enabled: ENC[AES256_GCM,data:eNx3Ww==,iv:eU7fWnR7MTdLIBPS42YmE5YoykvFnG5jEtfjNlDPDXo=,tag:L5HwwXN/U1R1fxutVViBbQ==,type:bool]
+        - url: ENC[AES256_GCM,data:RBTMnOoDzbywBJGDuG8kj6fipCzkuZ6p3rl0licRpF+p2n1FQPWa7LddbKkNwJ34x7RL490qIrumZGqHeZHwQdfC+CAHjkJ3GP2PPJ2aWU0twTMSIocH5O5+vOf/r+mFBSU=,iv:BVIf4niM4k8aQ76ymIyUksGBKbrmsksiYy9IgOve/dM=,tag:rlgUAhG495k8XygToxXjSw==,type:str]
+          enabled: ENC[AES256_GCM,data:2a3YPQ==,iv:MIfOElgWTgkzMu5pVP0u1ZgpRvcD4zTUHbGj8gp59Hs=,tag:UeoTm7TI/ToQEhMu01ET/A==,type:bool]
 check_interval: 15
 alert_mode: basic
 basic_alerts:
@@ -35,6 +35,7 @@ basic_alerts:
         acceptable:
             - ol
             - online
+            - ol chrg
         alert_when_status_changed: false
         message: UPS status not in acceptable list
 formula_alert:
@@ -49,14 +50,14 @@ sops:
         - recipient: age1hhnjylnwfh0w6sxzlvc905ma8wa5pkspv9k2kj8a0d993m8h734se3jh7u
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBvMVRHcVhYZlNGVCtmQjlh
-            alNXeGJUMVUyaEU1a1Bjb3dadDhFRFkvQm1nCmNmYkRUdkFtc3V1VTdMdisvY200
-            aUJIdTRzRGlCT01RLy9ha3BaeHUyb2MKLS0tIHVObFZZb051MnVYb214eTRaK3BD
-            YnJaT3VDVi95Y0NWc1FETHVTSGtQYmsKenKHgpNR1daZb4saWOFLBu4y5qyqsj5W
-            dJmkQ7ROM3kHtkRqRajsBgmdmJ/QjzbSvKJAZiMvLaEWVlS1m8avHQ==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTQlFFNGpmTXhzQng0eTRU
+            dzMzV0NZMmtwRUJrTGdWTzNDd2YyUUhtdWdvCk5TczhFQzdoY1FzRU9oWDdIWTVV
+            ZTdOR0RmbFhKbXhXZStvb0xwVGhwYk0KLS0tIGMwUnBOcVJadXFzWU95dkZHVnhp
+            elRrNVh1Q0o0ZytueVpvd0lJRmR4bnMKfxjaioRxoBPn7MRzHWxLaEe6TNEPw4NJ
+            ll8rozKzD1TU0h91ph2TdJq0qRJJI9lzcvDVKKHOPD5Lw41SWXH4sQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-06-21T00:51:17Z"
-    mac: ENC[AES256_GCM,data:oEDUS31Hg6r2cUOfKd5knEK61ponjWSAUIAsNMQMOKseWUzjusb8KNuVDG1zRKaD920vNI8jXWlXs5C29WkOK3xZe4ighwsKPYCB+vKbxXoYhw80XNc/tH5c/lQ7KEDip9q0k2jdsd6HHAw3zjHZOQsf2jKiXkvvmcVAOART4rE=,iv:OTPIbG1Mv/lMyCrw1CJmsZVhWbsldmttoYvjYs06mSI=,tag:6G46yDeLKeDxSA6YgLN9wg==,type:str]
+    lastmodified: "2025-06-22T13:13:01Z"
+    mac: ENC[AES256_GCM,data:bRXWkpAWA7mbEYBLp3Jc0IWf+ikvXzOsynjRXJ0RWFyxtuJjNJPsbNWJIgFByvjOzkOyAR7MKXkii4klkr/xfLcmVcAYV/yGQ+212ufIWaUIpGOcCbKcR7QnIR5BqSxN2RUGB2BV0osrv6o62GNmKE2YqzZcXWYfcLZFUSyXCrw=,iv:xgd9I+hQN1kuQervLqPZ3jnKmsa+OBC0hT1AbvwleMg=,tag:efNW89sgmCPGzG8OT266Ww==,type:str]
     pgp: []
     encrypted_regex: ^(urls)$
     version: 3.8.1
