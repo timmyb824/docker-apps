@@ -41,7 +41,7 @@ services:
       - maybe_net
 
 volumes:
-  maybe-storage:
+  app-storage:
 
 networks:
   maybe_net:
