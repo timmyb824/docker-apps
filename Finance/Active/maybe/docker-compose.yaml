@@ -24,6 +24,7 @@ services:
       SMTP_USERNAME: ${SMTP_USERNAME}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
       SMTP_TLS_ENABLED: ${SMTP_TLS_ENABLED}
+      SYNTH_API_KEY: ${SYNTH_API_KEY}
     networks:
       - maybe_net
 
@@ -49,6 +50,7 @@ services:
       SMTP_USERNAME: ${SMTP_USERNAME}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
       SMTP_TLS_ENABLED: ${SMTP_TLS_ENABLED}
+      SYNTH_API_KEY: ${SYNTH_API_KEY}
     networks:
       - maybe_net
 
