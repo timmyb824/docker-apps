@@ -1,5 +1,5 @@
 global:
-  scrape_interval:     60s # By default, scrape targets every 15 seconds.
+  scrape_interval: 60s # By default, scrape targets every 15 seconds.
 
   # For Prometheus federation
   external_labels:
@@ -28,7 +28,7 @@ scrape_configs:
 
   - job_name: 'snmp_exporter'
     static_configs:
-    - targets: 
+    - targets:
       - '192.168.86.44'
     metrics_path: /snmp
     params:
@@ -82,13 +82,41 @@ scrape_configs:
       target_label: instance
       replacement: 'pihole2'
 
+  - job_name: 'pve'
+    static_configs:
+      - targets:
+        - 192.168.86.160:8006
+        - 192.168.86.199:8006
+    metrics_path: /pve
+    params:
+      module: [default]
+      cluster: ['1']
+      node: ['1']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9221
+
+  - job_name: 'paperless-ngx'
+    static_configs:
+      - targets: ['192.168.86.174:8081']
+    relabel_configs:
+    - source_labels: [__address__]
+      regex: '.*'
+      target_label: instance
+      replacement: 'pihole2'
+
+
 #  - job_name: 'uptime'
 #    scheme: http
 #    metrics_path: '/metrics'
 #    static_configs:
 #      - targets: ['192.168.86.174:3001']
-#    basic_auth: # Only needed if authentication is enabled (default) 
-#      password: uk1_fdoUtOOWcoiTzPDSTZ56R6UloqNhx_eInyeBmzqu
+#    basic_auth: # Only needed if authentication is enabled (default)
+#      password: uk1_something_here_for_auth
 #    relabel_configs:
 #    - source_labels: [__address__]
 #      regex: '.*'
