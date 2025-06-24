@@ -1,7 +1,7 @@
 ---
 services:
   prometheus-pve-exporter:
-    image: prompve/prometheus-pve-exporter
+    image: docker.io/prompve/prometheus-pve-exporter
     container_name: prometheus-pve-exporter
     volumes:
       - "./pve.yml:/etc/prometheus/pve.yml"
