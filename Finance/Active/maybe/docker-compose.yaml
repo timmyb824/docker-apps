@@ -19,6 +19,11 @@ services:
       REDIS_URL: ${REDIS_URL:-redis}
       OPENAI_ACCESS_TOKEN: ${OPENAI_ACCESS_TOKEN}
       APP_DOMAIN: ${APP_DOMAIN}
+      SMTP_ADDRESS: ${SMTP_ADDRESS}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_TLS_ENABLED: ${SMTP_TLS_ENABLED}
     networks:
       - maybe_net
 
@@ -39,6 +44,11 @@ services:
       REDIS_URL: ${REDIS_URL:-redis}
       OPENAI_ACCESS_TOKEN: ${OPENAI_ACCESS_TOKEN}
       APP_DOMAIN: ${APP_DOMAIN}
+      SMTP_ADDRESS: ${SMTP_ADDRESS}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_TLS_ENABLED: ${SMTP_TLS_ENABLED}
     networks:
       - maybe_net
 
