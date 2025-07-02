@@ -33,10 +33,11 @@ services:
       # NOT_GUESSED_TAG=#actual-ai-miss
       # GUESSED_TAG=#actual-ai
     networks:
-      - actualbudget
+      - actual
 
-  actual_server:
+  actual-server:
     image: docker.io/actualbudget/actual-server:latest
+    container_name: actual-server
     ports:
       - "5006:5006"
     environment:
@@ -48,7 +49,7 @@ services:
       # - ACTUAL_UPLOAD_FILE_SIZE_LIMIT_MB=20
       # See all options and more details at https://actualbudget.github.io/docs/Installing/Configuration
     volumes:
-      - actualbudget-data:/data
+      - actual-data:/data
     healthcheck:
       test: ["CMD-SHELL", "node src/scripts/health-check.js"]
       interval: 60s
@@ -57,12 +58,11 @@ services:
       start_period: 20s
     restart: unless-stopped
     networks:
-      - actualbudget
+      - actual
 
 volumes:
-  actualbudget-data:
+  actual-data:
 
 networks:
-  default:
-    name: actualbudget
-    external: true
+  actual:
+    driver: bridge
