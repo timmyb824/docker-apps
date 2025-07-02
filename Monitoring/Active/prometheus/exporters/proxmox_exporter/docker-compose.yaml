@@ -8,3 +8,5 @@ services:
     ports:
       - "9221:9221"
     init: true
+    labels:
+      io.containers.autoupdate: "registry"

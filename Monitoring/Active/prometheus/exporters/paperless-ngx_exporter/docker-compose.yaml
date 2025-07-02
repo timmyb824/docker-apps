@@ -14,3 +14,5 @@ services:
       - PAPERLESS_SERVER_TIMEZONE=America/New_York
     volumes:
       - ./config/:/etc/exporter:ro
+    labels:
+      io.containers.autoupdate: "registry"
