@@ -7,3 +7,5 @@ services:
       - "7655:7655"
     env_file:
       - .env
+    labels:
+      io.containers.autoupdate: "registry"
