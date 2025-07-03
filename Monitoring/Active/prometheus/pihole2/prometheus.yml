@@ -1,21 +1,15 @@
 global:
   scrape_interval: 60s # By default, scrape targets every 15 seconds.
 
-  # For Prometheus federation
   external_labels:
     origin_prometheus: pihole2
 
-# A scrape configuration containing exactly one endpoint to scrape:
-# Here it's Prometheus itself.
 scrape_configs:
-  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'prometheus'
-    # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 60s
     static_configs:
       - targets: ['localhost:9090']
 
-  # Example job for node_exporter
   - job_name: 'node_exporter'
     static_configs:
       - targets: ['localhost:9100']
@@ -108,6 +102,17 @@ scrape_configs:
       regex: '.*'
       target_label: instance
       replacement: 'pihole2'
+
+  - job_name: postgres
+    static_configs:
+      - targets:
+        - 192.168.86.174:9187
+    relabel_configs:
+      - source_labels:
+         - __address__
+        regex: .*
+        target_label: instance
+        replacement: postgresql.homelab.lan
 
 
 #  - job_name: 'uptime'

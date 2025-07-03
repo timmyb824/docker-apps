@@ -6,6 +6,7 @@ services:
     container_name: healthchecks
     environment:
       - INTEGRATIONS_ALLOW_PRIVATE_IPS=True
+      - ALLOWED_HOSTS='192.168.86.174:8000,healthchecks.timmybtech.com,pihole2.homelab.lan:8000'
       - DB=postgres
       - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
@@ -32,4 +33,3 @@ services:
       io.containers.autoupdate: "registry" # for use with podman
     ports:
       - "8000:8000"
-

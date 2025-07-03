@@ -10,3 +10,5 @@ services:
 #      - postgres:postgres  # my database container is called postgres, not db
     environment:
       - PGWEB_DATABASE_URL=${DATABASE_URL}
+    labels:
+      io.containers.autoupdate: "registry"
