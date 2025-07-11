@@ -6,7 +6,7 @@ services:
     container_name: healthchecks
     environment:
       - INTEGRATIONS_ALLOW_PRIVATE_IPS=True
-      - ALLOWED_HOSTS='192.168.86.174:8000,healthchecks.timmybtech.com,pihole2.homelab.lan:8000'
+      - ALLOWED_HOSTS='192.168.86.174,healthchecks.timmybtech.com,pihole2.homelab.lan'
       - DB=postgres
       - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
