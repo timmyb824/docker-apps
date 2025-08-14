@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-yaml
         args: [--unsafe] # prevents loading the yaml
@@ -17,12 +17,12 @@ repos:
         args: ["--fix=auto"]
 
   - repo: https://github.com/sirwart/ripsecrets
-    rev: v0.1.9 # Use latest tag on GitHub
+    rev: v0.1.11 # Use latest tag on GitHub
     hooks:
       - id: ripsecrets
 
   - repo: https://github.com/trufflesecurity/trufflehog
-    rev: v3.88.28
+    rev: v3.90.5
     hooks:
       - id: trufflehog
         name: TruffleHog
@@ -32,7 +32,7 @@ repos:
         stages: ["pre-commit"]
 
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.25.1
+    rev: v8.28.0
     hooks:
       - id: gitleaks
         entry: gitleaks git --pre-commit --redact --staged --verbose
