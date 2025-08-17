@@ -12,7 +12,7 @@ services:
       ACTUAL_BUDGET_ID: ${ACTUAL_BUDGET_ID} # This is the ID from Settings → Show advanced settings → Sync ID
       CLASSIFICATION_SCHEDULE_CRON: 0 */4 * * *
       LLM_PROVIDER: openai # Can be "openai", "anthropic", "google-generative-ai", "ollama" or "groq"
-      FEATURES: '["classifyOnStartup", "syncAccountsBeforeClassify", "freeWebSearch", "suggestNewCategories"]'
+      FEATURES: '["classifyOnStartup", "freeWebSearch", "suggestNewCategories"]'
       OPENAI_API_KEY: ${OPENAI_API_KEY} # optional. required if you want to use the OpenAI API
       # OPENAI_MODEL:  # optional. required if you want to use a specific model, default is "gpt-4o-mini"
       # OPENAI_BASE_URL:  # optional. required if you don't want to use the OpenAI API but OpenAI compatible API, ex: "http://ollama:11424/v1
@@ -44,6 +44,7 @@ services:
       # - ACTUAL_HTTPS_KEY=/data/selfhost.key
       # - ACTUAL_HTTPS_CERT=/data/selfhost.crt
       - ACTUAL_PORT=5006
+      # - DEBUG=actual:config
       # - ACTUAL_UPLOAD_FILE_SYNC_SIZE_LIMIT_MB=20
       # - ACTUAL_UPLOAD_SYNC_ENCRYPTED_FILE_SYNC_SIZE_LIMIT_MB=50
       # - ACTUAL_UPLOAD_FILE_SIZE_LIMIT_MB=20
