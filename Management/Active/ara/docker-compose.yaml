@@ -5,13 +5,14 @@ services:
     ports:
       - "8009:8000"
     environment:
-      - ARA_DATABASE_ENGINE=django.db.backends.postgresql
-      - ARA_DATABASE_NAME=ara
-      - ARA_DATABASE_USER=${POSTGRES_USER}
-      - ARA_DATABASE_PASSWORD=${POSTGRES_PASSWORD}
-      - ARA_DATABASE_HOST=${POSTGRES_HOST}
-      - ARA_DATABASE_PORT=5432
-      - ARA_DEBUG=false
+      ARA_DATABASE_ENGINE: "django.db.backends.postgresql"
+      ARA_DATABASE_NAME: "ara"
+      ARA_DATABASE_USER: ${POSTGRES_USER}
+      ARA_DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+      ARA_DATABASE_HOST: ${POSTGRES_HOST}
+      ARA_DATABASE_PORT: 5432
+      ARA_DEBUG: "false"
+      ARA_ALLOWED_HOSTS: "['ara-api.local.timmybtech.com']"
     volumes:
       - "./.ara/server:/opt/ara"
     tty: true
