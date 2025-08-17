@@ -81,6 +81,7 @@ scrape_configs:
       - targets:
         - 192.168.86.160:8006
         - 192.168.86.199:8006
+        - 192.168.86.217:8006
     metrics_path: /pve
     params:
       module: [default]
