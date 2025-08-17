@@ -44,9 +44,6 @@ Networking/Active/cloudflared-tunnel/cloudflared/*.json
 DNS/Active/adguardhome-sync/config/*
 Monitoring/Active/beszel/beszel_data/
 Management/Active/diun/data/
-<<<<<<< Updated upstream
 DNS/Active/adguardhome/pihole2/Archive/
-||||||| Stash base
-=======
 Productivity/Active/hoarder/backups/
->>>>>>> Stashed changes
+Management/Active/ara/.ara/
