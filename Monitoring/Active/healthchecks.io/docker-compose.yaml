@@ -26,7 +26,7 @@ services:
       - SITE_NAME=HomelabChecks
       - SITE_ROOT=https://healthchecks.timmybtech.com
       - SECRET_KEY=${SECRET_KEY}
-      -  #UWSGI_DISABLE_LOGGING=1 # Uncomment to disable logging
+      - UWSGI_DISABLE_LOGGING=1 # Uncomment to disable logging
       - DISCORD_CLIENT_ID=${DISCORD_CLIENT_ID}
       - DISCORD_CLIENT_SECRET=${DISCORD_CLIENT_SECRET}
     labels:
