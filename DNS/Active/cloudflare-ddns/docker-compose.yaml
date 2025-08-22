@@ -1,15 +1,17 @@
-version: "2"
 services:
   cloudflare-ddns:
-    image: docker.io/oznu/cloudflare-ddns:latest
+    image: docker.io/timothyjmiller/cloudflare-ddns:latest
     container_name: cloudflare-ddns
-    restart: always
+    security_opt:
+      - no-new-privileges:true
+    network_mode: 'host'
     environment:
-      - API_KEY=${CLOUDFLARE_API_KEY}
-      - ZONE=${CLOUDFLARE_ZONE}
-      - PROXIED=true
       - PUID=1000
       - PGID=1000
-    # for use with podman
+      - CF_DDNS_API_TOKEN=${CF_DDNS_API_TOKEN}
+      - CF_DDNS_ZONE_ID=${CF_DDNS_ZONE_ID}
+    volumes:
+      - ./config.json:/config.json
+    restart: unless-stopped
     labels:
       io.containers.autoupdate: "registry"
