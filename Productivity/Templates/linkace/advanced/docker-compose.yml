@@ -45,7 +45,7 @@ services:
 
   # --- Redis
   redis:
-    image: bitnami/redis:8.0
+    image: bitnami/redis:8.2
     restart: unless-stopped
     environment:
       - REDIS_PASSWORD=${REDIS_PASSWORD}
