@@ -14,7 +14,7 @@ services:
       MEILI_ADDR: http://meilisearch:7700
       DATA_DIR: /data
   redis:
-    image: redis:8.0-alpine
+    image: redis:8.2-alpine
     restart: unless-stopped
     volumes:
       - redis:/data
