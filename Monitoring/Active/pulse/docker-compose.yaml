@@ -21,6 +21,7 @@ services:
       - pulse_data:/data
     environment:
       - TZ=America/New_York
+      - ALLOWED_ORIGINS=https://pulse.local.timmybtech.com
       # - PUID=1000  # Optional: Set user ID (uncomment and adjust as needed)
       # - PGID=1000  # Optional: Set group ID (uncomment and adjust as needed)
     restart: unless-stopped
