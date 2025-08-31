@@ -12,7 +12,7 @@ services:
       - MEMOS_DSN=user=memos password=secret dbname=memosdb host=db sslmode=disable
 
   db:
-    image: postgres:17.5
+    image: postgres:17.6
     restart: unless-stopped
     volumes:
       - "./database:/var/lib/postgresql/data/"
