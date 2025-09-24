@@ -29,7 +29,7 @@ services:
       - --remote-debugging-port=9222
       - --hide-scrollbars
   meilisearch:
-    image: getmeili/meilisearch:v1.16
+    image: getmeili/meilisearch:v1.22
     restart: unless-stopped
     env_file:
       - .env
