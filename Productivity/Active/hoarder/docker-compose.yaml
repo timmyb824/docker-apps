@@ -26,7 +26,7 @@ services:
       - --remote-debugging-port=9222
       - --hide-scrollbars
   meilisearch:
-    image: docker.io/getmeili/meilisearch:v1.16
+    image: docker.io/getmeili/meilisearch:v1.22
     container_name: hoarder-meilisearch
     restart: unless-stopped
     env_file:
