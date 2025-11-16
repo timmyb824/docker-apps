@@ -7,19 +7,20 @@ services:
     # ports:
     #  - 8850:8850
     network_mode: host
-  anyappstart:
-    image: docker.io/aceberg/anyappstart
-    container_name: anyappstart
-    restart: unless-stopped
-   # ports:
-   #   - 8855:8855
-    network_mode: host
-    volumes:
-      - ./.dockerdata/AnyAppStart:/data/AnyAppStart
-      - /run/user/${USER_ID-1000}/podman/podman.sock:/var/run/docker.sock:z
-    command: "-n http://192.168.86.174:8850"
-    environment:
-      TZ: America/New_York # required, default: ""
+#  anyappstart:
+#    image: docker.io/aceberg/anyappstart
+#    container_name: anyappstart
+#    restart: unless-stopped
+#    ports:
+#      - 8855:8855
+#    network_mode: host
+#    volumes:
+#      - ./.dockerdata/AnyAppStart:/data/AnyAppStart
+#      - /run/user/${USER_ID-1000}/podman/podman.sock:/var/run/docker.sock:z
+#      - /etc/systemd/system:/etc/systemd/system:ro
+#    command: "-n http://192.168.86.174:8850"
+#    environment:
+#      TZ: America/New_York # required, default: ""
       # NODEPATH: "http://YOUR-ADDRESS:8850" # optional, default: ""
       # HOST: "0.0.0.0"         # optional, default: 0.0.0.0
       # PORT: "8855"            # optional, default: 8855
