@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO="$HOME/DEV/homelab/docker-apps"
+REPO="$HOME/DEV/homelab/podman-apps"
 BRANCH="main"
 CONFIG="$REPO/gitops-apps.conf"
 
