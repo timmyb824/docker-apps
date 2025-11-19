@@ -5,13 +5,17 @@ REPO="$HOME/DEV/homelab/podman-apps"
 BRANCH="main"
 CONFIG="$REPO/gitops-apps.conf"
 
+FORCE="${1:-}"
+
 cd "$REPO"
 git fetch origin "$BRANCH"
 
 OLD_REV=$(git rev-parse HEAD)
 REMOTE=$(git rev-parse "origin/$BRANCH")
 
-[ "$OLD_REV" = "$REMOTE" ] && exit 0
+if [ "$OLD_REV" = "$REMOTE" ] && [ "$FORCE" != "--force" ]; then
+  exit 0
+fi
 
 if ! git diff --quiet || ! git diff --quiet --cached; then
   echo "Working tree dirty, aborting deploy."
@@ -44,22 +48,31 @@ redeploy_app() {
   )
 }
 
-# determine which app directories have changed files
-mapfile -t changed_paths < <(git diff --name-only "$OLD_REV" "$NEW_REV")
-
 changed_app_dirs=()
-for app_dir in $(grep -vE '^\s*($|#)' "$CONFIG"); do
-  for path in "${changed_paths[@]}"; do
-    case "$path" in
-      "$app_dir"/*)
-        changed_app_dirs+=("$app_dir")
-        break
-        ;;
-    esac
-  done
-done
 
-# loop over managed apps that actually changed
+if [ "$FORCE" = "--force" ]; then
+  # force mode: treat all configured apps as changed
+  while read -r app_dir; do
+    [ -z "$app_dir" ] && continue
+    changed_app_dirs+=("$app_dir")
+  done < <(grep -vE '^\s*($|#)' "$CONFIG")
+else
+  # determine which app directories have changed files
+  mapfile -t changed_paths < <(git diff --name-only "$OLD_REV" "$NEW_REV")
+
+  for app_dir in $(grep -vE '^\s*($|#)' "$CONFIG"); do
+    for path in "${changed_paths[@]}"; do
+      case "$path" in
+        "$app_dir"/*)
+          changed_app_dirs+=("$app_dir")
+          break
+          ;;
+      esac
+    done
+  done
+fi
+
+# loop over managed apps that actually changed (or all, in force mode)
 for app_dir in "${changed_app_dirs[@]}"; do
   [ -z "$app_dir" ] && continue
 
