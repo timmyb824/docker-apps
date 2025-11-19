@@ -1,0 +1,62 @@
+services:
+  web:
+    image: ghcr.io/maybe-finance/maybe:latest
+    container_name: maybe-web
+    volumes:
+      - maybe-storage:/rails/storage
+    ports:
+      - 3003:3000
+    restart: unless-stopped
+    environment:
+      SELF_HOSTED: "true"
+      RAILS_FORCE_SSL: "false"
+      RAILS_ASSUME_SSL: "false"
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE:-a7523c3d0ae56415046ad8abae168d71074a79534a7062258f8d1d51ac2f76d3c3bc86d86b6b0b307df30d9a6a90a2066a3fa9e67c5e6f374dbd7dd4e0778e13}
+      DB_HOST: ${POSTGRES_HOST:-postgresql}
+      POSTGRES_DB: ${POSTGRES_DB:-maybe}
+      POSTGRES_USER: ${POSTGRES_USER:-maybe_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?}
+      REDIS_URL: ${REDIS_URL:-redis}
+      OPENAI_ACCESS_TOKEN: ${OPENAI_ACCESS_TOKEN}
+      APP_DOMAIN: ${APP_DOMAIN}
+      SMTP_ADDRESS: ${SMTP_ADDRESS}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_TLS_ENABLED: ${SMTP_TLS_ENABLED}
+      SYNTH_API_KEY: ${SYNTH_API_KEY}
+    networks:
+      - maybe_net
+
+  worker:
+    image: ghcr.io/maybe-finance/maybe:latest
+    container_name: maybe-worker
+    command: bundle exec sidekiq
+    restart: unless-stopped
+    environment:
+      SELF_HOSTED: "true"
+      RAILS_FORCE_SSL: "false"
+      RAILS_ASSUME_SSL: "false"
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE:-a7523c3d0ae56415046ad8abae168d71074a79534a7062258f8d1d51ac2f76d3c3bc86d86b6b0b307df30d9a6a90a2066a3fa9e67c5e6f374dbd7dd4e0778e13}
+      DB_HOST: ${POSTGRES_HOST:-postgresql}
+      POSTGRES_DB: ${POSTGRES_DB:-maybe}
+      POSTGRES_USER: ${POSTGRES_USER:-maybe_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?}
+      REDIS_URL: ${REDIS_URL:-redis}
+      OPENAI_ACCESS_TOKEN: ${OPENAI_ACCESS_TOKEN}
+      APP_DOMAIN: ${APP_DOMAIN}
+      SMTP_ADDRESS: ${SMTP_ADDRESS}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_TLS_ENABLED: ${SMTP_TLS_ENABLED}
+      SYNTH_API_KEY: ${SYNTH_API_KEY}
+    networks:
+      - maybe_net
+
+volumes:
+  maybe-storage:
+
+networks:
+  maybe_net:
+    driver: bridge

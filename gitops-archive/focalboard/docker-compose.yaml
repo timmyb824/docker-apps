@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  focalboard:
+    image: docker.io/mattermost/focalboard
+    container_name: focal-board
+    ports:
+      - "8001:8000"
+    volumes:
+       - './config.json:/opt/focalboard/config.json'
+    labels:
+      traefik.enable: true
+      traefik.docker.network: traefik_network
+      traefik.http.routers.focal-board.rule: Host(`focal-board.timmybtech.com`)
+      traefik.http.services.focal-board.loadbalancer.server.port: 8000
+      io.containers.autoupdate: "registry" # for use with podman
+
+networks:
+  default:
+    name: traefik_network
+    external: true

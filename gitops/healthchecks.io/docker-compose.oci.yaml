@@ -1,0 +1,26 @@
+# git clone https://github.com/healthchecks/healthchecks.git
+# cd healthchecks && cd docker
+# create .env and docker-compose.yaml
+version: "3"
+services:
+  healthchecks:
+    build:
+        context: ..
+        dockerfile: docker/Dockerfile
+    env_file:
+        - .healthchecks.env
+    ports:
+        - "8000:8000"
+        # To enable SMTP on port 2525, set SMTPD_PORT=2525 in .env
+        # and uncomment the following line:
+        # - "2525:2525"
+    container_name: healthchecks
+    # comment out if using your own database outside of docker-compose
+    # command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; uwsgi /opt/healthchecks/docker/uwsgi.ini'
+    restart: unless-stopped
+    labels:
+        - com.centurylinklabs.watchtower.enable=False
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"

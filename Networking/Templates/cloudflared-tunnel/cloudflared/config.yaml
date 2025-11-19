@@ -1,6 +1,0 @@
-credentials-file: /etc/cloudflared/9c1123f4-6789-4321-a4fb-1234r5678u.json
-
-ingress:
-  - hostname: app.timmybtech.com
-    service: http://app:3000
-  - service: http_status:404

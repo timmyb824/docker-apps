@@ -1,0 +1,18 @@
+services:
+  zipline:
+    image: ghcr.io/diced/zipline
+    container_name: zipline
+    ports:
+      - "3000:3000"
+    environment:
+      - CORE_RETURN_HTTPS=false
+      - CORE_SECRET=${ZIPLINE_CORE_SECRET}
+      - CORE_HOST=0.0.0.0
+      - CORE_PORT=3000
+      - CORE_DATABASE_URL=${ZIPLINE_CORE_DATABASE_URL}
+      - CORE_LOGGER=true
+    volumes:
+      - "./uploads:/zipline/uploads"
+      - "./public:/zipline/public"
+    labels:
+      io.containers.autoupdate: "registry" # for use with podman

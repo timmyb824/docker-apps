@@ -1,0 +1,12 @@
+---
+services:
+    urlchecker:
+        # image: docker.io/timmyb824/python-urlchecker:latest
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: urlchecker
+        volumes:
+            - './checks.yaml:/app/src/checks.yaml'
+        environment:
+            - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}

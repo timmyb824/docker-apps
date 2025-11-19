@@ -1,0 +1,31 @@
+---
+services:
+  openvscode-server:
+    image: lscr.io/linuxserver/openvscode-server:latest
+    container_name: openvscode-server
+    environment:
+      - DOCKER_MODS=linuxserver/mods:code-server-zsh
+      - PUID=1001
+      - PGID=1001
+      - TZ=America/New_York
+      - CONNECTION_TOKEN=${CONNECTION_TOKEN}
+      - SUDO_PASSWORD=${SUDO_PASSWORD}
+    ports:
+      - 3006:3000
+    restart: unless-stopped
+    volumes:
+      - ./config:/config
+      - ./bin/:/usr/local/bin/:Z
+      - ./extensions:/tmp/extensions
+      - ./scripts:/tmp/scripts
+    labels:
+      traefik.enable: true
+      traefik.docker.network: traefik_network
+      traefik.http.routers.code-server.rule: Host(`code-server.timmybtech.com`)
+      traefik.http.services.code-server.loadbalancer.server.port: 3000
+      # io.containers.autoupdate: "registry" # for use with podman
+
+networks:
+  default:
+    name: traefik_network
+    external: true

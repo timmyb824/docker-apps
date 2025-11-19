@@ -1,0 +1,90 @@
+global:
+    # By default, scrape targets every 15 seconds.
+    scrape_interval: 60s
+    # For Prometheus federation
+    external_labels:
+        origin_prometheus: podman-01
+scrape_configs:
+    - job_name: prometheus
+      scrape_interval: 60s
+      static_configs:
+        - targets:
+            - localhost:9090
+    - job_name: node_exporter
+      static_configs:
+        - targets:
+            - node-exporter:9100
+      relabel_configs:
+        - source_labels:
+            - __address__
+          regex: .*
+          target_label: instance
+          replacement: podman-01
+    - job_name: podman_exporter
+      static_configs:
+        - targets:
+            - 192.168.86.143:9882
+      metrics_path: /metrics
+      relabel_configs:
+        - source_labels:
+            - __address__
+          regex: .*
+          target_label: instance
+          replacement: podman-01
+    - job_name: postgres
+      static_configs:
+        - targets:
+            - 192.168.86.143:9187
+      relabel_configs:
+        - source_labels:
+            - __address__
+          regex: .*
+          target_label: instance
+          replacement: postgresql.homelab.lan
+    - job_name: uptime
+      scheme: http
+      metrics_path: /metrics
+      static_configs:
+        - targets:
+            - 192.168.86.143:3001
+      # Only needed if authentication is enabled (default)
+      basic_auth:
+        password: ENC[AES256_GCM,data:zyFoEwIUdQn+TfPk84ldmfKU7Iw5LrHrGENXGHe03US5fSYpukb3fznsmXU=,iv:mpL+gU/N6gktOj3lubsp7vs+kxgcYJS/U6/0idyISy8=,tag:qaGDXhA/RgVeRoxQ2PoShg==,type:str]
+      relabel_configs:
+        - source_labels:
+            - __address__
+          regex: .*
+          target_label: instance
+          replacement: podman-01
+    - job_name: cloudflared
+      scrape_interval: 60s
+      metrics_path: /metrics
+      static_configs:
+        - targets:
+            - 192.168.86.143:60123
+      relabel_configs:
+        - source_labels:
+            - __address__
+          regex: .*
+          target_label: instance
+          replacement: healthchecks.timmybtech.com
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1hhnjylnwfh0w6sxzlvc905ma8wa5pkspv9k2kj8a0d993m8h734se3jh7u
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB0SFpIZVVONFh2VUttNXNX
+            c3RSa09LaVNLVW5HSDVMYk9HRGVqSkRDL1Y4CkxtMW5neGoxZ2p6elFLdlF5MUVS
+            WnF5UkxOTjFFNi9XbFNTVFZPK0tsOFEKLS0tIFU0RWJkSDFwdnNNbnV4R0ZMQ2dP
+            VEN2L0RHSzBvNmFXcmdUeUdGYVVzMncKBvFc476gjxhCNF/p28BCeXieoXA03Y07
+            TraqeA4AaDo/13VxV8Eg4nMSTyG45p7ftZEj4IBopdwX0MRlKlTr6Q==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-01-15T14:59:36Z"
+    mac: ENC[AES256_GCM,data:ic8bvO8gNy+5FDXU2XstQ++3TA4hpLscD2I2FuPEfHuy1WZSIoM+zspzhnNwL4kmtNyFWkUP48oy7EVss1fjTLWQg11BDD890P0r2J1V9Y/CrCezvMmFApnuASz2BRe0xaH1GClkjiKQWoEgWOuo/An6pBuS0taITTx7+PhJAw0=,iv:WpX+b9o2fVOutXMukx8B/Bz2PsLGG9nnwI7cvye6tlA=,tag:kQALZdb06z/xotSxKi4LFw==,type:str]
+    pgp: []
+    encrypted_regex: ^(password|username)$
+    version: 3.8.1

@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+     # - ./pg_backup:/pg_backup
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      start_period: 15s
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
+
+  pgweb:
+    container_name: pgweb  # optional
+    restart: always  # optional
+    image: sosedoff/pgweb
+    ports:
+      - "8083:8081"
+    links:
+      - postgres:postgres  # my database container is called postgres, not db
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+    depends_on:
+      - postgres  # my database container is called postgres, not db
+
+volumes:
+  pgdata:
+
+networks:
+  default:
+    name: pg_db_network
+    external: true

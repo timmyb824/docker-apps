@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  adguard_exporter:
+    image: ebrianne/adguard-exporter:latest
+#    restart: always
+    ports:
+      - "9617:9617"
+    environment:
+      - adguard_protocol=http
+      - adguard_hostname=${ADGUARD_HOSTNAME}
+      - adguard_username=${ADGUARD_USERNAME}
+      - adguard_password=${ADGUARD_PASSWORD}
+#      - adguard_port= #optional
+      - server_port=9617
+      - interval=30s
+      - log_limit=10000

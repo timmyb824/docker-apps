@@ -1,0 +1,12 @@
+---
+services:
+  prometheus-pve-exporter:
+    image: docker.io/prompve/prometheus-pve-exporter
+    container_name: prometheus-pve-exporter
+    volumes:
+      - "./pve.yml:/etc/prometheus/pve.yml"
+    ports:
+      - "9221:9221"
+    init: true
+    labels:
+      io.containers.autoupdate: "registry"

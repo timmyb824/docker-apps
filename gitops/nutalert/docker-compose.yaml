@@ -1,0 +1,8 @@
+services:
+  nutalert:
+    image: ghcr.io/rmfatemi/nutalert:latest
+    container_name: nutalert
+    network_mode: host
+    volumes:
+      - ./:/config
+    restart: unless-stopped

@@ -1,0 +1,17 @@
+# STOP! THIS IS RUN AS PART OF THE PIHOLE2 PROMETHEUS COMPOSE FILE
+# On the host this runs within the same docker-compose.yaml as prometheus
+# Remember to verify the path to the snmp.yml file
+version: "3"
+
+services:
+
+  snmp-exporter:
+    image: prom/snmp-exporter
+    container_name: snmp_exporter
+    restart: unless-stopped
+    volumes:
+      - ./snmp.yml:/etc/snmp_exporter/snmp.yml:Z
+    ports:
+      - 9116:9116
+    command:
+      - "--config.file=/etc/snmp_exporter/snmp.yml"

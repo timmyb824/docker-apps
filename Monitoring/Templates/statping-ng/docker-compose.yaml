@@ -1,9 +1,0 @@
-version: '3.9'
-services:
-    statping-ng:
-        image: adamboutcher/statping-ng
-        container_name: statping-ng
-        ports:
-            - '8080:8080'
-        tty: true
-        stdin_open: true
