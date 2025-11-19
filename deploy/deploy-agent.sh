@@ -80,7 +80,7 @@ for app_dir in "${changed_app_dirs[@]}"; do
 
 	# 1) decrypt env
 	if [ -f "$app_dir/.app.env" ]; then
-		sops --decrypt --age "$(cat $SOPS_AGE_KEY_FILE | grep -oP "public key: \K(.*)")" -i "$app_dir/.app.env" >"$app_dir/.env"
+		sops --decrypt --age "$(cat $SOPS_AGE_KEY_FILE | grep -oP "public key: \K(.*)")" -i "$app_dir/.app.env" > "$app_dir/.env"
 
 	fi
 
