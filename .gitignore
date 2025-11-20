@@ -1,5 +1,6 @@
 **/.env
 .decrypted*
+deploy/metrics_state
 
 AdGuard.yaml
 gitops/adguardhome/pihole2/workdir/
