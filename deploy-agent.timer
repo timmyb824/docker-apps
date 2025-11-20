@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Podman GitOps Deploy Agent periodically
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+Unit=deploy-agent.service
+
+[Install]
+WantedBy=timers.target

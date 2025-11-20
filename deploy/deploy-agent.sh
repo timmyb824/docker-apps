@@ -1,51 +1,99 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+msg_info() {
+    echo -e "\033[1;34m[INFO]\033[0m $1"
+}
+
+msg_ok() {
+    echo -e "\033[1;32m[OK]\033[0m $1"
+}
+
+msg_warn() {
+    echo -e "\033[1;33m[WARN]\033[0m $1"
+}
+
+msg_error() {
+    echo -e "\033[1;31m[ERROR]\033[0m $1"
+}
+
+log() {
+    local level="$1"
+    local message="$2"
+    echo "$(date +'%Y-%m-%d %H:%M:%S') - [$level] $message"
+}
+
 REPO="$HOME/DEV/homelab/podman-apps"
 BRANCH="main"
 CONFIG="$REPO/gitops-apps.conf"
+METRICS_STATE="$REPO/deploy/metrics_state"
+METRICS_OUT="/var/lib/node_exporter/textfile/podman_gitops.prom"
 
 FORCE="${1:-}"
 
+# load existing metrics state if present (shell-style key=value)
+if [ -f "$METRICS_STATE" ]; then
+    # shellcheck source=/dev/null
+    . "$METRICS_STATE"
+fi
+
+log INFO "deploy-agent start (force=${FORCE:-no}) repo=$REPO branch=$BRANCH"
+
 cd "$REPO"
+msg_info "Fetching origin/$BRANCH"
 git fetch origin "$BRANCH"
 
 OLD_REV=$(git rev-parse HEAD)
 REMOTE=$(git rev-parse "origin/$BRANCH")
 
 if [ "$OLD_REV" = "$REMOTE" ] && [ "$FORCE" != "--force" ]; then
+	log INFO "No new commits on $BRANCH; exiting"
 	exit 0
 fi
 
 if ! git diff --quiet || ! git diff --quiet --cached; then
-	echo "Working tree dirty, aborting deploy."
+	msg_error "Working tree dirty, aborting deploy."
+	log ERROR "Working tree dirty; aborting."
 	exit 1
 fi
 
+msg_info "Pulling origin/$BRANCH"
 git pull --ff-only origin "$BRANCH"
 
 NEW_REV=$(git rev-parse HEAD)
+log INFO "Pulled changes: $OLD_REV -> $NEW_REV"
 
 redeploy_app() {
 	local app_dir="$1"
 	local service_name="$2"
 
+	log INFO "Redeploying app=$service_name dir=$app_dir"
 	(
 		cd "$app_dir" || exit 1
 
+		msg_info "Stopping service container-$service_name.service"
 		systemctl --user stop "container-$service_name.service" 2>/dev/null || true
+		msg_info "Disabling service container-$service_name.service"
 		systemctl --user disable "container-$service_name.service" 2>/dev/null || true
 
+		msg_info "Bringing down containers for $service_name"
 		podman-compose -p "$service_name" down || true
 
+		msg_info "Starting containers for $service_name"
 		podman-compose --in-pod=0 -p "$service_name" up -d --force-recreate
 
+		msg_info "Regenerating systemd unit for $service_name"
 		podman_unit_create_service_file.sh "$service_name"
 		systemctl --user daemon-reload
 		systemctl --user enable --now "container-$service_name.service"
 
-		systemctl --user list-units 'container*'
-	)
+		msg_ok "Redeploy complete for $service_name"
+		log INFO "Redeploy complete for $service_name"
+	) || {
+		msg_error "Redeploy failed for $service_name"
+		log ERROR "Redeploy failed for $service_name"
+		return 1
+	}
 }
 
 changed_app_dirs=()
@@ -80,9 +128,50 @@ for app_dir in "${changed_app_dirs[@]}"; do
 
 	# 1) decrypt env
 	if [ -f "$app_dir/.app.env" ]; then
-		sops --decrypt --input-type dotenv "$app_dir/.app.env" > "$app_dir/.env"
+		sops --decrypt --input-type dotenv "$app_dir/.app.env" >"$app_dir/.env"
 	fi
 
 	# 2) redeploy
 	redeploy_app "$app_dir" "$service_name"
+	if [ $? -eq 0 ]; then
+		# increment per-app deploy counter
+		var_name="deploy_count_${service_name}"
+		current="${!var_name:-0}"
+		new=$((current + 1))
+		printf -v "$var_name" '%s' "$new"
+		log INFO "Incremented deploy counter for $service_name to $new"
+	fi
 done
+
+# write metrics state
+{
+	for app_dir in "${changed_app_dirs[@]}"; do
+		[ -z "$app_dir" ] && continue
+		service_name="$(basename "$app_dir")"
+		var_name="deploy_count_${service_name}"
+		value="${!var_name:-0}"
+		[ -z "$value" ] && continue
+		echo "${var_name}=${value}"
+	done | sort -u
+} >"$METRICS_STATE"
+
+# generate Prometheus metrics file
+if [ -s "$METRICS_STATE" ]; then
+	# shellcheck source=/dev/null
+	. "$METRICS_STATE"
+	{
+		echo "# HELP podman_gitops_deploy_total Number of successful gitops deploys per app"
+		echo "# TYPE podman_gitops_deploy_total counter"
+		while IFS='=' read -r key value; do
+			[ -z "$key" ] && continue
+			service_name="${key#deploy_count_}"
+			echo "podman_gitops_deploy_total{app=\"${service_name}\"} ${value}"
+		done <"$METRICS_STATE"
+	} >"$METRICS_OUT"
+	log INFO "Wrote metrics to $METRICS_OUT"
+else
+	log INFO "No metrics to write; $METRICS_STATE is empty"
+fi
+
+msg_ok "deploy-agent run complete"
+log INFO "deploy-agent end"

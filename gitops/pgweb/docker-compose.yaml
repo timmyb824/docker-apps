@@ -8,6 +8,5 @@ services:
       - "8084:8081"
     environment:
       - PGWEB_DATABASE_URL=${DATABASE_URL}
-      - PGWEB_LISTEN_HOST=0.0.0.0
     labels:
       io.containers.autoupdate: "registry"

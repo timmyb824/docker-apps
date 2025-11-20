@@ -1,0 +1,12 @@
+[Unit]
+Description=Podman GitOps Deploy Agent
+
+[Service]
+Type=oneshot
+ExecStart=%h/DEV/homelab/podman-apps/deploy/deploy-agent.sh
+WorkingDirectory=%h/DEV/homelab/podman-apps
+# optional, to make sure PATH includes sops/podman/etc
+Environment=PATH=/usr/local/bin:/usr/bin:/bin
+
+[Install]
+WantedBy=default.target
