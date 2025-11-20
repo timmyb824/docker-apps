@@ -2,9 +2,8 @@
 .decrypted*
 deploy/metrics_state
 
-AdGuard.yaml
-gitops/adguardhome/pihole2/workdir/
-gitops/adguardhome/pihole2/confdir/
+gitops/adguardhome/workdir/
+gitops/adguardhome/confdir/
 gitops/healthchecks.io/healthchecks/
 gitops-archive/netdata/hp-laptop-ubuntu/netdataconfig/*
 !/gitops-archive/netdata/hp-laptop-ubuntu/netdataconfig/health.d/
