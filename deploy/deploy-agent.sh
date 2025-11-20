@@ -135,11 +135,12 @@ for app_dir in "${changed_app_dirs[@]}"; do
 	redeploy_app "$app_dir" "$service_name"
 	if [ $? -eq 0 ]; then
 		# increment per-app deploy counter
-		var_name="deploy_count_${service_name}"
-		current="${!var_name:-0}"
+		service_safe="${service_name//[^a-zA-Z0-9_]/_}"
+		var_key="deploy_count_${service_safe}"
+		current="${!var_key:-0}"
 		new=$((current + 1))
-		printf -v "$var_name" '%s' "$new"
-		log INFO "Incremented deploy counter for $service_name to $new"
+		printf -v "$var_key" '%s' "$new"
+		log INFO "Incremented deploy counter for $service_name (key=$var_key) to $new"
 	fi
 done
 
@@ -148,10 +149,11 @@ done
 	for app_dir in "${changed_app_dirs[@]}"; do
 		[ -z "$app_dir" ] && continue
 		service_name="$(basename "$app_dir")"
-		var_name="deploy_count_${service_name}"
-		value="${!var_name:-0}"
+		service_safe="${service_name//[^a-zA-Z0-9_]/_}"
+		var_key="deploy_count_${service_safe}"
+		value="${!var_key:-0}"
 		[ -z "$value" ] && continue
-		echo "${var_name}=${value}"
+		echo "${var_key}=${value}"
 	done | sort -u
 } >"$METRICS_STATE"
 
@@ -164,8 +166,8 @@ if [ -s "$METRICS_STATE" ]; then
 		echo "# TYPE podman_gitops_deploy_total counter"
 		while IFS='=' read -r key value; do
 			[ -z "$key" ] && continue
-			service_name="${key#deploy_count_}"
-			echo "podman_gitops_deploy_total{app=\"${service_name}\"} ${value}"
+			service_safe="${key#deploy_count_}"
+			echo "podman_gitops_deploy_total{app=\"${service_safe}\"} ${value}"
 		done <"$METRICS_STATE"
 	} >"$METRICS_OUT"
 	log INFO "Wrote metrics to $METRICS_OUT"
