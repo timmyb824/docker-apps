@@ -7,4 +7,4 @@ services:
       - "5884:80"
     restart: unless-stopped
     labels:
-      io.containers.autoupdate: "registry" # for use with podman
+      io.containers.autoupdate: "registry"
