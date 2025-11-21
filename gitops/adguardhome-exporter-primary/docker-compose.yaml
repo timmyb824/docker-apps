@@ -1,0 +1,17 @@
+---
+services:
+  adguard_exporter_primary:
+    image: docker.io/ebrianne/adguard-exporter
+    restart: unless-stopped
+    network_mode: "host"
+    container_name: adguardhome-exporter-primary
+    environment:
+      - adguard_protocol=http
+      - adguard_hostname=${ADGUARDHOME_HOSTNAME_PRIM}
+      - adguard_username=${ADGUARDHOME_USERNAME_PRIM}
+      - adguard_password=${ADGUARDHOME_PASSWORD_PRIM}
+      - server_port=9618
+      - interval=30s
+      - log_limit=10000
+    labels:
+      io.containers.autoupdate: "registry"

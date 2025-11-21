@@ -10,35 +10,3 @@ services:
     image: docker.io/adguard/adguardhome
     labels:
       io.containers.autoupdate: "registry"
-
-  adguard_exporter_secondary:
-    image: docker.io/ebrianne/adguard-exporter
-    restart: unless-stopped
-    network_mode: "host"
-    container_name: adguardhome_exporter_secondary
-    environment:
-      - adguard_protocol=http
-      - adguard_hostname=${ADGUARDHOME_HOSTNAME_SEC}
-      - adguard_username=${ADGUARDHOME_USERNAME_SEC}
-      - adguard_password=${ADGUARDHOME_PASSWORD_SEC}
-      - server_port=9617
-      - interval=30s
-      - log_limit=10000
-    labels:
-      io.containers.autoupdate: "registry"
-
-  adguard_exporter_primary:
-    image: docker.io/ebrianne/adguard-exporter
-    restart: unless-stopped
-    network_mode: "host"
-    container_name: adguardhome_exporter_primary
-    environment:
-      - adguard_protocol=http
-      - adguard_hostname=${ADGUARDHOME_HOSTNAME_PRIM}
-      - adguard_username=${ADGUARDHOME_USERNAME_PRIM}
-      - adguard_password=${ADGUARDHOME_PASSWORD_PRIM}
-      - server_port=9618
-      - interval=30s
-      - log_limit=10000
-    labels:
-      io.containers.autoupdate: "registry"
