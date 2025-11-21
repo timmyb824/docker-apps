@@ -16,3 +16,4 @@ gitops/cloudflared-tunnel/cloudflared/*.json
 gitops/adguardhome-sync/config/*
 gitops/adguardhome/pihole2/Archive/
 gitops/ara/.ara/
+gitops/semaphore/config.json
