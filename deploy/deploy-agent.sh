@@ -29,7 +29,89 @@ CONFIG="$REPO/gitops-apps.conf"
 METRICS_STATE="$REPO/deploy/metrics_state"
 METRICS_OUT="/var/lib/node_exporter/textfile/podman_gitops.prom"
 
-FORCE="${1:-}"
+usage() {
+	cat <<EOF
+Usage: $(basename "$0") [--force] [--app <name|path>]
+
+Options:
+  --force, -f       Deploy every configured app regardless of git changes.
+  --app, -a VALUE   Deploy only the specified app (match by config path or basename).
+  --help, -h        Show this message.
+EOF
+}
+
+FORCE_DEPLOY=false
+APP_SELECTOR=""
+
+while [ $# -gt 0 ]; do
+	case "$1" in
+	--force|-f)
+		FORCE_DEPLOY=true
+		;;
+	--app|-a)
+		if [ $# -lt 2 ]; then
+			msg_error "--app requires a value"
+			usage
+			exit 1
+		fi
+		APP_SELECTOR="$2"
+		shift
+		;;
+	--help|-h)
+		usage
+		exit 0
+		;;
+	*)
+		msg_error "Unknown argument: $1"
+		usage
+		exit 1
+		;;
+	esac
+	shift
+done
+
+resolve_app_selector() {
+	local selector="$1"
+	[ -z "$selector" ] && return 1
+
+	# normalize by trimming trailing slashes
+	while [[ "$selector" == */ ]]; do
+		selector="${selector%/}"
+	done
+
+	local rel_selector="$selector"
+	if [[ "$selector" = /* ]]; then
+		rel_selector="${selector#"$REPO"/}"
+	fi
+
+	for dir in "${app_dirs[@]:-}"; do
+		if [ "$dir" = "$selector" ] || [ "$dir" = "$rel_selector" ] || [ "$REPO/$dir" = "$selector" ]; then
+			echo "$dir"
+			return 0
+		fi
+	done
+
+	local base_selector
+	base_selector="$(basename "$selector")"
+	local -a matches=()
+	for dir in "${app_dirs[@]:-}"; do
+		if [ "$(basename "$dir")" = "$base_selector" ]; then
+			matches+=("$dir")
+		fi
+	done
+
+	if [ "${#matches[@]}" -eq 1 ]; then
+		echo "${matches[0]}"
+		return 0
+	fi
+
+	if [ "${#matches[@]}" -gt 1 ]; then
+		msg_error "Ambiguous app selector '$selector' matches: ${matches[*]}"
+		return 2
+	fi
+
+	return 1
+}
 
 # parse app configuration (directory + optional extra config files)
 declare -a app_dirs=()
@@ -54,13 +136,24 @@ while IFS= read -r line || [ -n "$line" ]; do
 	fi
 done <"$CONFIG"
 
+SELECTED_APP_DIR=""
+if [ -n "$APP_SELECTOR" ]; then
+	if ! SELECTED_APP_DIR="$(resolve_app_selector "$APP_SELECTOR")"; then
+		msg_error "No configured app matches selector '$APP_SELECTOR'"
+		exit 1
+	fi
+fi
+
 # load existing metrics state if present (shell-style key=value)
 if [ -f "$METRICS_STATE" ]; then
 	# shellcheck source=/dev/null
 	. "$METRICS_STATE"
 fi
 
-log INFO "deploy-agent start (force=${FORCE:-no}) repo=$REPO branch=$BRANCH"
+force_status="no"
+[ "$FORCE_DEPLOY" = true ] && force_status="yes"
+selected_status="${SELECTED_APP_DIR:-auto}"
+log INFO "deploy-agent start (force=$force_status app=$selected_status) repo=$REPO branch=$BRANCH"
 
 cd "$REPO"
 msg_info "Fetching origin/$BRANCH"
@@ -69,7 +162,7 @@ git fetch origin "$BRANCH"
 OLD_REV=$(git rev-parse HEAD)
 REMOTE=$(git rev-parse "origin/$BRANCH")
 
-if [ "$OLD_REV" = "$REMOTE" ] && [ "$FORCE" != "--force" ]; then
+if [ "$OLD_REV" = "$REMOTE" ] && [ "$FORCE_DEPLOY" != true ] && [ -z "$SELECTED_APP_DIR" ]; then
 	log INFO "No new commits on $BRANCH; exiting"
 	exit 0
 fi
@@ -131,11 +224,13 @@ add_changed_dir() {
 	fi
 }
 
-if [ "$FORCE" = "--force" ]; then
+if [ "$FORCE_DEPLOY" = true ]; then
 	# force mode: treat all configured apps as changed
 	for app_dir in "${app_dirs[@]}"; do
 		add_changed_dir "$app_dir"
 	done
+elif [ -n "$SELECTED_APP_DIR" ]; then
+	add_changed_dir "$SELECTED_APP_DIR"
 else
 	# determine which app directories have changed files
 	mapfile -t changed_paths < <(git diff --name-only "$OLD_REV" "$NEW_REV")
