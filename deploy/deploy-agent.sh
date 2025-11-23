@@ -31,10 +31,33 @@ METRICS_OUT="/var/lib/node_exporter/textfile/podman_gitops.prom"
 
 FORCE="${1:-}"
 
+# parse app configuration (directory + optional extra config files)
+declare -a app_dirs=()
+declare -A app_extra_configs=()
+
+while IFS= read -r line || [ -n "$line" ]; do
+	line="${line%%#*}"
+	if [ -z "${line//[[:space:]]/}" ]; then
+		continue
+	fi
+	read -r -a parts <<<"$line"
+	app_dir="${parts[0]}"
+	app_dirs+=("$app_dir")
+
+	if [ "${#parts[@]}" -gt 1 ]; then
+		extras=""
+		for extra_file in "${parts[@]:1}"; do
+			[ -z "$extra_file" ] && continue
+			extras+="${extra_file}"$'\n'
+		done
+		app_extra_configs["$app_dir"]="$extras"
+	fi
+done <"$CONFIG"
+
 # load existing metrics state if present (shell-style key=value)
 if [ -f "$METRICS_STATE" ]; then
-    # shellcheck source=/dev/null
-    . "$METRICS_STATE"
+	# shellcheck source=/dev/null
+	. "$METRICS_STATE"
 fi
 
 log INFO "deploy-agent start (force=${FORCE:-no}) repo=$REPO branch=$BRANCH"
@@ -97,22 +120,31 @@ redeploy_app() {
 }
 
 changed_app_dirs=()
+declare -A seen_changed_dirs=()
+
+add_changed_dir() {
+	local dir="$1"
+	[ -z "$dir" ] && return
+	if [ -z "${seen_changed_dirs["$dir"]:-}" ]; then
+		changed_app_dirs+=("$dir")
+		seen_changed_dirs["$dir"]=1
+	fi
+}
 
 if [ "$FORCE" = "--force" ]; then
 	# force mode: treat all configured apps as changed
-	while read -r app_dir; do
-		[ -z "$app_dir" ] && continue
-		changed_app_dirs+=("$app_dir")
-	done < <(grep -vE '^\s*($|#)' "$CONFIG")
+	for app_dir in "${app_dirs[@]}"; do
+		add_changed_dir "$app_dir"
+	done
 else
 	# determine which app directories have changed files
 	mapfile -t changed_paths < <(git diff --name-only "$OLD_REV" "$NEW_REV")
 
-	for app_dir in $(grep -vE '^\s*($|#)' "$CONFIG"); do
+	for app_dir in "${app_dirs[@]}"; do
 		for path in "${changed_paths[@]}"; do
 			case "$path" in
 			"$app_dir"/*)
-				changed_app_dirs+=("$app_dir")
+				add_changed_dir "$app_dir"
 				break
 				;;
 			esac
@@ -129,6 +161,34 @@ for app_dir in "${changed_app_dirs[@]}"; do
 	# 1) decrypt env
 	if [ -f "$app_dir/.app.env" ]; then
 		sops --decrypt --input-type dotenv "$app_dir/.app.env" >"$app_dir/.env"
+	fi
+
+	extra_configs="${app_extra_configs["$app_dir"]-}"
+	if [ -n "$extra_configs" ]; then
+		while IFS= read -r extra_file; do
+			extra_file="${extra_file#"${extra_file%%[![:space:]]*}"}"
+			extra_file="${extra_file%"${extra_file##*[![:space:]]}"}"
+			[ -z "$extra_file" ] && continue
+
+			if [[ "$extra_file" = /* ]]; then
+				target_path="$extra_file"
+			else
+				target_path="$app_dir/$extra_file"
+			fi
+
+			if [ ! -f "$target_path" ]; then
+				msg_warn "Configured config $target_path missing; skipping decrypt"
+				continue
+			fi
+
+			if rg -q --text 'ENC\[' "$target_path"; then
+				msg_info "Decrypting $target_path"
+				sops --decrypt --in-place "$target_path"
+				msg_ok "Decrypted $target_path"
+			else
+				msg_info "Skipping decrypt for $target_path (already decrypted)"
+			fi
+		done <<<"$extra_configs"
 	fi
 
 	# 2) redeploy
