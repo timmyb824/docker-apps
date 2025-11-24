@@ -1,8 +1,8 @@
 ---
 services:
-  redis_exporter:
+  redis-exporter:
     image: docker.io/oliver006/redis_exporter
-    container_name: redis_exporter
+    container_name: redis-exporter
     ports:
       - "9121:9121"
     command: --redis.addr=${REDIS_URL}
