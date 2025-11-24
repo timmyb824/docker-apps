@@ -9,6 +9,6 @@ services:
       - ./snmp.yml:/etc/snmp_exporter/snmp.yml
     command:
       - "--config.file=/etc/snmp_exporter/snmp.yml"
-    labels:
-      io.containers.autoupdate: "registry"
     network_mode: host
+    # labels:
+    #   io.containers.autoupdate: "registry"
