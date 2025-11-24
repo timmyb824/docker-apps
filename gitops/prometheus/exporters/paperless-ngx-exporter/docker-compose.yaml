@@ -1,5 +1,4 @@
 ---
-version: "3.7"
 services:
   exporter:
     image: ghcr.io/hansmi/prometheus-paperless-exporter:latest
