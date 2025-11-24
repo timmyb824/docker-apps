@@ -1,5 +1,5 @@
 ---
-# anyappstart is running as a service and not a container
+# anyappstart is running as a service (AnyAppStart@tbryant.service) and not a container
 services:
   node-bootstrap:
     image: docker.io/aceberg/node-bootstrap
