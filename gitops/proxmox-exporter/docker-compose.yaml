@@ -1,8 +1,8 @@
 ---
 services:
-  prometheus-pve-exporter:
+  proxmox-exporter:
     image: docker.io/prompve/prometheus-pve-exporter
-    container_name: prometheus-pve-exporter
+    container_name: proxmox-exporter
     volumes:
       - "./pve.yml:/etc/prometheus/pve.yml"
     ports:
