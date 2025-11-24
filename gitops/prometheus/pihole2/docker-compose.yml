@@ -17,18 +17,3 @@ services:
     labels:
       io.containers.autoupdate: "registry"
     network_mode: host
-
-  # node-exporter is being run as a systemd service due to issues get it to run in a container; port 9100 would not open
-
-  # !! BREAKING CHANGE IN v0.23.0 refer to https://github.com/prometheus/snmp_exporter/blob/main/auth-split-migration.md
-  snmp_exporter:
-    image: docker.io/prom/snmp-exporter:v0.22.0
-    container_name: snmp_exporter
-    restart: unless-stopped
-    volumes:
-      - ./snmp_exporter/snmp.yml:/etc/snmp_exporter/snmp.yml
-    command:
-      - "--config.file=/etc/snmp_exporter/snmp.yml"
-    labels:
-      io.containers.autoupdate: "registry"
-    network_mode: host

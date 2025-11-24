@@ -1,0 +1,14 @@
+---
+# !! BREAKING CHANGE IN v0.23.0 refer to https://github.com/prometheus/snmp_exporter/blob/main/auth-split-migration.md
+services:
+  snmp-exporter:
+    image: docker.io/prom/snmp-exporter:v0.22.0
+    container_name: snmp-exporter
+    restart: unless-stopped
+    volumes:
+      - ./snmp.yml:/etc/snmp_exporter/snmp.yml
+    command:
+      - "--config.file=/etc/snmp_exporter/snmp.yml"
+    labels:
+      io.containers.autoupdate: "registry"
+    network_mode: host

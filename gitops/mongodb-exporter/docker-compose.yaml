@@ -1,0 +1,10 @@
+---
+services:
+  mongodb_exporter:
+    image: "docker.io/percona/mongodb_exporter:0.47"
+    command: "--mongodb.uri=${MONGODB_URI} --collect-all"
+    ports:
+      - "9216:9216"
+    container_name: mongodb-exporter
+    # labels:
+    #   io.containers.autoupdate: "registry"

@@ -1,12 +1,11 @@
-version: "3.8"
-
+---
 services:
-  prometheuscommunity:
+  postgres-exporter:
     network_mode: host
-    container_name: "postgres-exporter"
+    container_name: postgres-exporter
     environment:
       - "DATA_SOURCE_NAME=${DATA_SOURCE_NAME}"
     image: quay.io/prometheuscommunity/postgres-exporter
     restart: unless-stopped
     labels:
-      io.containers.autoupdate: "registry" # for use with podman
+      io.containers.autoupdate: "registry"
