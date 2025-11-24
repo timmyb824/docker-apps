@@ -4,7 +4,7 @@ version: "3"
 
 services:
   gotify:
-    image: gotify/server:2.6.3 # oci: gotify/server-arm64
+    image: gotify/server:2.7.3 # oci: gotify/server-arm64
     container_name: gotify
     restart: unless-stopped
     ports:
