@@ -1,0 +1,11 @@
+services:
+  your-spotify-web:
+    image: docker.io/yooooomi/your_spotify_client
+    restart: always
+    container_name: your-spotify-web
+    ports:
+      - "3003:3000"
+    environment:
+      API_ENDPOINT: http://192.168.86.174:8086
+    labels:
+      io.containers.autoupdate: "registry"
