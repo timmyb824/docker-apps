@@ -5,7 +5,7 @@ services:
     environment:
       - "MYSQLD_EXPORTER_PASSWORD=${MYSQLD_EXPORTER_PASSWORD}"
     image: docker.io/prom/mysqld-exporter
-    container_name: mysqld_exporter
+    container_name: mysqld-exporter
     restart: unless-stopped
     command: "--mysqld.address=${MYSQLD_EXPORTER_HOST}:3306 --mysqld.username=${MYSQLD_EXPORTER_USERNAME} "
     labels:
