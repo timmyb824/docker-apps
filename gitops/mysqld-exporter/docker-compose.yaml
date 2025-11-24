@@ -4,7 +4,9 @@ services:
     network_mode: host
     environment:
       - "MYSQLD_EXPORTER_PASSWORD=${MYSQLD_EXPORTER_PASSWORD}"
-    image: prom/mysqld-exporter
+    image: docker.io/prom/mysqld-exporter
     container_name: mysqld_exporter
     restart: unless-stopped
     command: "--mysqld.address=${MYSQLD_EXPORTER_HOST}:3306 --mysqld.username=${MYSQLD_EXPORTER_USERNAME} "
+    labels:
+      io.containers.autoupdate: "registry"
