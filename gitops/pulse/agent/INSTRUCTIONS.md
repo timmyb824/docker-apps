@@ -17,6 +17,7 @@ StartLimitIntervalSec=0
 
 [Service]
 Type=simple
+# Added --enable-docker for podman support
 ExecStart=/usr/local/bin/pulse-agent --url https://pulse.local.timmybtech.com --token redacted --interval 30s --enable-host --enable-docker
 Restart=always
 RestartSec=5s
