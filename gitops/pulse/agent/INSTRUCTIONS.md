@@ -36,3 +36,9 @@ WantedBy=multi-user.target
 sudo systemctl daemon-reload
 sudo systemctl enable --now pulse-agent
 ```
+
+4. To uninstall the agent:
+
+```bash
+curl -fsSL https://pulse.local.timmybtech.com/install.sh | sudo bash -s -- --url https://pulse.local.timmybtech.com --uninstall
+```
