@@ -1,10 +1,11 @@
+---
 services:
   cloudflare-ddns:
     image: docker.io/timothyjmiller/cloudflare-ddns:latest
     container_name: cloudflare-ddns
     security_opt:
       - no-new-privileges:true
-    network_mode: 'host'
+    network_mode: "host"
     environment:
       - PUID=1000
       - PGID=1000
