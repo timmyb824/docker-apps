@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  cupdate:
+    image: "ghcr.io/alexgustafsson/cupdate:0.22.2"
+    container_name: cupdate
+    ports:
+      - "8080:8080"
+    environment:
+      - "CUPDATE_DOCKER_HOST=unix:///var/run/podman.sock"
+    volumes:
+      - "/var/run/user/1000/podman.sock:/var/run/podman.sock:ro"
+    tty: true
+    stdin_open: true
