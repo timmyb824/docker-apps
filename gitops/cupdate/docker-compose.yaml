@@ -8,6 +8,6 @@ services:
     environment:
       - "CUPDATE_DOCKER_HOST=unix:///var/run/podman.sock"
     volumes:
-      - "/var/run/user/1000/podman.sock:/var/run/podman.sock:ro"
+      - "/run/user/1000/podman/podman.sock:/var/run/podman.sock:ro"
     tty: true
     stdin_open: true
