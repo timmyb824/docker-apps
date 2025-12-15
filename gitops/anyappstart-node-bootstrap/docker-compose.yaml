@@ -2,7 +2,7 @@
 # anyappstart is running as a service (AnyAppStart@tbryant.service) and not a container
 services:
   node-bootstrap:
-    image: docker.io/aceberg/node-bootstrap
+    image: docker.io/aceberg/node-bootstrap:5.3.3
     container_name: anyappstart-node-bootstrap
     restart: unless-stopped
     network_mode: host

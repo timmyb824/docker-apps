@@ -1,6 +1,7 @@
 services:
   araapi:
-    image: "quay.io/recordsansible/ara-api:latest"
+    # tags are not numerically versioned
+    image: quay.io/recordsansible/ara-api:latest
     container_name: ara-api
     ports:
       - "8009:8000"

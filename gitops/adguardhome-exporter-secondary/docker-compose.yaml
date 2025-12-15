@@ -1,7 +1,7 @@
 ---
 services:
   adguard_exporter_secondary:
-    image: docker.io/ebrianne/adguard-exporter
+    image: docker.io/ebrianne/adguard-exporter:v1.14
     restart: unless-stopped
     network_mode: "host"
     container_name: adguardhome-exporter-secondary

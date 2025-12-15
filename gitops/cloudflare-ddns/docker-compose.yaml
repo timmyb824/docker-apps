@@ -1,6 +1,7 @@
 ---
 services:
   cloudflare-ddns:
+    # no other tags are available
     image: docker.io/timothyjmiller/cloudflare-ddns:latest
     container_name: cloudflare-ddns
     security_opt:
