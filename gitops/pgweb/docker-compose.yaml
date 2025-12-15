@@ -3,7 +3,7 @@ services:
   pgweb:
     container_name: pgweb
     restart: always
-    image: docker.io/sosedoff/pgweb
+    image: docker.io/sosedoff/pgweb:0.17.0
     ports:
       - "8084:8081"
     environment:
