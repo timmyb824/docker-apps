@@ -7,7 +7,7 @@ auths:
     priv_protocol: DES
     version: 1
   public_v2:
-    community: public
+    community: ${SNMP_COMMUNITY}
     security_level: noAuthNoPriv
     auth_protocol: MD5
     priv_protocol: DES

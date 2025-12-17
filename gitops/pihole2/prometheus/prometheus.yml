@@ -25,6 +25,7 @@ scrape_configs:
           - "192.168.86.44"
     metrics_path: /snmp
     params:
+      auth: [public_v2]
       module: [synology]
     relabel_configs:
       - source_labels: [__address__]

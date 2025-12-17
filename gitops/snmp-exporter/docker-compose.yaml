@@ -4,10 +4,13 @@ services:
     image: docker.io/prom/snmp-exporter:v0.29.0
     container_name: snmp-exporter
     restart: unless-stopped
+    environment:
+      - SNMP_COMMUNITY=${SNMP_COMMUNITY}
     volumes:
       - ./snmp.yml:/etc/snmp_exporter/snmp.yml
     command:
       - "--config.file=/etc/snmp_exporter/snmp.yml"
+      - "--config.expand-environment-variables"
     network_mode: host
     labels:
       io.containers.autoupdate: "registry"
