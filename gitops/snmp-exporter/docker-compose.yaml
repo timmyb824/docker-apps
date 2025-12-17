@@ -8,7 +8,6 @@ services:
       - ./snmp.yml:/etc/snmp_exporter/snmp.yml
     command:
       - "--config.file=/etc/snmp_exporter/snmp.yml"
-      - "--config.expand-environment-variables"
     network_mode: host
     labels:
       io.containers.autoupdate: "registry"
