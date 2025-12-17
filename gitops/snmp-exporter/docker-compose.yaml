@@ -5,7 +5,7 @@ services:
     container_name: snmp-exporter
     restart: unless-stopped
     environment:
-      - SNMP_COMMUNITY=${SNMP_COMMUNITY}
+      - "SNMP_COMMUNITY=${SNMP_COMMUNITY}"
     volumes:
       - ./snmp.yml:/etc/snmp_exporter/snmp.yml
     command:
