@@ -26,7 +26,7 @@ scrape_configs:
     metrics_path: /snmp
     params:
       auth: [synology]
-      module: [if_mib, synology]
+      module: [synology]
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
