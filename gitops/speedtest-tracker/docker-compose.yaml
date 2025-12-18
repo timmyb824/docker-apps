@@ -17,7 +17,7 @@ services:
       - APP_ENV=production
       - APP_KEY=${APP_KEY}
       - APP_DEBUG=false
-      - APP_URL=https://speedtest.timmybtech.com/
+      - APP_URL=https://speedtest.local.timmybtech.com/
       - SPEEDTEST_SCHEDULE=0 */12 * * *
     volumes:
       - ./config:/config
