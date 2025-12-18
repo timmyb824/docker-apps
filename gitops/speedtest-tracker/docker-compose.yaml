@@ -19,6 +19,7 @@ services:
       - APP_DEBUG=false
       - APP_URL=https://speedtest.local.timmybtech.com/
       - SPEEDTEST_SCHEDULE=0 */12 * * *
+      - SPEEDTEST_INTERNET_CHECK_HOSTNAME=https://google.com
     volumes:
       - ./config:/config
       - ./web:/etc/ssl/web
