@@ -23,7 +23,7 @@ services:
     volumes:
       - ./config:/config
       - ./web:/etc/ssl/web
-    image: docker.io/linuxserver/speedtest-tracker:1.13.1
+    image: docker.io/linuxserver/speedtest-tracker:1.12.4
     restart: unless-stopped
     labels:
       io.containers.autoupdate: "registry" # for use with podman
