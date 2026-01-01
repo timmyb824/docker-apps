@@ -1,0 +1,13 @@
+services:
+  dozzle-agent:
+    image: docker.io/amir20/dozzle:latest
+    container_name: dozzle-agent
+    command: agent
+    volumes:
+      - /run/user/${USER_ID}/podman/podman.sock:/var/run/docker.sock:z
+    environment:
+      - DOZZLE_HOSTNAME=${HOSTNAME}
+    ports:
+      - 7007:7007
+    labels:
+      io.containers.autoupdate: "registry"
