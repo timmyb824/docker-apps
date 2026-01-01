@@ -20,6 +20,7 @@ gitops/nutalert/config.yaml
 gitops/proxmox-exporter/pve.yml
 gitops/paperless-ngx-exporter/config/auth-token.txt
 gitops/snmp-exporter/snmp.yml
+gitops/scrutiny/scrutiny.yaml
 
 # gitops-archive
 gitops-archive/netdata/hp-laptop-ubuntu/netdataconfig/*
