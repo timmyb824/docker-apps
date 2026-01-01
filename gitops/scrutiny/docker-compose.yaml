@@ -30,7 +30,7 @@ services:
       COLLECTOR_HOST_ID: "scrutiny-collector-pihole2"
       # If true forces the collector to run on startup (cron will be started after the collector completes)
       # see: https://github.com/AnalogJ/scrutiny/blob/master/docs/TROUBLESHOOTING_DEVICE_COLLECTOR.md#collector-trigger-on-startup
-      COLLECTOR_RUN_STARTUP: true
+      COLLECTOR_RUN_STARTUP: false
       COLLECTOR_RUN_STARTUP_SLEEP: 15
     depends_on:
       web:
