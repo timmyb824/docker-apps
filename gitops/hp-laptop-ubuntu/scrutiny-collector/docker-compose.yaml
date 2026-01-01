@@ -1,0 +1,27 @@
+---
+# Deployed with root user to ensure access to devices
+# Command: /home/tbryant/.local/bin/podman-compose -p scrutiny-collector --in-pod=0 up -d --force-recreate
+services:
+  collector:
+    container_name: scrutiny-collector
+    restart: unless-stopped
+    image: "ghcr.io/analogj/scrutiny:master-collector@sha256:dbaa95f234ecd65ad3f73dfaa1b92d4c230b934f5e4fdbd00ebbe5e273ae81e2"
+    cap_add:
+      - SYS_RAWIO
+      - SYS_ADMIN
+    volumes:
+      - "/run/udev:/run/udev:z"
+      - "/dev:/dev:z"
+    privileged: true
+    network_mode: host
+    environment:
+      COLLECTOR_API_ENDPOINT: "http://pihole2.homelab.lan:8091"
+      COLLECTOR_HOST_ID: "scrutiny-collector-hp-laptop"
+      # If true forces the collector to run on startup (cron will be started after the collector completes)
+      # see: https://github.com/AnalogJ/scrutiny/blob/master/docs/TROUBLESHOOTING_DEVICE_COLLECTOR.md#collector-trigger-on-startup
+      COLLECTOR_RUN_STARTUP: false
+      COLLECTOR_RUN_STARTUP_SLEEP: 15
+      COLLECTOR_CRON_SCHEDULE: "0 * * * *"
+    devices:
+      - "/dev/sda"
+      - "/dev/sdb"
