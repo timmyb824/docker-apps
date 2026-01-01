@@ -1,4 +1,6 @@
 ---
+# Deployed with root user to ensure access to devices
+# Command: /home/tbryant/.local/bin/podman-compose -p scrutiny-collector --in-pod=0 up -d --force-recreate
 services:
   collector:
     container_name: scrutiny-collector
@@ -19,7 +21,7 @@ services:
       # see: https://github.com/AnalogJ/scrutiny/blob/master/docs/TROUBLESHOOTING_DEVICE_COLLECTOR.md#collector-trigger-on-startup
       COLLECTOR_RUN_STARTUP: false
       COLLECTOR_RUN_STARTUP_SLEEP: 15
-      COLLECTOR_CRON_SCHEDULE: "*/5 * * * *"
+      COLLECTOR_CRON_SCHEDULE: "0 * * * *"
     devices:
       - "/dev/sda"
       - "/dev/sdb"
