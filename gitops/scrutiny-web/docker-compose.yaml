@@ -1,0 +1,17 @@
+---
+services:
+  web:
+    container_name: scrutiny-web
+    restart: unless-stopped
+    image: "ghcr.io/analogj/scrutiny:master-web@sha256:27e470faa7170151d470dd77948d6ee491ba18fce56c468dae50c97fa3ddc341"
+    ports:
+      - "8091:8080"
+    volumes:
+      - "./config:/opt/scrutiny/config"
+      - "./scrutiny.yaml:/opt/scrutiny/config/scrutiny.yaml"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
+      interval: 5s
+      timeout: 10s
+      retries: 20
+      start_period: 10s

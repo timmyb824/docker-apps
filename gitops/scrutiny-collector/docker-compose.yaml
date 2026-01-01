@@ -1,21 +1,5 @@
 ---
 services:
-  web:
-    container_name: scrutiny-web
-    restart: unless-stopped
-    image: "ghcr.io/analogj/scrutiny:master-web@sha256:27e470faa7170151d470dd77948d6ee491ba18fce56c468dae50c97fa3ddc341"
-    ports:
-      - "8091:8080"
-    volumes:
-      - "./config:/opt/scrutiny/config"
-      - "./scrutiny.yaml:/opt/scrutiny/config/scrutiny.yaml"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
-      interval: 5s
-      timeout: 10s
-      retries: 20
-      start_period: 10s
-
   collector:
     container_name: scrutiny-collector
     restart: unless-stopped
@@ -27,17 +11,15 @@ services:
       - "/run/udev:/run/udev:z"
       - "/dev:/dev:z"
     privileged: true
+    network_mode: host
     environment:
-      COLLECTOR_API_ENDPOINT: "http://web:8080"
+      COLLECTOR_API_ENDPOINT: "http://localhost:8091"
       COLLECTOR_HOST_ID: "scrutiny-collector-pihole2"
       # If true forces the collector to run on startup (cron will be started after the collector completes)
       # see: https://github.com/AnalogJ/scrutiny/blob/master/docs/TROUBLESHOOTING_DEVICE_COLLECTOR.md#collector-trigger-on-startup
       COLLECTOR_RUN_STARTUP: false
       COLLECTOR_RUN_STARTUP_SLEEP: 15
       COLLECTOR_CRON_SCHEDULE: "*/5 * * * *"
-    depends_on:
-      web:
-        condition: service_healthy
     devices:
       - "/dev/sda"
       - "/dev/sdb"
