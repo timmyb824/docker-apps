@@ -1,5 +1,5 @@
 ---
-version: '3'
+version: "3"
 
 volumes:
   prometheus_data:
@@ -19,7 +19,7 @@ services:
       - "--config.file=/etc/prometheus/prometheus.yml"
     labels:
       io.containers.autoupdate: "registry"
-
+#
 #  node_exporter:
 #    image: quay.io/prometheus/node-exporter:latest
 #    container_name: node_exporter
@@ -35,8 +35,8 @@ services:
 #  cadvisor:
 #    image: gcr.io/cadvisor/cadvisor
 #    container_name: cadvisor
-    # ports:
-    #   - "8080:8080"
+# ports:
+#   - "8080:8080"
 #    volumes:
 #      - /:/rootfs:ro
 #      - /var/run:/var/run:ro

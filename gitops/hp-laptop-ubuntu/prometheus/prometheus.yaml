@@ -1,50 +1,59 @@
 global:
-  scrape_interval:     60s # By default, scrape targets every 15 seconds.
+  scrape_interval: 60s # By default, scrape targets every 15 seconds.
 
-  # For Prometheus federation
   external_labels:
     origin_prometheus: hp-laptop-ubuntu
 
 scrape_configs:
-  - job_name: 'prometheus'
+  - job_name: "prometheus"
     scrape_interval: 60s
     static_configs:
-      - targets: ['localhost:9090']
+      - targets: ["localhost:9090"]
 
-  - job_name: 'node_exporter'
+  - job_name: "node_exporter"
     static_configs:
-      - targets: ['192.168.86.53:9100']
+      - targets: ["192.168.86.53:9100"]
     relabel_configs:
-    - source_labels: [__address__]
-      regex: '.*'
-      target_label: instance
-      replacement: 'hp-laptop-ubuntu'
+      - source_labels: [__address__]
+        regex: ".*"
+        target_label: instance
+        replacement: "hp-laptop-ubuntu"
 
-#  - job_name: 'cadvisor'
-#    static_configs:
-#      - targets: ['cadvisor:8080']
-#    relabel_configs:
-#    - source_labels: [__address__]
-#      regex: '.*'
-#      target_label: instance
-#      replacement: 'hp-laptop-ubuntu'
+  #  - job_name: 'cadvisor'
+  #    static_configs:
+  #      - targets: ['cadvisor:8080']
+  #    relabel_configs:
+  #    - source_labels: [__address__]
+  #      regex: '.*'
+  #      target_label: instance
+  #      replacement: 'hp-laptop-ubuntu'
 
-#  - job_name: 'adguardhome'
-#    static_configs:
-#      - targets: ['192.168.86.53:9617']
-#    metrics_path: '/metrics'
-#    relabel_configs:
-#    - source_labels: [__address__]
-#      regex: '.*'
-#      target_label: instance
-#      replacement: 'hp-laptop-ubuntu'
+  #  - job_name: 'adguardhome'
+  #    static_configs:
+  #      - targets: ['192.168.86.53:9617']
+  #    metrics_path: '/metrics'
+  #    relabel_configs:
+  #    - source_labels: [__address__]
+  #      regex: '.*'
+  #      target_label: instance
+  #      replacement: 'hp-laptop-ubuntu'
 
-  - job_name: 'podman_exporter'
+  - job_name: "podman_exporter"
     static_configs:
-      - targets: ['192.168.86.53:9882']
-    metrics_path: '/metrics'
+      - targets: ["192.168.86.53:9882"]
+    metrics_path: "/metrics"
     relabel_configs:
-    - source_labels: [__address__]
-      regex: '.*'
-      target_label: instance
-      replacement: 'hp-laptop-ubuntu'
+      - source_labels: [__address__]
+        regex: ".*"
+        target_label: instance
+        replacement: "hp-laptop-ubuntu"
+
+  - job_name: "homelab-dns-tracer"
+    static_configs:
+      - targets: ["192.168.86.53:9115"]
+    metrics_path: "/metrics"
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: ".*"
+        target_label: instance
+        replacement: "hp-laptop-ubuntu"
