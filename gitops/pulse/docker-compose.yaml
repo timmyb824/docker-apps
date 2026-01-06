@@ -11,6 +11,8 @@ services:
       - TZ=America/New_York
       - ALLOWED_ORIGINS=https://pulse.local.timmybtech.com
     restart: unless-stopped
+    healthcheck:
+      disable: true
     # healthcheck:
     #   test:
     #     [
