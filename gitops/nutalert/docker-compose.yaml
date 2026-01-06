@@ -6,3 +6,5 @@ services:
     volumes:
       - ./:/config
     restart: unless-stopped
+    healthcheck:
+      disable: true
