@@ -5,9 +5,6 @@ services:
     container_name: scanopy-daemon
     network_mode: host
     privileged: true
-    restart: unless-stopped
-    # ports:
-    #   - "60073:60073"
     environment:
       SCANOPY_SERVER_URL: http://127.0.0.1:60072
       SCANOPY_PORT: 60073
@@ -16,11 +13,11 @@ services:
       SCANOPY_HEARTBEAT_INTERVAL: 30
       SCANOPY_MODE: Push
       SCANOPY_LOG_LEVEL: info
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:60073/api/health || exit 1"]
-      interval: 5s
-      timeout: 3s
-      retries: 15
+    # healthcheck:
+    #   test: ["CMD-SHELL", "curl -f http://localhost:60073/api/health || exit 1"]
+    #   interval: 5s
+    #   timeout: 3s
+    #   retries: 15
     volumes:
       - daemon-config:/root/.config/daemon
       # Comment out the line below to disable docker discovery
@@ -30,8 +27,6 @@ services:
     image: ghcr.io/scanopy/scanopy/server:v0.13.1
     container_name: scanopy-server
     network_mode: host
-    # ports:
-    #   - "60072:60072"
     environment:
       SCANOPY_DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD:-postgres}@${POSTGRES_HOST}:5432/scanopy
       SCANOPY_WEB_EXTERNAL_PATH: /app/static
@@ -42,7 +37,6 @@ services:
     depends_on:
       daemon:
         condition: service_healthy
-    restart: unless-stopped
 
 volumes:
   daemon-config:
