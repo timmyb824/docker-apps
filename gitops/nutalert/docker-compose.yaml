@@ -1,7 +1,8 @@
 ---
 services:
   nutalert:
-    image: ghcr.io/rmfatemi/nutalert:sha256-2f6d0c18526acd5c02bd5aa61caedf5aca16bb426c96dd30e921f90368daf7ff
+    # Using the SHA of the image did not seem to work
+    image: ghcr.io/rmfatemi/nutalert:latest
     container_name: nutalert
     network_mode: host
     volumes:
