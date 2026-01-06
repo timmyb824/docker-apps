@@ -9,6 +9,8 @@ services:
     volumes:
       - "./config:/opt/scrutiny/config"
       - "./scrutiny.yaml:/opt/scrutiny/config/scrutiny.yaml"
+    healthcheck:
+      disable: true
     # healthcheck:
     #   test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
     #   interval: 5s
