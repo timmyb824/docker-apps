@@ -9,7 +9,7 @@ services:
     ports:
       - "3007:3000"
     volumes:
-      - /run/user/${USER_ID-1000}/podman/podman.sock:/run/podman/podman.sock:z
+      - /run/user/${USER_ID-1000}/podman/podman.sock:/var/run/docker.sock:z
       - dockhand_data:/app/data
 
 volumes:
