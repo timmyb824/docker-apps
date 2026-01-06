@@ -4,8 +4,7 @@ services:
     image: docker.io/fnsys/dockhand:4163738c
     container_name: dockhand
     restart: unless-stopped
-    group_add:
-      - "1000"
+    userns_mode: "keep-id"
     ports:
       - "3007:3000"
     volumes:
