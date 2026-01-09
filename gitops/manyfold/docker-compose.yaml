@@ -1,0 +1,28 @@
+services:
+  app:
+    image: ghcr.io/manyfold3d/manyfold-solo:latest
+    ports:
+      - 3214:3214
+    volumes:
+      - ./models:/models
+    environment:
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      DATABASE_ADAPTER: postgresql
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: 5432
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      REDIS_URL: ${REDIS_URL}
+      PUID: 1000
+      PGID: 1000
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - SETUID
+      - SETGID

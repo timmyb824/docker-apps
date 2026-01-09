@@ -1,2 +1,1 @@
-Monitoring/Active/prometheus/exporters/proxmox_exporter/pve.yml
-Monitoring/Active/prometheus/exporters/paperless-ngx_exporter/config/auth-token.txt
+gitops/manyfold/.app.env
