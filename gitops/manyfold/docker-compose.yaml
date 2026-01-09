@@ -5,7 +5,7 @@ services:
     ports:
       - 3214:3214
     volumes:
-      - ./models:/models
+      - ./libraries:/libraries:z
     environment:
       SECRET_KEY_BASE: ${SECRET_KEY_BASE}
       DATABASE_ADAPTER: postgresql
