@@ -15,4 +15,6 @@ services:
       DATABASE_USER: ${DATABASE_USER}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       REDIS_URL: ${REDIS_URL}
+      PUID: 1000
+      PGID: 1000
     restart: unless-stopped
