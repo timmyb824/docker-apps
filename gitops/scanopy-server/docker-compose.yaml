@@ -1,0 +1,16 @@
+---
+services:
+  server:
+    image: ghcr.io/scanopy/scanopy/server:v0.13.5
+    container_name: scanopy-server
+    network_mode: host
+    environment:
+      SCANOPY_DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD:-postgres}@${POSTGRES_HOST}:5432/scanopy
+      SCANOPY_WEB_EXTERNAL_PATH: /app/static
+      SCANOPY_PUBLIC_URL: http://localhost:60072
+      SCANOPY_INTEGRATED_DAEMON_URL: http://127.0.0.1:60073
+    volumes:
+      - ./data:/data
+    # depends_on:
+    #   daemon:
+    #     condition: service_healthy
