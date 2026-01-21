@@ -22,6 +22,7 @@ gitops/paperless-ngx-exporter/config/auth-token.txt
 gitops/snmp-exporter/snmp.yml
 gitops/scrutiny-web/scrutiny.yaml
 gitops/scrutiny-web/config/
+gitops/manyfold/libraries/
 
 # gitops-archive
 gitops-archive/netdata/hp-laptop-ubuntu/netdataconfig/*
